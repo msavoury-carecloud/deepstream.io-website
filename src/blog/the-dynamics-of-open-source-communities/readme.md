@@ -6,7 +6,7 @@ dateISO: 20161014
 author: amyfleming
 thumbnail: goodies.jpg
 ---
-For months now deepstream.io has been navigating the rough waters of open source - and to some extent successfully so. As a long-term PR professional but first time dabbler in open source community management - I'd love to share what I learned along the way.
+For months now deepstream.io has been navigating the rough waters of open source - and to some extent successfully so. As a long-term PR professional but first time dabbler in open source community management I'd love to share what I learned along the way.
 
 ![Amy Fleming](amy-fleming.jpg)
 
@@ -21,18 +21,18 @@ So - how do we continue to build on engaging this community of software-rions, t
 
 ![Elton](elton-elton-shirt.png)
 ## Be there for your users and contributors 
-As the maintainer of an open source project you should think of your contributors as potential new friends. You both have a common interest. People generally like discussing their interests. So, go ahead. Ask their opinion. And get arguing if necessary. (in my experience it always seems necessary.) 
+As the maintainer of an open source project you should think of your contributors as potential new friends. You both have a common interest. People generally like discussing their interests. So, go ahead. Ask their opinion. And get arguing if necessary (in my experience it always seems necessary).
 Also, it’s not a bad idea to personally invite selected new contributors, provide them with the tools  and documentation to collaborate and offer support by connecting them with fellow tech experts from additional areas of knowledge. 
 
 ## Foster the community
-You will be asked all types of questions, many repetitively. The approach you want to keep in mind is to document all of them and create links with answers leading back to your site. Or to link back to an answer already provided by someone else from within the community. This subtlety shows appreciation and recognition to the developer posting. By letting the community speak for you, you protect yourself from over self-promotion and can ultimately transform communications into a self-nurturing system. (hoping all the discussions are of a positive nature of course.) Additionally value is created by forming relationships between products and actual humans using the products. Humanizing your offering encourages trust or at least the comfort in having someone to blame if things don’t go as expected. 
+You will be asked all types of questions, many repetitively. The approach you want to keep in mind is to document all of them and create links with answers leading back to your site. Or to link back to an answer already provided by someone else from within the community. This subtlety shows appreciation and recognition to the developer posting. By letting the community speak for you, you protect yourself from over self-promotion and can ultimately transform communications into a self-nurturing system. (hoping all the discussions are of a positive nature of course). Additionally value is created by forming relationships between products and actual humans using the products. Humanizing your offering encourages trust or at least the comfort in having someone to blame if things don’t go as expected. 
 
 ## Documentation
 Good documentation. Seriously. Also, make it easy to find. 
 It’s even a thing to make your documentation open source by asking for help with writing the explainy-bits. 
 
 ## The other stuff 
-Seek to identify and empower local ambassadors from your space (see e.g. Docker captains)
+Seek to identify and empower local ambassadors from your space (see e.g. [Docker Captains](https://www.docker.com/community/docker-captains)).
 Engage on forums and social channels such as, HackerNews, Twitter and Reddit. You should aim to be visible and accessible to the community.   
 Try to squeeze in face to face interaction at events, meetups and hackathons. 
 Perhaps host your own mini conference? - Invite selected partners and guest speakers to bring developers together for knowledge sharing and building memorable relationships. 
@@ -47,11 +47,4 @@ Get out there and accelerate your growth by ensuring your desired community feel
 
 ![Elton goodies](goodies.jpg)
 
-Join our [Slack Channel](https://deepstream-slack.herokuapp.com/) for some realtime community help or drop us a line at: [info@deepstreamhub.com](mailto:info@deepstreamhub.com) for some awesome Elton-goodies.
-
-
-[#askdeepstream](https://twitter.com/search?q=%23askdeepstream&src=typd) 
-
-
-
-
+Join our [Slack Channel](https://deepstream-slack.herokuapp.com/) for some realtime community help, drop us a line at: [info@deepstreamhub.com](mailto:info@deepstreamhub.com) for some awesome Elton-goodies or ask your questions to @deepstreamIO using [#askdeepstream](https://twitter.com/search?q=%23askdeepstream&src=typd) 
