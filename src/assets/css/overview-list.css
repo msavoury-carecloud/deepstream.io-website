@@ -52,6 +52,18 @@ body #tut-overview .wrapper a:hover{
 #tut-overview a.knockout{
     background-image: url(/assets/img/tutorials/knockout.png);
 }
+#tut-overview a.dynamic-permissions{
+    background-image: url(/assets/img/tutorials/dynamic-permissions.png);
+}
+#tut-overview a.events{
+    background-image: url(/assets/img/tutorials/rocket.png);
+}
+#tut-overview a.postit-board{
+    background-image: url(/assets/img/tutorials/postit-board.png);
+}
+#tut-overview a.what-is-deepstream{
+    background-image: url(/assets/img/tutorials/what-is-deepstream.png);
+}
 #tut-overview a.polymer{
     background-image: url(/assets/img/tutorials/polymer.png);
 }
