@@ -50,7 +50,7 @@ Any process connected to deepstream can register as a “provider” for an RPC 
 These concepts are backed by a number of supporting features
 
 #### Listening
-Providers can not only subscribe to records and events, they can also listen to other clients subscriptions. That means that a provider for NASDAQ stock prices could listen for a pattern like `NASDAQ/*’. Once the first client subscribes to ‘NASDAQ/AAPL` the provider is notified and can start providing data for the stock.
+Providers can not only subscribe to records and events, they can also listen to other clients subscriptions. That means that a provider for NASDAQ stock prices could listen for a pattern like `NASDAQ/*`. Once the first client subscribes to `NASDAQ/AAPL` the provider is notified and can start providing data for the stock.
 This allows for the creation of efficient “active” providers that only send out data if it's actually needed.
 
 ### Security & Permissioning
