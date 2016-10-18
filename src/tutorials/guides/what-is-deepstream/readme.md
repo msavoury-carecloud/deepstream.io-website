@@ -64,7 +64,7 @@ If no external system is specified, deepstream will run as a single node and sto
 deepstream supports [encrypted connections](/tutorials/core/security-overview/) and [multiple authentication strategies](/tutorials/core/auth-http-webhook/) to validate incoming connections. It also uses a granular permission language called “[Valve](/tutorials/core/permission-conf-simple/)” that lets you configure exactly which user can manipulate which record, event or rpc with which data.
 
 ### How far does it scale?
-deepstream nodes are build as small, single threaded processes with asynchronous I/O that scale in clusters, designed to work well in cloud environments. A single node can comfortably stream 160.000-200.000 updates a second.
+deepstream nodes are built as small, single threaded processes with asynchronous I/O that scale in clusters, designed to work well in cloud environments. A single node can comfortably stream 160.000-200.000 updates a second.
 Recent benchmarks ran a cluster of six nodes on AWS EC2 t2.medium instances for an hour, delivering four billion messages (at a total AWS cost of 36 cents).
 
 ### How fast is it?
