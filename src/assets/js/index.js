@@ -241,6 +241,23 @@ function updateDownloadLinks() {
 }
 updateDownloadLinks();
 
+function updateCdnLinks() {
+    $('a.cdn-link').each(function(){
+        var url = 'https://api.cdnjs.com/libraries/deepstream.io-client-js?fields=version';
+        var anchor = $(this);
+
+        $.getJSON( url, function( data ){
+            var version = data.version;
+            var cdnUrl = 'https://cdnjs.cloudflare.com/ajax/libs/deepstream.io-client-js/'
+                + version + '/deepstream.js'
+
+            anchor.attr( 'href', cdnUrl );
+            $($('.token.attr-value:contains("cdn-url")').contents()[2]).replaceWith(cdnUrl);
+        });
+    });
+}
+updateCdnLinks();
+
 $(function(){
     setTimeout(function(){
         $('.deepstream-star').removeClass('start');
