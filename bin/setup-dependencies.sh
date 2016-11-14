@@ -1,5 +1,5 @@
 ### Setup
-mkdir dependencies
+mkdir -p dependencies
 cd dependencies
 
 ###############################

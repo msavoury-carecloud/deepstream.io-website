@@ -49,7 +49,7 @@ function readMessageScenarios( loadedSpec, root, stats, next ) {
 	next();
 }
 
-const specsPath = process.env.WEBSITE_SPECS_PATH || '../dependencies/deepstream.io-client-specs/features';
+const specsPath = process.env.WEBSITE_SPECS_PATH || '../dependencies/deepstream.io-client-specs';
 var walkFeatureTree = function( loadedSpec, next ) {
 	var inputDir =  path.join( __dirname, specsPath );
 	var walker = walk.walk( inputDir, {} );
