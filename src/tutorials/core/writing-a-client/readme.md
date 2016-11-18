@@ -24,14 +24,14 @@ Deepstream is an open platform that uses a minimal, text-based protocol to commu
 < E|EVT|someEvent|Smore details+
 ```
 
-Deepstream communicates via [engine.io](https://github.com/socketio/engine.io) with browsers and via TCP for all other programming languages. Using a low level protocol like TCP means that pretty much everything, from basic Arduinos to enterprise Java servers can communicate with deepstream.
+Deepstream communicates via websockets. Combining our tight integration with [µWS](https://github.com/uWebSockets/uWebSockets) means that pretty much everything, from basic Arduinos to enterprise Java servers can communicate with deepstream over the websocket protocol.
 
 If you'd like to write a client for your language of choice, have a look if there's [already an issue for it](https://github.com/deepstreamIO/deepstream.io/labels/new-client) and get in touch! We'd be more than happy to help.
 
 ## Where to start?
 Here's how to tackle writing a deepstream client:
 - Have a look at the [page on message structure](/info/protocol/message-structure-overview/)
-- Establish a TCP connection to a deepstream server
+- Establish a websocket connection to a deepstream server
 - Send an [auth message and parse the response](/info/specs/connectivity/)
 - Start by implementing [events](/info/specs/events/) as they are the simplest feature
 - Add Records, RPCs
@@ -54,9 +54,9 @@ Before reading on, take a quick peek at [the connectivity feature](/info/specs/c
 You can hover over messages in features and spec pages to get a breakdown of what they get parsed into.
 {{/infobox}}
 
-Since the tests will be run in the language the client is being written in you would also need to setup a very simple TCP server.
+Since the tests will be run in the language the client is being written in you would also need to setup a very simple websocket server.
 
-The best place to start would be looking at the [server step definitions](//raw.githubusercontent.com/deepstreamIO/deepstream.io-client-specs/master/step-definitions-server/step-definition-server.js) and its [TCP server](//raw.githubusercontent.com/deepstreamIO/deepstream.io-client-specs/master/step-definitions-server/tcp-server.js) and applying the same logic in your language of choice.
+The best place to start would be looking at the [server step definitions](//raw.githubusercontent.com/deepstreamIO/deepstream.io-client-js/master/test-specs/steps/server/step-definition-server.js) and its [websocket server](://raw.githubusercontent.com/deepstreamIO/deepstream.io-client-js/master/test-specs/steps/server/ws-server.js) and applying the same logic in your language of choice.
 
 {{#infobox "hint" "Remember to catch errors"}}
 In order to guarantee no errors are being ignored you can add a [cucumber hook](//github.com/cucumber/cucumber/wiki/Hooks) to run after each feature and ensure no unexpected errors were thrown.
@@ -70,7 +70,7 @@ If the connection does drop, clients are expected to go into reconnecting mode t
 
 ![Connection state diagram](connection-state-diagram.png)
 
-## TCP Buffering
+## Message Buffering
 
 Since clients are expected to have a very high throughput it's good practice to buffer messages within the program and then send it out once at the end of a CPU cycle.
 
@@ -83,7 +83,7 @@ while( i < 10000 ) {
 }
 ```
 
-If I was to send the message through directly to the TCP socket for every iteration it would create an overhead having to interact with the socket directly so often. Instead, we can concatenate the messages within the client and then send them in one go. Because of the use of the message seperation character the server can then split the package up and process them in the same order.
+If I was to send the message through directly to the websocket for every iteration it would create an overhead having to interact with the socket directly so often. Instead, we can concatenate the messages within the client and then send them in one go. Because of the use of the message seperation character the server can then split the package up and process them in the same order.
 
 ```javascript
 connection.prototype.send = function( message ) {

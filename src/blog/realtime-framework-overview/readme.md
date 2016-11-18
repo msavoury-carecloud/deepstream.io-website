@@ -40,7 +40,6 @@ if WebSockets are not available, some libraries fall back to http long polling a
 
 #### [engine.io](https://github.com/socketio/engine.io)
 Engine.io is the transport layer that powers socket.io, but can also be used as a standalone library. It incorporates a few unusual design choices, such as starting with http long-polling to ensure immediate connectivity and only upgrade the connection to websocket a bit later.
-It's what we chose for browser communication in deepstream.io after extensive testing and comparing and have never regretted it since.
 
 #### [WS](https://github.com/websockets/ws)
 A solid, barebone WebSocket server for node. Used by engine.io
