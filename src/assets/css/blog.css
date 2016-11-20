@@ -49,6 +49,11 @@
 		font-weight: 600;
 }
 
+.post th{
+	font-weight: 400;
+	border-bottom: 1px solid #ccc;
+}
+
 .post blockquote {
 	margin: 1.5em 86px;
     padding: 0.5em 10px;
