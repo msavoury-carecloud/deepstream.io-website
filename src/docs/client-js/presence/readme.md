@@ -1,0 +1,71 @@
+---
+title: Presence
+description: API docs for deepstream's presence feature, allowing clients to know about other connected clients
+---
+
+Presence allows clients to know when other clients come online and offline, as well as the ability to query for connected clients.
+
+It's worth mentioning that presence only shows clients that logged in with a username. For example, `client.login();` won't trigger the callback client.subscribe( callback );`
+
+## Methods
+
+### client.subscribe( callback )
+{{#table mode="api"}}
+-
+  arg: callback
+  typ: Function
+  opt: false
+  des: Will be invoked with the username of a client,
+       and a boolean to indicate if it was a login(true) or
+       logout(false) event
+{{/table}}
+
+Subscribes to presence events. Callback will receive the username of thea newly added client
+
+```javascript
+// Client A
+client.presence.subscribe((username, isLoggedIn) => {
+  // handle new user
+})
+
+// Client B
+client.login({username: 'Alex'})
+```
+
+### client.unsubscribe( callback )
+{{#table mode="api"}}
+-
+  arg: callback
+  typ: Function
+  opt: False
+  des: A previously registered callback
+{{/table}}
+
+Removes a previously registered presence callback
+
+```javascript
+function onOnlineStatusChange( username, isOnline ) {
+  //...
+}
+// Client A
+client.presence.subscribe( onOnlineStatusChange )
+client.presence.unsubscribe( onOnlineStatusChange )
+```
+
+### client.getAll( callback )
+{{#table mode="api"}}
+-
+  arg: callback
+  typ: Function
+  opt: False
+  des: A function that will be called with an array of usernames that are online
+{{/table}}
+
+Queries for currently connected clients
+
+```javascript
+// Client B
+client.presence.getAll((clients) => {
+    // [ 'Alex', 'Ben', 'Charlie' ]
+})
+```

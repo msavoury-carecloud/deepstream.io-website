@@ -21,7 +21,7 @@ Today we are proud to announce deepstream 2.0 - with a new messaging core, suppo
 ## Benchmarks
 We are continuously running and expanding our suite of benchmarks to ensure deepstream’s performance and stability under heavy load and high concurrency. For the 2.0 release we’ve conducted a series of tests comparing the performance of deepstream.io against [socket.io](http://socket.io/) - one of the most widely used connectivity libraries.
 
-This test fully concentrates on publish-subscribe - a pattern both deepstream and socket.io provide. Deepstreams core features of data-sync and request-response will be omitted
+This test fully concentrates on publish-subscribe - a pattern both deepstream and socket.io provide. Deepstream's core features of data-sync and request-response will be omitted.
 
 ## Testing procedure
 The tests were conducted using purpose-built benchmark clients written in C++ 11. The clients and all other test components can be found [here](https://github.com/deepstreamIO/deepstream.io-benchmarks) to allow for inspection and replication of tests.
