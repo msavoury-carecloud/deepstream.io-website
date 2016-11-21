@@ -11,8 +11,6 @@ const client = deepstream( 'localhost:6020', {
   // custom deepstream options
   mergeStrategy: deepstream.LOCAL_WINS,
   subscriptionTimeout: 500,
-  // custom engine.io options
-  rememberUpgrade: true
 })
 ```
 
@@ -75,57 +73,3 @@ _Default_: `3000`
 The number of milliseconds from the moment `record.delete()` is called until an error is thrown since no delete ack message has been received. Please take into account that the deletion is only complete after the record has been deleted from both cache and storage.<br>
 _Type_: Number<br>
 _Default_: `3000`
-
-## Browser connection specific
-
-The following options do not apply to TCP connections and are specific to engine.io
-
-### upgrade
-Whether the client should try to upgrade the transport from long-polling to something better, e.g. WebSocket.<br>
-_Type_: Boolean<br>
-_Default_: `true`
-
-### forceJSONP
-Forces JSONP for polling transport.<br>
-_Type_: Boolean<br>
-_Default_: `false`
-
-### jsonp
-Determines whether to use JSONP when necessary for polling. If disabled (by settings to false) an error will be emitted (saying "No transports available") if no other transports are available. If another transport is available for opening a connection (e.g. WebSocket) that transport will be used instead.<br>
-_Type_: Boolean<br>
-_Default_: `true`
-
-### forceBase64
-Forces base 64 encoding for polling transport even when XHR2 responseType is available and WebSocket even if the used standard supports binary.<br>
-_Type_: Boolean<br>
-_Default_: `false`
-
-### enablesXDR
-Enable Cross Domain Requests for IE8 to avoid loading the bar flashing click sounds. Default to false because Cross Domain Requests can't send cookies.<br>
-_Type_: Boolean<br>
-_Default_: `false`
-
-### timestampRequests
-Whether to add the timestamp with each transport request. Note: this is ignored if the browser is IE or Android, in which case requests are always stamped.<br>
-_Type_: Boolean<br>
-_Default_: `false`
-
-### timestampParam
-The GET parameter key to use for the timestamp.<br>
-_Type_: String<br>
-_Default_: `t`
-
-### path
-The path to connect to for browser connections.<br>
-_Type_: String<br>
-_Default_: `/deepstream`
-
-### transports
-A list of transports to try (in order). Engine.io always attempts to connect directly with the first one, provided the feature detection test for it passes.<br>
-_Type_: Array<br>
-_Default_: `['polling', 'websocket']`
-
-### rememberUpgrade
-If true and if the previous websocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try websocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.<br>
-_Type_: Boolean<br>
-_Default_: `false`

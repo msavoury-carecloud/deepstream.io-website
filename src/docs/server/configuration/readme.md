@@ -19,15 +19,7 @@ _Default_: `true`
 
 ## Connectivity and Networking
 
-In this section you can change, enable and disable networking services and details for them.
-
-### webServerEnabled
-Sets if this server should accept incoming HTTP long-polling and websocket connections.<br>
-_Default_: `true`
-
-### tcpServerEnabled
-Sets if this server should accept incoming TCP connections.<br>
-_Default_: `true`
+In this section you can change networking details.
 
 ### port
 Sets the port for the HTTP and Websocket server.<br>
@@ -37,16 +29,8 @@ _Default_: `6020`
 Sets the host for the HTTP and Websocket server.<br>
 _Default_: `0.0.0.0`
 
-### tcpPort
-Sets the port of the TCP server.<br>
-_Default_: `6021`
-
-### tcpHost
-Sets the host for the TCP server.<br>
-_Default_: `0.0.0.0`
-
 ### urlPath
-Sets which url path HTTP and Websocket connections should connect to.<br>
+Sets which url path Websocket connections should connect to.<br>
 _Default_: `/deepstream`
 
 ## SSL Configuration
@@ -163,14 +147,6 @@ _Default_: `60000`
 ## Timeouts (in milliseconds)
 
 In this section you can configure timeout values for a variety of network calls.
-
-### rpcProviderQueryTimeout
-Sets how long deepstream will wait for responses after querying for RPC provider<br>
-_Default_:`1000`
-
-### rpcProviderCacheTime
-Sets how long deepstream remembers your registered RPC provider before asking for it again.<br>
-_Default_:`60000`
 
 ### rpcAckTimeout
 Sets how long Deepstream will wait for a RPC provider to acknowledge receipt of a request.<br>

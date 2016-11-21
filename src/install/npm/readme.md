@@ -29,8 +29,7 @@ The server can take
 */
 const server = new DeepstreamServer({
   host: 'localhost',
-  port: 6020,
-  tcpPort: 6021
+  port: 6020
 })
 
 /*
@@ -59,9 +58,7 @@ The deepstream javascript client can be installed via [NPM](https://www.npmjs.co
 npm install deepstream.io-client-js
 ```
 
-Just make sure to connect to deepstream's TCP port (6021 by default)!
-
 ```javascript
 const deepstream = require('deepstream.io-client-js')
-const client = deepstream('localhost:6021').login()
+const client = deepstream('localhost:6020').login()
 ```

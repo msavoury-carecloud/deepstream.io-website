@@ -52,7 +52,7 @@ Using a combination of the following environment variables you can adjust the te
 
 | Enviroment Variable       |  Example Value | Description                                                        |
 | ------------------------- | -------------- | ------------------------------------------------------------------ |
-| DEEPSTREAMS               | 6021,7021      | The deepstream ports to create or connect to ( via tcp )           |
+| DEEPSTREAMS               | 6021,7021      | The deepstream ports to create or connect to           |
 | HOST                      | localhost      | The deepstream host to connect to                                  |
 | SERVER_SPAWNING_SPEED     | 1000           | The interval at which servers are spawned ( in ms )                |
 | TEST_TIME                 | 100000         | The time for server to run ( in ms )                               |

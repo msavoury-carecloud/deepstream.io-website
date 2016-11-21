@@ -22,7 +22,7 @@ meta:
 list:
 -
   name: CONNECTION_ERROR
-  description: Either the browser or TCP connection has encountered an error.
+  description: The websocket connection has encountered an error.
   server: ''
   client: ✔
 
