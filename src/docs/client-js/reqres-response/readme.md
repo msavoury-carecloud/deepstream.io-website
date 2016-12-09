@@ -16,11 +16,11 @@ The RPC response object is passed to the callback registered with `client.rpc.pr
   des: Any serializable response data
 {{/table}}
 
-Succesfully complete a remote procedure call and sends data back to the requesting client.
+Succesfully complete a remote procedure call and send data back to the requesting client.
 
-`data` can be any kind of serializable data, e.g. Objects, Numbers, Booleans or Strings
+`data` can be any kind of serializable data, e.g., Objects, Numbers, Booleans, or Strings.
 
-If `autoAck` is disabled and the response is sent before the ack message, the request will still be completed and the ack message will be ignored.
+If `autoAck` is disabled and the response is sent before the ack message arrives, then the request will still be completed and the ack message will be ignored.
 
 ```javascript
 client.rpc.provide( 'add-two-numbers', ( data, response ) => {
@@ -29,7 +29,7 @@ client.rpc.provide( 'add-two-numbers', ( data, response ) => {
 ```
 
 ### response.reject()
-Rejects the request. Rejections are not errors, but merely a means of saying "I'm busy at the moment, try another client". Upon receiving a rejection deepstream will try to re-route the request to another provider for the same RPC. If there are no more providers left to try, deepstream will send a NO_RPC_PROVIDER error to the client.
+Rejects the request. Rejections are not errors but merely a means of saying "I'm busy at the moment, try another client". Upon receiving a rejection, deepstream will try to re-route the request to another provider for the same RPC. If there are no more providers left to try, deepstream will send a `NO_RPC_PROVIDER` error to the client.
 
 ```javascript
 client.rpc.provide( 'add-two-numbers', ( data, response ) => {
@@ -45,7 +45,7 @@ client.rpc.provide( 'add-two-numbers', ( data, response ) => {
   arg: errorMsg
   typ: String
   opt: false
-  des: A string that will be passed as error to the RPC requestor
+  des: A string that will be passed as error to the RPC requester.
 {{/table}}
 
 Send an error to the client. `errorMsg` will be received as the first argument to the callback registered with `client.rpc.make()`. This will complete the RPC.
@@ -61,7 +61,7 @@ client.rpc.provide( 'count-vote', ( data, response ) => {
 ### response.ack()
 Explicitly acknowledges the receipt of a request.
 
-This is usually done automatically, but can also be performed explicitly by setting `response.autoAck = false` and calling `ack()` later. This is useful when a client needs to perform an asynchronous operation to determine if it will accept or reject the request.
+This is usually done automatically but can also be performed explicitly by setting `response.autoAck = false` and calling `ack()` later. This is useful when a client needs to perform an asynchronous operation to determine if it will accept or reject the request.
 
 {{#infobox "info"}}
 Requests count as completed once `send()` or `error()` was called. Calling `ack()` after that won't do anything.
