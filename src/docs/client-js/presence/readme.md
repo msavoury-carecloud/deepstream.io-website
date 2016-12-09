@@ -5,7 +5,7 @@ description: API docs for deepstream's presence feature, allowing clients to kno
 
 Presence allows clients to know when other clients come online and offline, as well as the ability to query for connected clients.
 
-It's worth mentioning that presence only shows clients that logged in with a username. For example, `client.login();` won't trigger the callback client.subscribe( callback );`
+It's worth mentioning that presence only shows clients that logged in with a username. For example, `client.login();` won't trigger the callback client.subscribe( callback ).
 
 ## Methods
 
@@ -20,7 +20,7 @@ It's worth mentioning that presence only shows clients that logged in with a use
        logout(false) event
 {{/table}}
 
-Subscribes to presence events. Callback will receive the username of thea newly added client
+Subscribes to presence events. Callback will receive the username of the newly added client
 
 ```javascript
 // Client A

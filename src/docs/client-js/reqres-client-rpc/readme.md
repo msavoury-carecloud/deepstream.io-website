@@ -23,7 +23,7 @@ RPCs (Remote Procedure Calls, sometimes also referred to as Remote Method Invoca
 {{/table}}
 ```
 
-Registers the client as a provider for incoming RPCs of a specific name. The callback will be invoked when another client `client.rpc.make()`.
+Registers the client as a provider for incoming RPCs of a specific name. The callback will be invoked when another client calls `client.rpc.make()`.
 
 ```javascript
 client.rpc.provide( 'add-two-numbers', function( data, response ){
@@ -32,9 +32,9 @@ client.rpc.provide( 'add-two-numbers', function( data, response ){
 ```
 <br/>
 {{#infobox "info"}}
-<br/>Only one callback per client can be registered for the same RPC
-<br/>Data can be any serializable object
-<br/>Documentation for the `response` object can be found [here](../reqres-response/)
+- Only one callback per client can be registered for the same RPC
+- Data can be any serializable object
+- Documentation for the `response` object can be found [here](../reqres-response/)
 {{/infobox}}
 
 ### client.rpc.unprovide( name )
@@ -61,12 +61,12 @@ client.rpc.unprovide( 'add-two-numbers' );
   arg: name
   typ: String
   opt: false
-  des: rpcname
+  des: The name of the RPC.
 -
   arg: data
   typ: Mixed
   opt: true
-  des: Any serialisable data ( Objects, Strings, Numbers... ) that will be send with the rpc
+  des: Any serialisable data ( Objects, Strings, Numbers... ) that will be send with the RPC.
 {{/table}}
 ```
 

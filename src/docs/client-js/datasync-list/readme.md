@@ -120,7 +120,7 @@ list.setEntries( [ 'car/1', 'car/2' ] );
   arg: index
   typ: Number
   opt: true
-  des: An optional index that the new entry should be inserted at. If ommited, the new entry is appended to the end of the list.
+  des: An optional index that the new entry should be inserted at. If omitted, the new entry is appended to the end of the list.
 {{/table}}
 ```
 Adds a new record name to the list.
@@ -207,7 +207,7 @@ list.discard();
 ```
 <br/>
 {{#infobox "info"}}
-It is important to make sure that `discard()` is called for any list that's no longer needed. If you only remove the listeners using `unsubscribe()` the server won't be notified and will continue to send updates to the client.
+- It is important to make sure that `discard()` is called for any list that's no longer needed. If you only remove the listeners using `unsubscribe()` the server won't be notified and will continue to send updates to the client.
 {{/infobox}}
 
 ### delete()

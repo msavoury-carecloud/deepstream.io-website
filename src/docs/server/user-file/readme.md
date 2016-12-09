@@ -63,7 +63,7 @@ If you've configured a hashing algorithm, use hashes as password:
 ```
 <br/>
 {{#infobox "hint"}}
-You can create hashes from passwords with the currently specified settings using deepstream's command line interface
+- You can create hashes from passwords with the currently specified settings using deepstream's command line interface
 {{/infobox}}
 
 ```bash
