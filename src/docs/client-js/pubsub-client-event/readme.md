@@ -3,7 +3,7 @@ title: Event
 description: API docs for deepstream's events, the many to many broadcasting mechanism
 ---
 
-Events are deepstream's implementation of the publish/subscribe pattern. You can find more about how they are used in the [events tutorial](/tutorials/core/pubsub-events/)
+Events are deepstream's implementation of the publish/subscribe pattern. You can find more about how they are used in the [events tutorial](/tutorials/core/pubsub-events/).
 
 ## Methods
 
@@ -13,7 +13,7 @@ Events are deepstream's implementation of the publish/subscribe pattern. You can
   arg: event
   typ: String
   opt: false
-  des: an eventname
+  des: An eventname
 -
   arg: callback
   typ: Function
@@ -39,7 +39,7 @@ client.event.emit('news/sports', /* data */)
   arg: event
   typ: String
   opt: false
-  des: an eventname
+  des: An eventname
 -
   arg: callback
   typ: Function
@@ -60,12 +60,12 @@ client.event.unsubscribe('news/politics', callback)
   arg: event
   typ: String
   opt: false
-  des: an eventname
+  des: An eventname
 -
   arg: data
   typ: Mixed
   opt: true
-  des: Any serialisable data ( Objects, Strings, Numbers... ) that will be send with the event
+  des: Any serialisable data ( Objects, Strings, Numbers... ) that will be sent with the event
 {{/table}}
 
 Sends the event to all subscribed clients
@@ -86,14 +86,14 @@ client.event.emit('notifications', 'Maria just came online')
   arg: callback
   typ: Function
   opt: false
-  des: A function that will be called whenever an event has been initially subscribed to or is no longer subscribed. Arguments are (String) match, (Boolean) isSubscribed and response (Object).
+  des: A function that will be called whenever an event has been initially subscribed to or is no longer subscribed. Arguments are (String) match, (Boolean) isSubscribed, and response (Object)
 {{/table}}
 
-Registers the client as a listener for event subscriptions made by other clients. This is useful to create "active" data providers - processes that only send events if clients are actually interested in them. You can find more about listening in the [events tutorial](/tutorials/core/pubsub-events/#how-to-listen-for-event-subscriptions)
+Registers the client as a listener for event subscriptions made by other clients. This is useful to create active data providers - processes that only send events if clients are actually interested in them. You can find more about listening in the [events tutorial](/tutorials/core/pubsub-events/#how-to-listen-for-event-subscriptions).
 
 The callback is invoked with three arguments:
-- **eventName**: The name of the event that has been matched against the provided pattern
-- **isSubscribed**: A boolean indicating whether the event is subscribed or unsubscribed
+- **eventName**: the name of the event that has been matched against the provided pattern
+- **isSubscribed**: a boolean indicating whether the event is subscribed or unsubscribed
 - **response**: contains two functions (`accept` and `reject`), one of them needs to be called
 
 ```javascript
