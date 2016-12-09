@@ -32,13 +32,14 @@ For records, `data` is the INCOMING data - the current data is available as `old
 
 `user.data` is the meta-data that was provided when the user logged in. This could be the data returned by the [http webhook](/tutorials/core/auth-http-webhook/) as `serverData` or the `data` field from the user file if you're using [file based authentication](/tutorials/core/auth-file/). Data is a great place to store authentication data like roles (e.g. `{role: 'admin'}`), access-levels or flags like `{ canDeletePosts: false }`.
 
-It is also useful to perform age based validation in conjunction with `now`, e.g. if you're running a liquor store and need to make sure your user's are 21+:
-
+It is also useful to perform age based validation in conjunction with `now`,
+e.g. if you want to disallow new user accounts to modify records within the
+first 24 hours after signing up:
 ```yaml
 record:
     "*":
-        # 662256000000 = 21 years in milliseconds
-        read: "( user.data.birthdayTimestamp + 662256000000 ) > now"
+		# 1 day = 86400000 milliseconds
+        write: "( user.data.registered + 86400000 ) > now"
 ```
 
 ## String Functions
