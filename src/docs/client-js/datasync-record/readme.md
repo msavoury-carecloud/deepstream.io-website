@@ -222,7 +222,7 @@ It is important to unsubscribe all callbacks that are registered when discarding
 {{/infobox}}
 
 ### discard()
-Removes all change listerners and notifies the server that client no longer wants updates for this record if your application
+Removes all change listeners and notifies the server that client no longer wants updates for this record if your application
 no longer requires the record.
 
 ```javascript
