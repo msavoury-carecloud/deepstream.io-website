@@ -6,7 +6,7 @@ description: Learn how to use transform functions to manipulate data before it l
 Transform-functions are registered using `server.set('dataTransforms', [...])`, for more details see the [Node.js api](../node-api/)
 
 {{#infobox "important" "BUT ☝"}}
-Transforming data slows deepstream down quite a bit. Usually, messages are constructed once and fanned out to all subscribed clients. If a transform function is registered however, messages are constructed for every receiver specifically which can add considerable overhead.
+- Transforming data slows deepstream down quite a bit. Usually, messages are constructed once and fanned out to all subscribed clients. If a transform function is registered however, messages are constructed for every receiver specifically which can add considerable overhead.
 
 So: Use with caution and do as little as possible in your transform function.
 
@@ -100,7 +100,7 @@ server.set('dataTransforms', [{
 ```
 <br/>
 {{#infobox "important" "Important!"}}
-Note how read and update both have the same code path. This is because in both cases the entire data is sent, it is only very rarely that you would need different content between both actions.
+- Note how read and update both have the same code path. This is because in both cases the entire data is sent, it is only very rarely that you would need different content between both actions.
 {{/infobox}}
 
 #### UPDATE
