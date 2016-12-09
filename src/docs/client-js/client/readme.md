@@ -12,7 +12,7 @@ The deepstream JavaScript client can be used by both browsers and Node.js. You c
   arg: url
   typ: String
   opt: false
-  des: A url in the format <host>:<port>
+  des: The server URL
 -
   arg: options
   typ: Object
