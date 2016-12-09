@@ -64,7 +64,7 @@ Explicitly acknowledges the receipt of a request.
 This is usually done automatically but can also be performed explicitly by setting `response.autoAck = false` and calling `ack()` later. This is useful when a client needs to perform an asynchronous operation to determine if it will accept or reject the request.
 
 {{#infobox "info"}}
-Requests count as completed once `send()` or `error()` was called. Calling `ack()` after that won't do anything.
+- Requests count as completed once `send()` or `error()` was called. Calling `ack()` after that won't do anything.
 {{/infobox}}
 
 ```javascript

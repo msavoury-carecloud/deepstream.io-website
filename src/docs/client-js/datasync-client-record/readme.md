@@ -31,7 +31,7 @@ client.login()
 Retrieves or creates a [Record](/docs/client-js/datasync-record/) with the given name. Records are persistent data structures that are synced between clients. To learn more about what they are used for and how they work, head over to the [record tutorial](/tutorials/core/datasync-records/).
 
 {{#infobox "info"}}
-The record will be loaded asynchronously. To ensure the record is loaded put your logic into the [whenReady](/tutorials/core/datasync-records/) callback.
+- The record will be loaded asynchronously. To ensure the record is loaded put your logic into the [whenReady](/tutorials/core/datasync-records/) callback.
 {{/infobox}}
 
 ```javascript
@@ -52,7 +52,7 @@ const record = client.record.getRecord('user/johndoe')
 Retrieves or creates a [List](../datasync-list/) with the given name. Lists are arrays of recordNames that clients can manipulate and observe. You can learn more about them in the [list tutorial](/tutorials/core/datasync-lists/).
 
 {{#infobox "info"}}
-The list will be loaded asynchronously. To ensure the list is loaded put your
+- The list will be loaded asynchronously. To ensure the list is loaded put your
 logic into the [whenReady](/tutorials/core/datasync-records/) callback.
 {{/infobox}}
 
@@ -164,7 +164,7 @@ client.record.listen('raceHorse/.*', (match, isSubscribed, response) => {
 
 <br/>
 {{#infobox "info"}}
-<br/>The callback will be called for all matching subscriptions that already exist at the time its registered.
+- The callback will be called for all matching subscriptions that already exist at the time its registered.
 {{/infobox}}
 
 ### client.record.unlisten(pattern)
