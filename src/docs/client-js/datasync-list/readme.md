@@ -120,7 +120,7 @@ list.setEntries( [ 'car/1', 'car/2' ] );
   arg: index
   typ: Number
   opt: true
-  des: An optional index that the new entry should be inserted at. If ommited, the new entry is appended to the end of the list.
+  des: An optional index that the new entry should be inserted at. If omitted, the new entry is appended to the end of the list.
 {{/table}}
 ```
 Adds a new record name to the list.
