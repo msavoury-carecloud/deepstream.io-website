@@ -35,7 +35,7 @@ _Type_: Number<br>
 _Default_: `5`
 
 ### rpcAckTimeout
-The number of milliseconds after which a RPC will error if no Ack-message has been received.<br>
+The number of milliseconds after which a RPC will error if no ack message has been received.<br>
 _Type_: Number<br>
 _Default_: `6000`
 
