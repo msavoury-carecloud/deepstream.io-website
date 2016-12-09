@@ -98,6 +98,11 @@ record.whenReady(record => {
 ```
 Used to set the record's data and can be called with a value. A path can optionally be included.
 
+{{#infobox "info"}}
+-  After calling `set`, you still have to wait for the record to be ready before
+   a `get` call will return the value assigned by `set`.
+{{/infobox}}
+
 ```javascript
 // Set the entire record's data
 record.set({
