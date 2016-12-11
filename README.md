@@ -3,18 +3,7 @@
 ## Setup
 
 - Clone this repo
-- Clone also the `deepstream.io-client-specs` repository into the same parent directory (OPTIONAL)
-
-To get this hierarchy:
-
-```
-.
-├── ...
-├── deepstream.io-client-specs
-├── ...
-├── deepstream.io-website
-└── ...
-```
+- Run bin/setup-dependencies.sh in order to clone repos that is some pages are generated from.
 
 ```
 npm install
@@ -51,11 +40,6 @@ Afterwards open [localhost:3000](http://localhost:3000) in your browser.
 You __must__ run `npm run serve` before and keep the process alive.
 Whenever a file was changed and the regeneration is done your browser will
 refresh the page automatically.
-
-##### BEEP MODE
-
-Export the `BEEP` variable and you will be notified via a short sound effect that
-the generation was finished.
 
 ```
 export BEEP=1
