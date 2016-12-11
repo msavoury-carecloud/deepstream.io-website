@@ -41,10 +41,6 @@ You __must__ run `npm run serve` before and keep the process alive.
 Whenever a file was changed and the regeneration is done your browser will
 refresh the page automatically.
 
-```
-export BEEP=1
-```
-
 ##### NO_DRAFT MODE
 
 If you want to keep documents in the ouput which are flagged as a draft.
