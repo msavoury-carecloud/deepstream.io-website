@@ -75,7 +75,7 @@ Here the `value` is treated as a string for these options:
 - `sslKey`
 - `sslCA`
 
-Actually these options can be passed by an configuration object, but if you use a file based configuration it only works with a `.js` file. YAML and JSON config files are not supporting these options.
+Actually these options can be passed by an configuration object, but if you use a file-based configuration it only works with a `.js` file. YAML and JSON config files are not supporting these options.
 
 - `httpServer`
 - `dataTransforms`

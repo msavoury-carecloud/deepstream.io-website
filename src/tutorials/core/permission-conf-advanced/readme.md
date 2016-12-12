@@ -30,7 +30,7 @@ For records, `data` is the INCOMING data - the current data is available as `old
 #### `user`
 `user` is an object containing information about the user attempting the action. It offers `user.id` - the username that was provided at login and `user.data`.
 
-`user.data` is the meta-data that was provided when the user logged in. This could be the data returned by the [http webhook](/tutorials/core/auth-http-webhook/) as `serverData` or the `data` field from the user file if you're using [file based authentication](/tutorials/core/auth-file/). Data is a great place to store authentication data like roles (e.g. `{role: 'admin'}`), access-levels or flags like `{ canDeletePosts: false }`.
+`user.data` is the meta-data that was provided when the user logged in. This could be the data returned by the [http webhook](/tutorials/core/auth-http-webhook/) as `serverData` or the `data` field from the user file if you're using [file-based authentication](/tutorials/core/auth-file/). Data is a great place to store authentication data like roles (e.g. `{role: 'admin'}`), access-levels or flags like `{ canDeletePosts: false }`.
 
 It is also useful to perform age based validation in conjunction with `now`, e.g. if you're running a liquor store and need to make sure your user's are 21+:
 

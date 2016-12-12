@@ -40,7 +40,7 @@ Any change to a user's permission needs to reflect on their GUI in realtime and 
 Please note: You can find the [code for this example on Github](https://github.com/deepstreamIO/ds-tutorial-dynamic-permissions)
 
 ## Login
-To keep things simple we'll be using [file-authentication](/tutorials/core/auth-file/) and cleartext passwords. To enable file based authentication, configure it in the `auth` section of your server's `config.yml`.
+To keep things simple we'll be using [file-authentication](/tutorials/core/auth-file/) and cleartext passwords. To enable file-based authentication, configure it in the `auth` section of your server's `config.yml`.
 
 ```yaml
 auth:
