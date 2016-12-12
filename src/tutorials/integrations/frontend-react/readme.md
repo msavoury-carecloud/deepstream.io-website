@@ -59,7 +59,7 @@ And that's it. Just write your react-components as usual, all changes will be pe
 
 ```jsx
 const SyncedInput = React.createClass({
-  mixins: [deepstreamMixin],
+  mixins: [DeepstreamMixin],
   setValue: function(e) {
     this.setState({value: e.target.value})
   },
