@@ -17,9 +17,9 @@ Or use the `--disable-auth` command line argument.
 ./deepstream start --disable-auth
 ```
 
-The Deepstream startup log should confirm that authentication is disabled.
+The deepstream startup log should confirm that authentication is disabled.
 
-![Deepstream starts with no authentication](ds-start-auth-none.png)
+![deepstream starts with no authentication](ds-start-auth-none.png)
 
 **Please note** Even with authentication type `none`, users can still provide an (unverified) username by sending `{username: 'johndoe'}` at login.
 

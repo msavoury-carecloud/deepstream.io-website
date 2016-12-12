@@ -7,7 +7,7 @@ tags: [merge, deepstream, operational transfers]
 Merge conflicts can occur when two or more clients write to the same record at the exact same time.
 
 ## How does deepstream keep track of data consistency?
-Deepstream uses incrementing version numbers to make sure changes to records happen in sequence and no intermediary update gets lost. Each message created as a result of a `set()` call contains the version number that the client expects to set the record to.
+deepstream uses incrementing version numbers to make sure changes to records happen in sequence and no intermediary update gets lost. Each message created as a result of a `set()` call contains the version number that the client expects to set the record to.
 
 The server will ensure that the version of an incoming update is exactly one higher than the current version. If it is, the update is applied and propagated to all other subscribed clients. If it's not though, one of two things will happen:
 

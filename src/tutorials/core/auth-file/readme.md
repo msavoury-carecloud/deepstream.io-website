@@ -10,7 +10,7 @@ File-based authentication is a good choice for scenarios with smaller amounts of
 
 ## Using file-based authentication
 
-To enable authentication to a Deepstream server with user credentials stored in a local file, set the `type` key to `file` in the `auth` section of the server's [configuration file](/docs/server/configuration/).
+To enable authentication to a deepstream server with user credentials stored in a local file, set the `type` key to `file` in the `auth` section of the server's [configuration file](/docs/server/configuration/).
 
 ```yaml
 auth:
@@ -49,11 +49,11 @@ fred:
     department: finance
 ```
 
-Start the Deepstream server and you should see the authentication type confirmed.
+Start the deepstream server and you should see the authentication type confirmed.
 
-![Deepstream starting with file authentication](ds-auth-file-start.png)
+![deepstream starting with file authentication](ds-auth-file-start.png)
 
-In your application code you can now connect to the Deepstream server and try to login a user.
+In your application code you can now connect to the deepstream server and try to login a user.
 
 ```javascript
 const deepstream = require('deepstream.io-client-js')
@@ -65,7 +65,7 @@ client.login({
 })
 ```
 
-If a success, the Deepstream console will show:
+If a success, the deepstream console will show:
 
 ![Authentication success](ds-auth-file-success.png)
 

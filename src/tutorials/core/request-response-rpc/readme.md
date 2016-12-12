@@ -41,7 +41,7 @@ client.rpc.unprovide( 'add-two-numbers' );
 ```
 
 ## RPC routing
-Processes can register as providers for multiple RPCs and many processes can provide the same RPC. Deepstream will try to route a client's request as efficiently as possible as well as load-balance incoming requests between the available providers.
+Processes can register as providers for multiple RPCs and many processes can provide the same RPC. deepstream will try to route a client's request as efficiently as possible as well as load-balance incoming requests between the available providers.
 
 ![RPC rerouting](rpc-rerouting.png)
 

@@ -3,7 +3,7 @@ title: Transforming outgoing data
 description: Learn how to use transform functions to manipulate data before it leaves the server
 ---
 
-Deepstream allows to manipulate data before it leaves the server. This can be useful for a number of usecases
+deepstream allows to manipulate data before it leaves the server. This can be useful for a number of usecases
 
 * Adding trusted data like usernames to outgoing RPCs
 * Removing confidential information from record data before it is send to clients

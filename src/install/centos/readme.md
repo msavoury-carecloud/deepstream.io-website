@@ -3,7 +3,7 @@ title: Installing on CentOS
 description: Learn how to install deepstream on CentOS
 ---
 
-Deepstream is available via the YUM package manager. Just add the repository to your repositories file, and install deepstream using the following script.
+deepstream is available via the YUM package manager. Just add the repository to your repositories file, and install deepstream using the following script.
 
 ```bash
 sudo wget https://bintray.com/deepstreamio/rpm/rpm -O /etc/yum.repos.d/bintray-deepstreamio-rpm.repo

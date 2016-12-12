@@ -38,7 +38,7 @@ Knockout makes it easy to implement a paradigm called [functional reactive progr
 In FRP, you model the data in your application as "pipelines", "asynchronous data-flows" or "event-streams". Logic lives within these streams as junctions, valves or task pipelines and is applied in response to incoming data. This keeps complexity low and releases you from having to orchestrate interrelated states.
 
 ## Ko-Tools
-Knockout has observable properties and observable arrays. Deepstream has observable lists and records with path bindings. Our tool maps the two together. You can get if from NPM or Bower as `deepstream.io-tools-ko` or [browse the source on Github](https://github.com/deepstreamIO/deepstream.io-tools-ko).
+Knockout has observable properties and observable arrays. deepstream has observable lists and records with path bindings. Our tool maps the two together. You can get if from NPM or Bower as `deepstream.io-tools-ko` or [browse the source on Github](https://github.com/deepstreamIO/deepstream.io-tools-ko).
 
 ```javascript
 // Create a list that's two-way bound to a ko.observableArray

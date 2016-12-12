@@ -16,8 +16,8 @@ For HTTP deployments it is common practice to not directly expose the webserver 
 This "reverse proxy" handles tasks like SSL termination (decrypting incoming messages via WSS ) and high availability / error reporting (e.g. replying to requests with a 500 status if the underlying server is unavailable).
 
 #### Load Balancer
-Deepstream can scale horizontally via clustering. If you want to provide a single URL for clients to connect to your cluster, you need to place something in front that distributes incoming connections between the available servers: a load balancer.
-Load balancing persistent connections can be a bit tricky sometimes. Deepstream supports connections made via WebSockets.
+deepstream can scale horizontally via clustering. If you want to provide a single URL for clients to connect to your cluster, you need to place something in front that distributes incoming connections between the available servers: a load balancer.
+Load balancing persistent connections can be a bit tricky sometimes. deepstream supports connections made via WebSockets.
 
 ## Alternatives to nginx
 Instead of nginx you could also use e.g. [HA Proxy](http://www.haproxy.org/) or [Apache](https://httpd.apache.org/)

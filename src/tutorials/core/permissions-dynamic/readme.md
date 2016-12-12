@@ -5,7 +5,7 @@ tags: tutorial, realtime, permissions, server, client
 ---
 Oh dear...permissions! Permissions are always super-hard to explain. I've read tutorials using The Simpsons, The Fellowship of the Ring and even the Olsen Twins to explain concepts like "access groups" and "right-inheritance".
 
-With deepstream, things can be equally tricky at times - but for different reasons. Deepstream is a realtime server. And even its permissions can be - if you want them to be - shared with both clients and servers in realtime.
+With deepstream, things can be equally tricky at times - but for different reasons. deepstream is a realtime server. And even its permissions can be - if you want them to be - shared with both clients and servers in realtime.
 
 The good news is that deepstream makes realtime permissions extremely easy using a permission language called "Valve". This tutorial assumes that you already know your way around Valve. If you haven't come across it yet, make sure to read the [Simple Valve](./permission-conf-simple/) and [Advanced Valve](./permission-conf-advanced/) tutorials first.
 

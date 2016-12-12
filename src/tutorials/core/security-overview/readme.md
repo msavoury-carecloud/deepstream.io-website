@@ -12,7 +12,7 @@ Security in deepstream is based on three interrelated concepts:
 Here's how they work together:
 
 ## Encrypted Connections
-Deepstream supports transport layer security for web-facing connections using HTTPS and WSS. To setup SSL on deepstream, you need to provide the following configuration keys:
+deepstream supports transport layer security for web-facing connections using HTTPS and WSS. To setup SSL on deepstream, you need to provide the following configuration keys:
 
 ```yaml
 sslKey: ./my-key.key
@@ -24,7 +24,7 @@ Often it's easier and more performant though to leave SSL termination to a load 
 
 ## Authentication
 Every incoming connection needs to pass an authentication step. This happens when the client calls `login( data, callback )`.
-Deepstream comes with three built-in authentication mechanisms:
+deepstream comes with three built-in authentication mechanisms:
 
 - [none](https://deepstream.io/tutorials/core/auth-none/) allows every connection. Choose this option for public sites that don't require access controls.
 - [file](https://deepstream.io/tutorials/core/auth-file/) reads authentication data from a static file. This is a good choice for public read / private write use cases, e.g. sports result pages that let every user visit, but only a few backend processes update the result.
