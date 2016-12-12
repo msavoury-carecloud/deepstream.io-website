@@ -200,6 +200,12 @@ div.two-col .right.big {
     color: #aaa;
 }
 
+.content li a, .content td a {
+	color: #0FBBEC;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 .content pre{
 	margin: 0 0 16px;
 }
