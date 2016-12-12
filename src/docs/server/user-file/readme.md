@@ -1,6 +1,6 @@
 ---
 title: User File
-description: The API on how you can configure and use file based authentication
+description: The API on how you can configure and use file-based authentication
 ---
 
 This file is used in conjunction with [file-based authentication](/tutorials/core/auth-file/). It is structured as a map of usernames and their associated passwords and optional auth data.
@@ -41,7 +41,7 @@ or in JSON
 ### password
 Can either be the user's plaintext password or a hash of the password
 
-If you've configured file based authentication as follows, use plaintext passwords:
+If you've configured file-based authentication as follows, use plaintext passwords:
 
 ```yaml
    type: file

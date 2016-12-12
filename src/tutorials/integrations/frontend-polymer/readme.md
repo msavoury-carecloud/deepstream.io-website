@@ -7,7 +7,7 @@ description: Learn how to use Polymer with deepstream
 
 Polymer brings WebComponents to all browsers, allowing for the creation of web apps using DOM elements as the primary building blocks.
 
-Deepstream comes with its own polymer plugin that makes it easy to add data-sync directly to these DOM elements.
+deepstream comes with its own polymer plugin that makes it easy to add data-sync directly to these DOM elements.
 
 ```html
 <ds-record name="myRecordName" data="{{recordData}}"></ds-record>

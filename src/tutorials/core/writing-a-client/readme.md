@@ -3,7 +3,7 @@ title: Writing a client
 description: An introduction into how to write a deepstream.io client
 ---
 
-Deepstream is an open platform that uses a minimal, text-based protocol to communicate between server and client. Here’s an example of what this looks like.
+deepstream is an open platform that uses a minimal, text-based protocol to communicate between server and client. Here’s an example of what this looks like.
 
 ```gherkin
 # Connection established
@@ -24,7 +24,7 @@ Deepstream is an open platform that uses a minimal, text-based protocol to commu
 < E|EVT|someEvent|Smore details+
 ```
 
-Deepstream communicates via websockets. Combining our tight integration with [µWS](https://github.com/uWebSockets/uWebSockets) means that pretty much everything, from basic Arduinos to enterprise Java servers can communicate with deepstream over the websocket protocol.
+deepstream communicates via websockets. Combining our tight integration with [µWS](https://github.com/uWebSockets/uWebSockets) means that pretty much everything, from basic Arduinos to enterprise Java servers can communicate with deepstream over the websocket protocol.
 
 If you'd like to write a client for your language of choice, have a look if there's [already an issue for it](https://github.com/deepstreamIO/deepstream.io/labels/new-client) and get in touch! We'd be more than happy to help.
 

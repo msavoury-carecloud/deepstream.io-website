@@ -9,7 +9,7 @@ Permissions give you granular control over which records, events or RPCs can be 
 Permissions allow you to specify if a user can create, write, read or delete a record, publish or subscribe to events, provide and make RPCs or listen to other client's subscriptions.
 
 ## How do permissions work?
-Deepstream uses a proprietary permission syntax called "Valve". Valve rules are simple javascript strings with a reduced feature-set. Each valve rule defines access to a specific action related to a specific concept, e.g. a "write" to a "record".
+deepstream uses a proprietary permission syntax called "Valve". Valve rules are simple javascript strings with a reduced feature-set. Each valve rule defines access to a specific action related to a specific concept, e.g. a "write" to a "record".
 
 Here's what they look like:
 

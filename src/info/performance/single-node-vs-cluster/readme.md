@@ -52,7 +52,7 @@ All tests were run on Amazon Web Services EC2 instances within the same region, 
     </tbody>
 </table>
 
-## Single Deepstream Node
+## Single deepstream Node
 
 #### Latency Distribution
 Average latency was 2.065ms ( machines being within same data centre )
@@ -61,4 +61,4 @@ Average latency was 2.065ms ( machines being within same data centre )
 
 Average latency was 0.999ms ( machines being within same data centre )
 
-![Deepstream cluster latency](three-ds-latency.png)
+![deepstream cluster latency](three-ds-latency.png)

@@ -3,18 +3,18 @@ title: Configuration
 description: The available configuration options to customise deepstream
 ---
 
-You can make any configuration changes you need for your Deepstream setup in the *config.yml* file. You can find this in the */etc/deepstream/conf/* directory on Linux and in *${DEEPSTREAM_DIR}/conf/* on Mac and Windows.
+You can make any configuration changes you need for your deepstream setup in the *config.yml* file. You can find this in the */etc/deepstream/conf/* directory on Linux and in *${DEEPSTREAM_DIR}/conf/* on Mac and Windows.
 
 ## General Configuration
 
 In this section you can change general settings for each server in a cluster.
 
 ### serverName
-Every server in a cluster of servers needs a unique name. You can add your own or set it to `UUID` to let Deepstream auto-generate a unique ID.<br>
+Every server in a cluster of servers needs a unique name. You can add your own or set it to `UUID` to let deepstream auto-generate a unique ID.<br>
 _Default_: `UUID`
 
 ### showLogo
-When starting, a server can show the Deepstream logo. This setting is best left enabled.<br>
+When starting, a server can show the deepstream logo. This setting is best left enabled.<br>
 _Default_: `true`
 
 ## Connectivity and Networking
@@ -51,7 +51,7 @@ _Default_: `null`
 
 ## Plugin Configuration
 
-You can extend Deepstream with plugins for connectors to other services, these are for logging, storage engines, caching layers and message systems.
+You can extend deepstream with plugins for connectors to other services, these are for logging, storage engines, caching layers and message systems.
 
 To enable a plugin, uncomment the relevant category key underneath the `plugins` key. Each plugin type has a path or name, and a set of options.
 
@@ -59,7 +59,7 @@ To enable a plugin, uncomment the relevant category key underneath the `plugins`
 Set a path to a JavaScript file, node module or a folder with an _index.js_ file which exports a constructor.
 
 ### name
-If you are using any of the official Deepstream connectors, add the name of what the plugin connects to here, for example `redis`.
+If you are using any of the official deepstream connectors, add the name of what the plugin connects to here, for example `redis`.
 
 **Note**: You can set `path` **or** name, but not both.
 
@@ -68,7 +68,7 @@ Under this key, add sub key/value pairs to set the configuration options that ar
 
 ## Logger
 
-Deepstream uses by default a logger which prints out to _stdout_ (errors and warnings to _stderr_). You can set these options for the default logger by using the same configuration style for the plugins:
+deepstream uses by default a logger which prints out to _stdout_ (errors and warnings to _stderr_). You can set these options for the default logger by using the same configuration style for the plugins:
 
 ```yaml
 logger:
@@ -137,7 +137,7 @@ Set the path to the file that declares permissions. This can be in json, js or y
 _Default_: `./permissions.json`
 
 ### maxRuleIterations
-The Deepstream permissions model allows for some complex nested actions and queries. To prevent a performance hit you can limit the nesting level with this option.<br>
+The deepstream permissions model allows for some complex nested actions and queries. To prevent a performance hit you can limit the nesting level with this option.<br>
 _Default_: `3`
 
 ### cacheEvacuationInterval
@@ -149,7 +149,7 @@ _Default_: `60000`
 In this section you can configure timeout values for a variety of network calls.
 
 ### rpcAckTimeout
-Sets how long Deepstream will wait for a RPC provider to acknowledge receipt of a request.<br>
+Sets how long deepstream will wait for a RPC provider to acknowledge receipt of a request.<br>
 _Default_:`1000`
 
 ### rpcTimeout
@@ -157,13 +157,13 @@ Sets how long deepstream will wait for RPCs to complete.<br>
 _Default_:`10000`
 
 ### cacheRetrievalTimeout
-Sets how long Deepstream will wait when retrieving values from the cache.<br>
+Sets how long deepstream will wait when retrieving values from the cache.<br>
 _Default_:`1000`
 
 ### storageRetrievalTimeout
-Sets how long Deepstream will wait when retrieving values from the database.<br>
+Sets how long deepstream will wait when retrieving values from the database.<br>
 _Default_:`2000`
 
 ### dependencyInitialisationTimeout
-Sets how long Deepstream will wait for dependencies to initialize.<br>
+Sets how long deepstream will wait for dependencies to initialize.<br>
 _Default_:`2000`

@@ -3,15 +3,15 @@ title: Cluster Messaging
 description: Learn how to connect multiple deepstream instances in a cluster to scale with your needs
 ---
 
-![Deepstream Internals](./internal-workings.svg)
+![deepstream Internals](./internal-workings.svg)
 
-Deepstream nodes can scale horizontally by syncing their state via a messaging layer. This can be done with almost with any message-broker. Deepstream offers plugins for a number of popular systems and protocols, e.g. [AMQP](/tutorials/integrations/msg-amqp/), [Apache Kafka](/tutorials/integrations/msg-kafka/) or [Redis Pub/Sub](/tutorials/integrations/cache-redis/)
+deepstream nodes can scale horizontally by syncing their state via a messaging layer. This can be done with almost with any message-broker. deepstream offers plugins for a number of popular systems and protocols, e.g. [AMQP](/tutorials/integrations/msg-amqp/), [Apache Kafka](/tutorials/integrations/msg-kafka/) or [Redis Pub/Sub](/tutorials/integrations/cache-redis/)
 
 ## Connecting deepstream nodes directly
 For smaller clusters it used to be possible to connect deepstream nodes directly in a full-mesh configuration (everyone-to-everyone). This feature has been deprecated in its current incarnation, but will soon be replaced by a more scalable (and hopefully slightly smarter) direct-message-connector plugin based on the [Small World Network Paradigm](https://en.wikipedia.org/wiki/Small-world_network).
 
 ## Choosing a messaging system
-Deepstream nodes use a simple publish/subscribe pattern with high-level topics to communicate with each other. Especially when used in conjunction with a cache this eliminates the need for persistent messaging or complex routing algorithms.
+deepstream nodes use a simple publish/subscribe pattern with high-level topics to communicate with each other. Especially when used in conjunction with a cache this eliminates the need for persistent messaging or complex routing algorithms.
 Since state is kept within the persistence layer, deepstream nodes can even life without guaranteed message delivery as subsequent messages will reconcile inconsistent states.
 
 This means that deepstream only utilises the most common subset of messaging functionality. When it comes to choosing a message broker therefor, the main criteria should be speed, scalability and ease of use.
@@ -37,10 +37,10 @@ __Google Cloud Platform__ offers a [build-in pub/sub service](https://cloud.goog
 __Microsoft Azure__ offers an AMQP based service bus, but it's quite slow and takes a lot of adjustments to get to work as the backbone of a pub/sub architecture. Similar to AWS it is a lot easier to just use Azure's [hosted Redis offering](https://azure.microsoft.com/en-us/services/cache/) instead.
 
 #### Hosters / Messaging as a service providers
-There is also a large offering of messaging-as-a-service offerings. [CloudAMQP](https://www.cloudamqp.com/), [CloudKafka](http://www.cloudkafka.com/), [StormMQ](http://stormmq.com/) or [RedisLabs](https://redislabs.com/) to name just a few. Whilst they offer great peace of mind through their managed services and high uptime guarantees, we strongly recommend to go with a message-broker running within your own data-center instead. Deepstream uses its message-bus extensively and every millisecond network latency between it and your cluster will make your application notably slower.
+There is also a large offering of messaging-as-a-service offerings. [CloudAMQP](https://www.cloudamqp.com/), [CloudKafka](http://www.cloudkafka.com/), [StormMQ](http://stormmq.com/) or [RedisLabs](https://redislabs.com/) to name just a few. Whilst they offer great peace of mind through their managed services and high uptime guarantees, we strongly recommend to go with a message-broker running within your own data-center instead. deepstream uses its message-bus extensively and every millisecond network latency between it and your cluster will make your application notably slower.
 
 ## Connecting to a message broker
-Deepstream connectors are available for a number of message brokers and we're constantly looking to expand this selection. You can find an overview of available connectors on the [install page](/install/). Connectors can be installed via deepstream's commandline interface, using the `msg` keyword, e.g.
+deepstream connectors are available for a number of message brokers and we're constantly looking to expand this selection. You can find an overview of available connectors on the [install page](/install/). Connectors can be installed via deepstream's commandline interface, using the `msg` keyword, e.g.
 
 ```bash
 deepstream install msg redis
@@ -77,7 +77,7 @@ Whenever an error occurs as a consequence of a `publish`, `subscribe` or `unsubs
 
 **topics are very coarse by default**
 A lot of message brokers take a long time to create new topics, but are very quick at sending messages.
-Deepstream therefor only uses four high level topics (RECORD, RPC, EVENT plus a private topic), but will send and receive large numbers of messages on each of them. If this leads to performance problems it might make sense for the message connector to do some custom sub-routing, e.g. based on record namespaces etc.
+deepstream therefor only uses four high level topics (RECORD, RPC, EVENT plus a private topic), but will send and receive large numbers of messages on each of them. If this leads to performance problems it might make sense for the message connector to do some custom sub-routing, e.g. based on record namespaces etc.
 
 **serialisation/deserialisation**
 Messages are passed to the `publish()` method as javascript objects and are expected to be returned by the receiver as such. So it's up to the message connector to serialize and deserialize them, e.g. as JSON or MsgPack

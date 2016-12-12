@@ -6,7 +6,7 @@ description: Find out how deepstream uses cache and storage systems to store you
 ## How deepstream stores data
 As a standalone server, deepstream keeps all its data in internal memory. In a production cluster however, deepstream servers won't hold any data themselves. Instead, data is stored in a combination of storage and cache layers that are accessible to all deepstream nodes within the cluster. This allows the individual servers to remain stateless and go down / fail over without causing any data-loss, but it also allows for the data to be distributed across multiple nodes.
 
-Deepstream can connect to both a cache and a database at the same time.
+deepstream can connect to both a cache and a database at the same time.
 Whenever a value needs to be stored, it is written to the cache in a blocking fashion and simultaneously written to storage in a non-blocking way.
 
 Similarly, whenever an entry needs to be retrieved, deepstream looks for it in the cache first and in storage second. If the value can only be found in storage, deepstream will load it into the cache for faster access.
@@ -20,13 +20,13 @@ Because they complement each other quite well!
 - Databases (storage) are slower to read or write to, but offer efficient long-term storage for larger amounts of data and allow for more elaborate ways of querying (e.g. full-text search, SQL joins etc.)
 
 ## Why doesn't deepstream store data itself?
-Deepstream is sometimes compared to projects like [Firebase](https://firebase.google.com/) (now part of Google Cloud Platform) or [RethinkDB](http://rethinkdb.com/) with [Horizon](https://horizon.io/) - realtime databases that let users create streaming queries.
+deepstream is sometimes compared to projects like [Firebase](https://firebase.google.com/) (now part of Google Cloud Platform) or [RethinkDB](http://rethinkdb.com/) with [Horizon](https://horizon.io/) - realtime databases that let users create streaming queries.
 
 While deepstream is a great fit for similar use-cases, it's conceptually quite different: deepstream's design-philosophy is inspired by the way multiplayer-game servers or financial streaming works, rather than by datastores.
 
 It can be used as a blazingly fast standalone server without any data-layer, but can also cater for large-scale collaboration apps with demanding storage requirements when connected to both a cache and a database.
 
-Finally, we've taken the lessons learned from fixed stack frameworks like [Meteor](https://www.meteor.com/) to heart. Deepstream is a fast and versatile realtime server - but it doesn't try to be anything more than that.
+Finally, we've taken the lessons learned from fixed stack frameworks like [Meteor](https://www.meteor.com/) to heart. deepstream is a fast and versatile realtime server - but it doesn't try to be anything more than that.
 
 We believe that web technology is moving away from the monolithic enterprise stacks of the past towards a vibrant ecosystem of highly specialized microservices - and our goal is to make deepstream thrive within this ecosystem by making it usable with as many programming languages, frontend frameworks, databases, caches, message-busses, loggers, identity management systems or deployment environments possible.
 
@@ -44,14 +44,14 @@ When it comes to choosing a database and cache, there are a few things to take i
 
 - **Choose systems that complement each other** Some caches like Redis store data to disk and can be used without a database. Some systems like Hazelcast or Redis offer both caching and pub/sub messaging, eliminating the need for a separate message-bus. Some in-memory only caches like Memcached are extremely fast, but need to be backed by a database for persistent storage. Some databases offer very fast read performance and a build-in caching layer, so could be used by themselves (make sure to register them as a cache though since otherwise deepstream might fall back to its internal cache and use the potentially stale data within).
 
-- **Object/Document/NoSQL databases make more sense than relational ones** deepstream's data-structures are small, independent chunks of JSON, identified by a unique key that can be organized in collections. This makes them a natural fit for object or document oriented databases like Mongo, Rethink or Couch. Deepstream also works with relational databases like MySQL, PostGre or Oracle, but doesn't take advantage of their data-modelling capabilities.
+- **Object/Document/NoSQL databases make more sense than relational ones** deepstream's data-structures are small, independent chunks of JSON, identified by a unique key that can be organized in collections. This makes them a natural fit for object or document oriented databases like Mongo, Rethink or Couch. deepstream also works with relational databases like MySQL, PostGre or Oracle, but doesn't take advantage of their data-modelling capabilities.
 
 - **Be careful when using external x-as-a-service providers**
 It can be tempting to use a fully managed cache from an infrastructure-as-a-service provider, but be aware if its hosted outside of your datacenter: deepstream constantly interacts with its cache and every millisecond in network latency will slow down your application considerably.
 Equally, a lot of cache / database protocols are designed for use within a trusted environment and therefor unencrypted. If your database lives outside of your network, make sure to use TLS or choose a service that offers a VPN.
 
 ## Downloading and installing connectors
-Deepstream connectors are available for many popular databases and caches and we're constantly looking to expand the selection. You can find an overview of available connectors on the [download page](/install/). Connectors can be installed via deepstream's commandline interface, using the `cache` or `storage` keyword, e.g.
+deepstream connectors are available for many popular databases and caches and we're constantly looking to expand the selection. You can find an overview of available connectors on the [download page](/install/). Connectors can be installed via deepstream's commandline interface, using the `cache` or `storage` keyword, e.g.
 
 ```bash
 deepstream install cache redis

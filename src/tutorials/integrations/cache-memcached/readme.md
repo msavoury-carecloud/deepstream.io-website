@@ -16,7 +16,7 @@ For two reasons: Speed and scale. Memcached can power large clusters and writes 
 Redis! Memcached is a great cache, but Redis also saves data to disk and can act as a message-bus for smaller deepstream clusters, giving you all the functionality you need.
 
 #### How to use Memcached with deepstream?
-Deepstream comes with an official connector for Memcached. You can install it via the commandline:
+deepstream comes with an official connector for Memcached. You can install it via the commandline:
 
 ```bash
 deepstream install cache memcached

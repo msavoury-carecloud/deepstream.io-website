@@ -7,7 +7,7 @@ tags: postgres, postgresql, deepstream, realtime, search
 ## What is Postgres?
 [PostgreSQL](https://www.postgresql.org/) or Postgres for short is a relational database management system, similar to MySQL or Oracle. With development starting as early as 1986 and continuous improvement ever since it is as mature and established as databases go and has become one of the most solid and reliable cornerstones of the database world.
 
-![Postgres Deepstream](./postgres-deepstream.svg)
+![Postgres deepstream](./postgres-deepstream.svg)
 But that doesn’t mean that Postgres is complicated or old fashioned. Over the years it has evolved from a simple relational database into a powerful data programming platform with elaborate stored procedures, trigger functions, a myriad of datatypes and powerful querying capabilities.
 
 ## Why you should use Postgres as a database for deepstream
@@ -20,10 +20,10 @@ Postgres is established, reliable and rock solid. But it’s especially its newe
 - Combining triggers, jsonb-queries and notifications allows for the creation of realtime querying capabilities with streaming results
 
 ## Why you should not use Postgres as a database for deepstream
-Deepstream’s data-structures are schemaless JSON documents identified by a unique key. This makes object-oriented databases a more natural fit as deepstream won’t make much use of Postgres relational features. Beyond that, there’s not much negative to say: Postgres is solid, fast and available from many hosting companies, e.g. [AWS](https://aws.amazon.com/rds/postgresql/) or [Heroku](https://www.heroku.com/postgres) as well as under a very [permissive open source license](https://www.postgresql.org/about/licence/) - give it a go!
+deepstream’s data-structures are schemaless JSON documents identified by a unique key. This makes object-oriented databases a more natural fit as deepstream won’t make much use of Postgres relational features. Beyond that, there’s not much negative to say: Postgres is solid, fast and available from many hosting companies, e.g. [AWS](https://aws.amazon.com/rds/postgresql/) or [Heroku](https://www.heroku.com/postgres) as well as under a very [permissive open source license](https://www.postgresql.org/about/licence/) - give it a go!
 
 ## How to use deepstream with Postgres
-Deepstream comes with an official connector for postgres. You can simply install it via the command line as 
+deepstream comes with an official connector for postgres. You can simply install it via the command line as 
 
 ```bash
 # mac / linux

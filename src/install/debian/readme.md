@@ -1,9 +1,9 @@
 ---
 title: Installing on Debian
-description: Installing Deepstream on Debian Linux
+description: Installing deepstream on Debian Linux
 ---
 
-Deepstream is available via the APT package manager and currently supports Debian `jessie`.
+deepstream is available via the APT package manager and currently supports Debian `jessie`.
 
 To install, paste the following script into your terminal
 

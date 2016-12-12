@@ -5,7 +5,7 @@ tags: tutorial, realtime, permissions, server, client
 ---
 Oh dear...permissions! Permissions are always super-hard to explain. I've read tutorials using The Simpsons, The Fellowship of the Ring and even the Olsen Twins to explain concepts like "access groups" and "right-inheritance".
 
-With deepstream, things can be equally tricky at times - but for different reasons. Deepstream is a realtime server. And even its permissions can be - if you want them to be - shared with both clients and servers in realtime.
+With deepstream, things can be equally tricky at times - but for different reasons. deepstream is a realtime server. And even its permissions can be - if you want them to be - shared with both clients and servers in realtime.
 
 The good news is that deepstream makes realtime permissions extremely easy using a permission language called "Valve". This tutorial assumes that you already know your way around Valve. If you haven't come across it yet, make sure to read the [Simple Valve](./permission-conf-simple/) and [Advanced Valve](./permission-conf-advanced/) tutorials first.
 
@@ -40,7 +40,7 @@ Any change to a user's permission needs to reflect on their GUI in realtime and 
 Please note: You can find the [code for this example on Github](https://github.com/deepstreamIO/ds-tutorial-dynamic-permissions)
 
 ## Login
-To keep things simple we'll be using [file-authentication](/tutorials/core/auth-file/) and cleartext passwords. To enable file based authentication, configure it in the `auth` section of your server's `config.yml`.
+To keep things simple we'll be using [file-authentication](/tutorials/core/auth-file/) and cleartext passwords. To enable file-based authentication, configure it in the `auth` section of your server's `config.yml`.
 
 ```yaml
 auth:

@@ -21,7 +21,7 @@ if( !$scope.$$phase ) {
 is considered a bit of an anti-pattern by passionate Angular-purists.
 
 ## How to use deepstream with Angular?
-Deepstream's records are a great fit as models for an Angular application, but there are also a few more tips worth sharing:
+deepstream's records are a great fit as models for an Angular application, but there are also a few more tips worth sharing:
 
 #### Create the deepstream client as a service
 This not only makes it easily accessible within the app, but also makes it easy to mock in testing scenarios.

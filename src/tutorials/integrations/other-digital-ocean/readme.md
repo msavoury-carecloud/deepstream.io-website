@@ -143,7 +143,7 @@ If you want to test if you can connect to deepstream with a client, you can use 
 
 ## Step 5 - Improve Setup for Scaling
 
-Deepstream provides also a message layer which allows communication between multiple deepstream intances.
+deepstream provides also a message layer which allows communication between multiple deepstream intances.
 We can reuse the existing redis droplet for the message layer by adding this snippet to the configuration file in
 `/etc/deepstream/config.yml`:
 
@@ -190,4 +190,4 @@ deepstream start &
 - [Additional Security Steps for MongoDB](https://www.digitalocean.com/community/tutorials/how-to-use-the-mongodb-one-click-application#accessing-remotely)
 - [Cluster Messaging with deepstream](https://deepstream.io/tutorials/core/cluster-messaging/)
 - [HTTP Authentication for deepstream clients](https://deepstream.io/tutorials/core/auth-http-webhook/)
-- [Deepstream Valve Permissioning](https://deepstream.io/tutorials/core/permission-conf-simple/)
+- [deepstream Valve Permissioning](https://deepstream.io/tutorials/core/permission-conf-simple/)

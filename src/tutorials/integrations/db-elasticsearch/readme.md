@@ -57,7 +57,7 @@ const es = new elasticsearch.Client({
   log: 'trace'
 });
 
-// Create Deepstream Client
+// Create deepstream Client
 const client = deepstream('deepstream-host').login()
 
 // Register as provider for search-color-for-brand

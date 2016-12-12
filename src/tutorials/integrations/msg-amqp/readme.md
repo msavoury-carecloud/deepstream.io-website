@@ -11,12 +11,12 @@ The "Advanced Message Queueing Protocol" is implemented by a large number of bro
 AMQP is reliable and widely adopted. It also comes fully managed as part of cloud hosting offerings like [Azure's Service Bus](https://azure.microsoft.com/en-us/services/service-bus/).
 
 #### When not to use AMQP with deepstream?
-Deepstream doesn't actually use the advanced messaging and routing patterns that AMQP offers. Instead, it sets up a single `topic-exchange` for name based routing and binds a queue per topic and client to it to create a publish/subscribe workflow.
+deepstream doesn't actually use the advanced messaging and routing patterns that AMQP offers. Instead, it sets up a single `topic-exchange` for name based routing and binds a queue per topic and client to it to create a publish/subscribe workflow.
 
 Equally, deepstream doesn't necessarily require the advanced persistence and guaranteed message delivery features that AMQP offers - data is stored within the storage layer and messaging is only used to propagate updates - meaning that subsequent messages will reconcile a corrupted state.
 
 #### How to use AMQP with deepstream?
-Deepstream offers an official plugin to connect to AMQP-clusters. It can be installed via deepstream's Command Line Interface using the `msg` keyword, e.g.
+deepstream offers an official plugin to connect to AMQP-clusters. It can be installed via deepstream's Command Line Interface using the `msg` keyword, e.g.
 
 ```bash
 deepstream install msg amqp

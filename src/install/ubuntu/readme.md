@@ -1,9 +1,9 @@
 ---
 title: Installing on Ubuntu
-description: Installing Deepstream on Ubuntu Linux
+description: Installing deepstream on Ubuntu Linux
 ---
 
-Deepstream is available via the APT package manager and currently supports Ubuntu `trusty`, `wily` and `xenial`.
+deepstream is available via the APT package manager and currently supports Ubuntu `trusty`, `wily` and `xenial`.
 
 To install, paste the following script into your terminal
 

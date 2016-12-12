@@ -7,7 +7,7 @@ tags: PaaS, IaaS, Heroku, deepstream, realtime, MongoDB, Redis
 In this tutorial we'll setup a deepstream server on Heroku, backed by
 a MongoDB storage layer and a Redis cache layer.
 
-![Heroku Deepstream](heroku-deepstream.png)
+![Heroku deepstream](heroku-deepstream.png)
 
 ## Starting from scratch
 Let's start from scratch with an empty directory:
