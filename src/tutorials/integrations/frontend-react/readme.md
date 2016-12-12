@@ -10,7 +10,7 @@ deepstream and react share the same belief: apps are best composed from reusable
 To make this easier, we've developed **deepstream-react** - a mixin that let's you add realtime sync to any component with just a single line of code.
 
 ```javascript
-mixins: [deepstreamReact]
+mixins: [DeepstreamReact]
 ```
 
 ## Video Tutorial
@@ -38,12 +38,12 @@ Next: connect to the server, log in and register the client instance with deepst
 
 ```javascript
 const deepstream = require('deepstream.io-client-js')
-const deepstreamMixin = require('deepstream.io-tools-react')
+const DeepstreamMixin = require('deepstream.io-tools-react')
 
 const client = deepstream('localhost:6020').login({}, () => {
   //ReactDOM.render call will go in here
 })
-deepstreamMixin.setdeepstreamClient(client)
+DeepstreamMixin.setDeepstreamClient(client)
 ```
 
 Every deepstream record is identified by a unique name. To tell your component which record it should use, you need to specify a `dsRecord` property.
