@@ -26,9 +26,9 @@ Often it's easier and more performant though to leave SSL termination to a load 
 Every incoming connection needs to pass an authentication step. This happens when the client calls `login( data, callback )`.
 Deepstream comes with three built-in authentication mechanisms:
 
-- [none](#) allows every connection. Choose this option for public sites that don't require access controls.
-- [file](#) reads authentication data from a static file. This is a good choice for public read / private write use cases, e.g. sports result pages that let every user visit, but only a few backend processes update the result.
-- [http](#) contacts a configurable HTTP webhook to ask if a user is allowed to connect. This is the most flexible option as it allows you to write a tiny http server in any language that can connect to databases, active directories, oAuth providers or whatever else your heart desires.
+- [none](https://deepstream.io/tutorials/core/auth-none/) allows every connection. Choose this option for public sites that don't require access controls.
+- [file](https://deepstream.io/tutorials/core/auth-file/) reads authentication data from a static file. This is a good choice for public read / private write use cases, e.g. sports result pages that let every user visit, but only a few backend processes update the result.
+- [http](https://deepstream.io/tutorials/core/auth-http-webhook/) contacts a configurable HTTP webhook to ask if a user is allowed to connect. This is the most flexible option as it allows you to write a tiny http server in any language that can connect to databases, active directories, oAuth providers or whatever else your heart desires.
 
 Apart from just accepting / denying incoming connections, the authentication step can also provide two extra bits of information:
 
@@ -45,11 +45,10 @@ Apart from just accepting / denying incoming connections, the authentication ste
 ```
 
 ### Authentication FAQ
-- **When exactly does authentication happen?** When a deepstream client is created, it establishes a connection straight away. The connection however remains in a quarantine state until `login()` is called. This makes sure that auth-data is sent over an encrypted connection and helps to get the at times time-consuming connection establishment out of the way while the user is busy typing passwords.
 
+- **When exactly does authentication happen?** When a deepstream client is created, it establishes a connection straight away. The connection however remains in a quarantine state until `login()` is called. This makes sure that auth-data is sent over an encrypted connection and helps to get the at times time-consuming connection establishment out of the way while the user is busy typing passwords.
 - **Can I read usernames for auth purposes out of a deepstream record?**
 There's no built-in support for this at the moment, but it's easy to use the http auth-type and write a server that reads from the same database or cache deepstream connects to.
-
 - **Can a user connect more than once at the same time**
 Yes. The same user can connect multiple times from separate browser windows or devices.
 
