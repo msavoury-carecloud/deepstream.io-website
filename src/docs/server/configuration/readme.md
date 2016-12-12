@@ -3,7 +3,13 @@ title: Configuration
 description: The available configuration options to customise deepstream
 ---
 
-You can make any configuration changes you need for your deepstream setup in the *config.yml* file. You can find this in the */etc/deepstream/conf/* directory on Linux and in *${DEEPSTREAM_DIR}/conf/* on Mac and Windows.
+You can make any configuration changes you need for your deepstream setup in the
+*config.yml* file. Depending on the installation sources, the configuration can
+be found in
+- `/etc/deepstream/conf/` if you installed on Linux with APT or yum,
+- in the folder `conf` in the Node.js module directory if you installed with
+  `npm`, or
+- in the folder `conf` after unpacking the standalone server binary.
 
 ## General Configuration
 
