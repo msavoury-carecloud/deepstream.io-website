@@ -129,27 +129,27 @@ connection.prototype.send = function( message ) {
 }
 ```
 
-The same situation happens when you recieve a message. If the traffic is slow you might only be getting one message per packet, but when traffic volumes pickup you will need to split the data recieved and process each message individually.
+The same situation happens when you receive a message. If the traffic is slow you might only be getting one message per packet, but when traffic volumes pickup you will need to split the data received and process each message individually.
 
 ```javascript
-connection.prototype.recieve = function( message ) {
+connection.prototype.receive = function( message ) {
     var lastMessageSeperator, messages;
 
-    lastMessageSeperator = recievedMessages.lastIndexOf( MESSAGE_SEPERATOR );
-    messages = recievedMessages.substring( 0, lastMessageSeperator);
+    lastMessageSeperator = receivedMessages.lastIndexOf( MESSAGE_SEPERATOR );
+    messages = receivedMessages.substring( 0, lastMessageSeperator);
     processMessages( messages );
 }
 ```
 
 ## Acks
 
-Unfortunately timeouts can always occur when internet connections become so slow they might as well not work. Because of this deepstream has ack messages to let the client know the server has recieved the messages sent.
+Unfortunately timeouts can always occur when internet connections become so slow they might as well not work. Because of this deepstream has ack messages to let the client know the server has received the messages sent.
 
 Ack timeouts are the clients responsibility to keep track of. When a message that can get an associated ack is sent out, you need to set a timer which can be removed once the server replies. If not the application will be notified which depending on the situation can allow you to try the same action again, or notify the user their desired behaviour might not have gone occurred successfully.
 
 ## Unsoliciated Messages
 
-Messages recieved that are unexpected should throw an `UNSOLICITED_MESSAGE` error. If it occurs often it's usually a useful indication something might be leaking or not have unsubscribed properly.
+Messages received that are unexpected should throw an `UNSOLICITED_MESSAGE` error. If it occurs often it's usually a useful indication something might be leaking or not have unsubscribed properly.
 
 {{#infobox "hint" "Edge Case"}}
 - In the case of race conditions this could occur if the server sends a message to the client the exact same time it unsubscribed from the message. This can't be avoided, but should only happen very rarely.
