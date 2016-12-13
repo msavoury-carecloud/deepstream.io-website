@@ -2,9 +2,12 @@
 
 ## Setup
 
-- Clone this repo
-- Run bin/setup-dependencies.sh in order to clone repos that is some pages are generated from.
+- Clone this repo,
+- `cd` into the cloned repo, and
+- optionally run `bin/setup-dependencies.sh`; this script clones several git
+  repos and generates documentation from them.
 
+Afterwards, execute
 ```
 npm install
 npm run sync

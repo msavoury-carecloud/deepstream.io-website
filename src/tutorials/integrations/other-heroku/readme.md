@@ -17,7 +17,8 @@ mkdir ds-demo-Heroku
 cd ds-demo-Heroku
 ```
 
-At the time of writing, a deepstream Heroku addon/ build-pack is on the agenda, but not quite there yet, so let's start with a NodeJS based one
+At the time of writing, a deepstream Heroku addon/build-pack is on the agenda
+but not quite there yet, so let's start with a Node.js based one
 
 To create a _package.json_ file you can just run this command:
 

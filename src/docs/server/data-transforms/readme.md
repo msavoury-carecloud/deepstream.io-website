@@ -21,7 +21,7 @@ For example, if you have a user with admin and readonly data, have two seperate 
 Message from server to RPC provider, result of `client.rpc.make(name, data, callback)`<br>
 
 - sender
-- reciever
+- receiver
 - rpcName
 
 ```javascript
@@ -41,7 +41,7 @@ server.set('dataTransforms', [{
 Response from RPC provider on the way back to its requestor, result of `response.send(data)`
 
 - sender
-- reciever
+- receiver
 - rpcName
 
 ```javascript
@@ -61,7 +61,7 @@ server.set('dataTransforms', [{
 Data associated with an event send with `client.event.emit(name, data)`
 
 - sender
-- reciever
+- receiver
 - eventName
 
 ```javascript
@@ -84,7 +84,7 @@ Response to a record subscription made with `client.record.getRecord()`
 
 - recordName
 - version
-- reciever
+- receiver
 
 ```javascript
 server.set('dataTransforms', [{
@@ -108,7 +108,7 @@ Full record update, result of `client.record.set(data)`
 
 - recordName
 - version
-- reciever
+- receiver
 
 ```javascript
 server.set('dataTransforms', [{
@@ -128,7 +128,7 @@ Partial record update, result of `client.record.set(path, value)`
 
 - recordName
 - version
-- reciever
+- receiver
 - path
 
 ```javascript
