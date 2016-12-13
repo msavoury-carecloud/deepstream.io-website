@@ -18,6 +18,7 @@ record,create,Read/Create,R|CR|recordName+,R|A|CR|recordName+,Client,"Send to re
 record,update,Update Entire Record,R|U|recordName|versionNumber|recordData+,,Client,Send/Recieved when the entire record data is replaced with a new value,recordData: JSON object
 record,patch,Patch Record,R|P|recordName|versionNumber|path|value+,,Client,Send/Recieved when the record is partially changed,value: Deepstream typed
 record,delete,Delete Record,R|D|recordName+,R|A|D|recordName+,Client,Send/Recieved when an object is deleted. This leads to all clients discarding the client since updates are no longer available,
+record,discard,Discard Record,R|US|recordName+,R|A|US|recordName+,Client,Sent/Recieved when a record is discarded, unsubscribing the relevant client from record updates.
 record,recieveread,Receive Record Read,R|R|recordName|versionNumber|recordData,,Server,"When requesting a record you will get a read which is the current state of the record, similar to the update data",recordData: JSON object
 record,cachetimeout,Cache Read Timeout,R|E|CACHE_RETRIEVAL_TIMEOUT|recordName+,,Server,If the object can't be read from the cache within a certain time the server will respond with this error,
 record,databasetimeout,Database Read Timeout,R|E|STORAGE_RETRIEVAL_TIMEOUT|recordName+,,Server,If the object can't be read from storage within a certain time the server will respond with this error,
