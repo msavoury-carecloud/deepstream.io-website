@@ -118,9 +118,14 @@ _Default_: `1048576`
 
 In this section you can configure the authentication type the server uses.
 
-You set the authentication type as a sub key the `auth` key. The authentication options are `none`, `file`, and `http` and come with their respective sets of `options`.
+You set the authentication type as a subkey the `auth` key. The authentication options are `none`, `file`, and `http` and come with their respective sets of `options`.
 
-Each of these requires reasonable explanation, so see the specific section of our docs for more details.
+You set the authentication type as a subkey the `auth` key. The available
+authentication options are `none`, `file`, and `http`, each of them having
+different `options` which are described in the tutorials on [Auth
+None](/tutorials/core/auth-none/), [file-based
+authentication](http://localhost:3000/tutorials/core/auth-none/), and [HTTP
+authentication](/tutorials/core/auth-http-webhook/), respectively.
 
 ```yaml
 #Authentication
