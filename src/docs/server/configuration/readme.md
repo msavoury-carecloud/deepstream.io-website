@@ -133,14 +133,17 @@ _Default_: `none`
 
 ## Permissioning
 
-In this section you can configure the location of the permissions file that sets levels of access users and actions have to the server.
-
-At the moment, you can create your own custom permission handler, or use a configuration file with the `config` option.
-If you use the `config` option, then use the `options` sub key to configure it.
+In this section you can configure the
+[permissioning](/tutorials/core/permission-conf-simple/). The key used for this
+section is `permission` and you can create your own custom permission handler or
+use a configuration file. To use the former method, select the option
+`type = none` and override the `permissionHandler` with the aid of the [NodeJS
+server API](/docs/server/node-api/). To use the latter method, set `type = config` and modify the `option` values below.
 
 ### path
-Set the path to the file that declares permissions. This can be in json, js or yaml format. You can find more details on what's possible with this file [here](#).<br>
-_Default_: `./permissions.json`
+Set the path to the file that declares permissions. This option is **mandatory**
+with `type = config`. The file can be in JSON, JavaScript, or YAML format. By
+default, deepstream ships with a `permissions.yml` permitting every action.
 
 ### maxRuleIterations
 The deepstream permissions model allows for some complex nested actions and queries. To prevent a performance hit you can limit the nesting level with this option.<br>
