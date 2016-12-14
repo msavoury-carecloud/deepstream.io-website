@@ -142,12 +142,12 @@ In this section you can configure the
 [permissioning](/tutorials/core/permission-conf-simple/). The key used for this
 section is `permission` and you can create your own custom permission handler or
 use a configuration file. To use the former method, select the option
-`type = none` and override the `permissionHandler` with the aid of the [NodeJS
-server API](/docs/server/node-api/). To use the latter method, set `type = config` and modify the `option` values below.
+`type: none` and override the `permissionHandler` with the aid of the [NodeJS
+server API](/docs/server/node-api/). To use the latter method, set `type: config` and modify the `option` values below.
 
 ### path
 Set the path to the file that declares permissions. This option is **mandatory**
-with `type = config`. The file can be in JSON, JavaScript, or YAML format. By
+with `type: config`. The file can be in JSON, JavaScript, or YAML format. By
 default, deepstream ships with a `permissions.yml` permitting every action.
 
 ### maxRuleIterations
