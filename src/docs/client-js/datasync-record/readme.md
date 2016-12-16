@@ -80,7 +80,7 @@ record.whenReady(record => {
 })
 ```
 
-### set(path, value)
+### set(path, value, callback)
 
 ```
 {{#table mode="api"}}
@@ -94,9 +94,16 @@ record.whenReady(record => {
   typ: Various
   opt: false
   des: The value the record or path should be set to.
+-
+  arg: callback
+  typ: Function
+  opt: true
+  des: Will be called with the result of the write when using record write acknowledgements.
 {{/table}}
 ```
-Used to set the record's data and can be called with a value. A path can optionally be included.
+Used to set the record's data and can be called with a value. A path and callback can optionally be included.
+
+Including a callback will indicate that write acknowledgement to cache or storage is required and will slow down the operation.
 
 {{#infobox "info"}}
 -  After calling `set`, you still have to wait for the record to be ready before
@@ -116,6 +123,19 @@ record.set({
 
 // Update only firstname
 record.set('personalData.firstname', 'Marge')
+
+// Set the entire record with write acknowledgement
+record.set({
+  personalData: { ... },
+  children: [ ... ]
+}, err => {
+  console.log('Record set with error:', err)
+});
+
+// Update only a property with write acknowledgement
+record.set('personalData.firstname', 'Homer', err => {
+  console.log('Record set with error:', err)
+})
 ```
 
 ### get(path)
