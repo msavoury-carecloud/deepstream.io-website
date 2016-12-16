@@ -3,15 +3,11 @@
 ## Setup
 
 - Clone this repo,
-- `cd` into the cloned repo, and
-- optionally run `bin/setup-dependencies.sh`; this script clones several git
-  repos and generates documentation from them.
-
-Afterwards, execute
-```
-npm install
-npm run sync
-```
+- `cd` into the cloned repo,
+- optionally run `bin/setup-dependencies.sh`, and
+- execute `npm install`.
+`bin/setup-dependencies.sh` clones several git repos and generates documentation
+from them.
 
 #### Watch mode
 
