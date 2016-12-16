@@ -22,6 +22,10 @@ You can specify permission rules for the following interactions
 - `provide` registering a client as a RPC provider
 - `request` making a remote procedure call
 
+### presence
+- `allow` query for connected authenticated clients
+
+
 ## Variables
 These variables are available for use within a permission rule
 
