@@ -129,12 +129,20 @@ record.set({
   personalData: { ... },
   children: [ ... ]
 }, err => {
-  console.log('Record set with error:', err)
+  if (err) {
+    console.log('Record set with error:', err)
+  } else {
+    console.log('Record set without error')
+  }
 });
 
 // Update only a property with write acknowledgement
 record.set('personalData.firstname', 'Homer', err => {
-  console.log('Record set with error:', err)
+  if (err) {
+    console.log('Record set with error:', err)
+  } else {
+    console.log('Record set without error')
+  }
 })
 ```
 
