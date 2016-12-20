@@ -192,7 +192,7 @@ user.subscribe('status', statusChanged, true)
 -
   arg: callback
   typ: Function
-  opt: false
+  opt: true
   des: The previously registered callback function.
 {{/table}}
 ```
