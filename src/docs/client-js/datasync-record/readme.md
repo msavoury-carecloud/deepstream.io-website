@@ -88,22 +88,24 @@ record.whenReady(record => {
   arg: path
   typ: String
   opt: true
-  des: A particular path within the JSON structure that should be set.
+  des: A particular path within the JSON structure that should be set
 -
   arg: value
   typ: Various
   opt: false
-  des: The value the record or path should be set to.
+  des: The value the record or path should be set to
 -
   arg: callback
   typ: Function
   opt: true
-  des: Will be called with the result of the write when using record write acknowledgements.
+  des: Will be called with the result of the write when using record write acknowledgements (available in deepstream 2.1.0 or newer)
 {{/table}}
 ```
 Used to set the record's data and can be called with a value. A path and callback can optionally be included.
 
-Including a callback will indicate that write acknowledgement to cache or storage is required and will slow down the operation.
+Including a callback will indicate that write acknowledgement to cache or
+storage is required and will slow down the operation. The callback is available
+in deepstream 2.1.0 or newer.
 
 {{#infobox "info"}}
 -  After calling `set`, you still have to wait for the record to be ready before
