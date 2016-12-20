@@ -6,6 +6,7 @@
 - `cd` into the cloned repo,
 - optionally run `bin/setup-dependencies.sh`, and
 - execute `npm install`.
+
 `bin/setup-dependencies.sh` clones several git repos and generates documentation
 from them.
 
