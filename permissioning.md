@@ -1,25 +1,23 @@
 # Permissioning
 
-Permissioning means stuff like user permissions and so on.
-
-
-## Overview
-
-We will discuss file-based permissioning. Alternatively, deepstream also offers
-function-based permissioning using the server API.
+Permissioning enables a deepstream server administrator to grant or restrict a
+client's ability to perform certain actions, e.g., to modify records, to emit
+events, or to be notified of the presence of other users. In this tutorial, we
+will introduce you to deepstream's access controls, its permissioning language
+Valve, and how access control can be enabled. This tutorial discusses file-based
+permissioning; deepstream also offers function-based permissioning using the
+[server API](/docs/server/node-api/) but we will not discuss this approach here.
 
 
 ## Requirements
 
-For this tutorial, you need to know how deestream server configuration works.
-Since deepstream allows separate permissioning of actions involving records,
-events, (client) presence, and RPCs, you do not need to know about capabilities
-you are not interested in. Nevertheless, for this tutorial we assume you know
-how records work so that we can present examples. Moreover, deepstream offers
-user-based permissioning and in order to use this capability, you need to be
-familiar with user authentication in deepstream.
-
-Tutorial on user authentication is here, server config reference is over there.
+For this tutorial, you need to know how deepstream [server configuration](/docs/server/configuration/) works.  Since deepstream allows
+separate permissioning of actions involving records, events, (client) presence,
+and RPCs, you do not need to know about capabilities you are not interested in.
+Nevertheless, for this tutorial we assume you know how records work so that we
+can present examples. Moreover, deepstream offers user-based permissioning and
+in order to use this capability, you need to be familiar with [user
+authentication](/tutorials/core/security-overview/) in deepstream.
 
 
 ## An Example
@@ -28,7 +26,7 @@ Consider you are running a forum where users can share content. In order to
 avoid vandalism and spam, users have to wait 24 hours before they can create new
 content or modify existing data. Moreover, no user should be able to delete data
 from the server. Consequently, every user account possesses a `timestamp`
-property saving the time and date of registration in its server data.
+property storing the time and date of registration in its server data.
 Corresponding user account data with file-based user authentication might look
 as follows:
 ```yaml
@@ -70,19 +68,22 @@ permission:
 ```
 
 As you saw above, setting up deepstream's file-based permissioning facilities
-requires a file with permissioning rules, a change to the configuration file,
-and the availability of certain user data.
+requires a file with permissioning rules, changes to the configuration file, and
+the availability of certain user data.
 
 
 ## Permissioning
 
 deepstream's permissioning language is called _Valve_. Every record, RPC, event,
-and user in deepstream possesses a unique identifier (name) and fundamentally,
-Valve uses a set of pairs consisting of a pattern and an expression to evaluate
-permissibility of actions. First, deepstream searches for the pair with the
-pattern matching the identifier best and then it evaluates the associated
-expression to determine if the client is allowed to execute the requested
-action.
+and authenticated user in deepstream possesses a unique identifier (name) and
+fundamentally, Valve uses a set of pairs consisting of a pattern and an
+expression to evaluate permissibility of actions. First, deepstream searches for
+the pair with the pattern matching the identifier best and then it evaluates the
+associated expression to determine if the client is allowed to execute the
+requested action. Actions in Valve correspond to specific functions in the
+different client APIs, e.g., `record.write: true` implies that every client is
+allowed to call `record.set()`, and we will list these associated functions
+below.
 
 
 ### A Simple Example
@@ -102,49 +103,28 @@ record:
 The first line instructs the Valve interpreter that the following code contains
 record permissions, the second line contains a wild card matching every possible
 record identifier, and the remaining lines allow every operation on records with
-the exception of deletion.
+the exception of deletion. In the client API, calling `record.delete()` will
+cause the invocation of the error handler.
 
 
 ### Permissioning with Valve
 
-A permissioning file uses [YAML](https://en.wikipedia.org/wiki/YAML) or
-[JSON](https://en.wikipedia.org/wiki/JSON) file format and must always contain
-rules for every possible identifier - if file-based permissioning is enabled,
-the server will not provide default rules. For the sake of completeness, we
-provide you with a template in YAML format permitting every operation:
-```yaml
-presence:
-  "*":
-    allow: true
-record:
-  "*":
-    create: true
-    write: true
-    read: true
-    delete: true
-    listen: true
-event:
-  "*":
-    publish: true
-    subscribe: true
-    listen: true
-rpc:
-  "*":
-    provide: true
-    request: true
-```
-
-Valve is first and foremost using identifers to match permissionable
-objects with corresponding rules. Thus, identifiers should be chosen such that
-rules can be selected only based on the identifier.
+The Valve language uses [YAML](https://en.wikipedia.org/wiki/YAML) or
+[JSON](https://en.wikipedia.org/wiki/JSON) file format and the file with the
+permissioning rules must always contain rules for every possible identifier
+because the server will not supply default values. Note that the deepstream
+server ships with a permissions file in `conf/permissions.yml` which permits
+every action. Valve is designed to first and foremost use identifers to match
+permissionable objects with corresponding rules. Thus, identifiers should be
+chosen such that rules can be selected only based on the identifier.
 
 
 ### Identifier Matching
 
-Valve can match identifiers using fix (sub-)strings, wildcards, and placeholders
-(so-called _path variables_); these placeholders can be used in the right-hand
-side expressions and this will be described in the next paragraph. Suppose we
-store a user's first name, middle name, and last name in the format
+Valve can match identifiers using fixed (sub-)strings, wildcards, and
+placeholders (so-called _path variables_); these placeholders can be used in the
+right-hand side expressions and this will be described in the next paragraph.
+Suppose we store a user's first name, middle name, and last name in the format
 `name/lastname/middlename/firstname` and consider the permissioning rule below:
 ```yaml
 presence:
@@ -156,24 +136,40 @@ identifier is `name/Doe/Adam/John`) or Jane Eve Doe (`name/Doe/Eve/Jane`); in
 the former case, `$firstname === 'John'` and in the latter case `$firstname ===
 'Jane'`.
 
-Elaborate on competing identifier matches.
+TODO elaborate on competing identifier matches.
 
-With respect to the identifier matching, note that the longest match wins
-([maximal munch](https://en.wikipedia.org/wiki/Maximal_munch)).
+[maximal munch](https://en.wikipedia.org/wiki/Maximal_munch)
 
 
 ### Expressions
 
-After deciding which rule to use, deepstream will evaluate the given expression.
-The right-hand side can be any JavaScript expression that evaluates to
+After identifier matching, deepstream will evaluate the right-hand side
+expression. The expression can use a subset of JavaScript including
+- arithmetic expressions,
+- comparison operators,
+- the string functions `startsWith`, `endsWith`, `indexOf`, `match`,
+  `toUpperCase`, `toLowerCase`, and `trim`.
+Additionally, you can use the current time (on the server), you can access
+deepstream data, and cross-reference it.
+
 
 TODO write about `data`
 TODO write about `user`
 TODO write about cross references
-TODO write about string references
-TODO write about JavaScript comparison operators
+TODO write about time
 
-TODO warn about deeply nested cross references
+When evaluating expressions, you need to be aware of several pitfalls. Using the
+current time with `now` requires you to consider the usual [limitations with
+time-dependent
+operations](http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time)
+on computers. In particular, `now` is evaluated on the server and this should be
+kept in mind whenever a client uses the _current_ time in its code. Valve allows
+you to cross reference stored data but this is computationally expensive. Thus,
+the default config shipped with deepstream allows no more than three cross
+references as of December 21, 2016. Finally, the usual warnings about
+[JavaScript comparison
+operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)
+apply.
 
 
 ### Records
@@ -217,7 +213,7 @@ or requested. The corresponding permissioning section is identified by the key
 ```yaml
 rpc:
 	'*':
-		provide: true
+		provide: true # funktion nennen
 		request: true
 ```
 
