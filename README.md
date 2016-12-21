@@ -14,12 +14,16 @@ from them.
 
 If you want to use the watch script, you need to install [fswatch](https://github.com/emcrisostomo/fswatch)
 
-###### Windows and OS X
+###### OS X
 ```
 brew install fswatch
 ````
 
-`fswatch` should work on Windows since release 1.6.0 (see [fswatch issue #88](https://github.com/emcrisostomo/fswatch/issues/88)).
+###### Windows
+
+`fswatch` should work on Windows since release 1.6.0 (see [fswatch issue #88](https://github.com/emcrisostomo/fswatch/issues/88)). Installation
+instructions can be found in the `fswatch` git repository in the file
+[`README.windows`](https://github.com/emcrisostomo/fswatch/blob/master/README.windows) (as of December 21, 2016).
 
 
 ## Usage
