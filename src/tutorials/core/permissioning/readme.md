@@ -131,7 +131,7 @@ Suppose we store a user's first name, middle name, and last name in the format
 `name/lastname/middlename/firstname` and consider the permissioning rule below:
 ```yaml
 presence:
-	'name/Doe/*/$firstname':
+	'name/Doe/$middlename/$firstname':
 		allow: false
 ```
 User names that match this rule are, e.g., John Adam Doe (the corresponding
@@ -139,7 +139,7 @@ identifier is `name/Doe/Adam/John`) or Jane Eve Doe (`name/Doe/Eve/Jane`); in
 the former case, `$firstname === 'John'` and in the latter case
 `$firstname === 'Jane'`.
 
-The wild card symbol in Valve is the asterisk (the symbol '*') and it matches
+The wild card symbol in Valve is the asterisk (the symbol `*`) and it matches
 every character until the end of the string. Wild cards start with a dollar sign
 and match everything until a slash is encountered. Note that identifiers can in
 principle contain any character. Nevertheless, if you use an asterisk in an
