@@ -77,7 +77,7 @@ the availability of certain user data.
 deepstream's permissioning language is called _Valve_. Every record, RPC, event,
 and authenticated user in deepstream possesses a unique identifier (name) and
 fundamentally, Valve uses a set of pairs consisting of a pattern and an
-expression to evaluate permissibility of actions. First, deepstream searches for
+expression to evaluate admissibility of actions. First, deepstream searches for
 the pair with the pattern matching the identifier best and then it evaluates the
 associated expression to determine if the client is allowed to execute the
 requested action. Actions in Valve correspond to specific functions in the
@@ -114,14 +114,14 @@ The Valve language uses [YAML](https://en.wikipedia.org/wiki/YAML) or
 permissioning rules must always contain rules for every possible identifier
 because the server will not supply default values. Note that the deepstream
 server ships with a permissions file in `conf/permissions.yml` which permits
-every action. Valve is designed to first and foremost use identifers to match
+every action. Valve is designed to first and foremost use identifiers to match
 permissionable objects with corresponding rules. Thus, identifiers should be
 chosen such that rules can be selected only based on the identifier.
 
 
 ### Identifier Matching
 
-Valve can match identifiers using fixed (sub-)strings, wildcards, and
+Valve can match identifiers using fixed (sub-)strings, wild cards, and
 placeholders (so-called _path variables_); these placeholders can be used in the
 right-hand side expressions and this will be described in the next paragraph.
 Suppose we store a user's first name, middle name, and last name in the format
@@ -136,8 +136,8 @@ identifier is `name/Doe/Adam/John`) or Jane Eve Doe (`name/Doe/Eve/Jane`); in
 the former case, `$firstname === 'John'` and in the latter case `$firstname ===
 'Jane'`.
 
-The wildcard symbol in Valve is the asterisk (the symbol '*') and it matches
-every character until the end of the string. Wildcards start with a dollar sign
+The wild card symbol in Valve is the asterisk (the symbol '*') and it matches
+every character until the end of the string. Wild cards start with a dollar sign
 and match everything until a slash is encountered. Note that identifiers can in
 principle contain any character. Nevertheless, if you use an asterisk in an
 identifier, deepstream offers no way to match specifically this character.
