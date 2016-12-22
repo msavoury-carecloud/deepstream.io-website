@@ -1,4 +1,7 @@
-# Permissioning
+---
+title: Permissioning
+description: Learn the permissioning in Valve
+---
 
 Permissioning enables a deepstream server administrator to grant or restrict a
 client's ability to perform certain actions, e.g., to modify records, to emit
@@ -133,8 +136,8 @@ presence:
 ```
 User names that match this rule are, e.g., John Adam Doe (the corresponding
 identifier is `name/Doe/Adam/John`) or Jane Eve Doe (`name/Doe/Eve/Jane`); in
-the former case, `$firstname === 'John'` and in the latter case `$firstname ===
-'Jane'`.
+the former case, `$firstname === 'John'` and in the latter case
+`$firstname === 'Jane'`.
 
 The wild card symbol in Valve is the asterisk (the symbol '*') and it matches
 every character until the end of the string. Wild cards start with a dollar sign
