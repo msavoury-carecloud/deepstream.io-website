@@ -1,28 +1,46 @@
 ---
-title: userspecific data guide
+title: user-specific data
 description: How to send different data for each user
 ---
-A frequent requirement for any app is the need to send different data to different users. This can be a special kind of discount for a given user that's applied to all prices in a shop, a list of matches on a dating platform for a soulmate searching single or any other kind of private or at least user specific data.
-Fortunately all three of deepstream's core concepts: data-sync, pub-sub and request-response provide various means to solve this. The trick? Combine user specific record or event names with deepstream's permission-language [Valve](TODO).
+A frequent requirement for any app is the need to send different data to different users. Whether its updates to a social feed, discounts for frequent buyers, a list of matches on a dating platform or any other kind of private or at least user specific information.
+Fortunately, all three of deepstream's core concepts: data-sync, pub-sub and request-response provide various means to achieve this. The trick? Combine user specific record or event names with deepstream's permission-language [Valve](/tutorials/core/permission-conf-simple/).
 
-## Userspecific RPCs
-Let's start with Remote Procedure Calls. Say we're running a pet-food shop. The more frequently a user orders, the higher a discount she gets. This means we need three things:
+## User-specific Records
+Providing private or user-specific records is as simple as including the username in the recordname. If your social network has a profile for Lisa Miller, simply store it in a record called `profile/lisa-miller`.
+
+```javascript
+var profile = ds.record.getRecord( 'profile/lisa-miller' );
+```
+
+Now we need to make sure that everyone can read that profile, but only Lisa can edit her information. We do this using Valve. In the `record` section in `permission-config.yml` we create the following rule:
+
+```yaml
+  "profile/$username":
+    read: true
+    write: "user.id === $username"
+```
+
+How does this rule work? First we specify `profile/$username` as a pattern. Whenever a record with a name matching this pattern is accessed, the rule will be applied.
+`read: true` makes sure that everyone can read the record's data. `user.id === $username` ensures that the `$username` part of the record name needs to match the username the user is currently logged in as if they wish to write.
+
+## User-specific RPCs
+Ok, so far, so simple. Let's look at a more advanced example including an http authentication endpoint and a backend process that provides user specific data as a response to remote procedure calls (RPCs). Say we're running a pet-food shop: the more frequently a user orders, the higher a discount she gets. This means we need three things:
 
 - An authentication server that checks the credentials of the user trying to log in
-- A backend process that has access to prices and user discounts and can provide an RPC to retrieve a price
+- A backend process that has access to prices and user discounts and can provide a RPC to retrieve a price
 - A way to make sure that the username the client provides when asking for the price is in fact their own
 
-To summarize it, the setup would look as follows:
+To summarize, our setup will look as follows:
 
 ![RPC permission flow](rpc-diagram.png)
 
-Let's go trough the various components step by step, shall we? First off, the client needs to login. We'll use a very basic login form: username, password and an "OK" button is all we need.
+Let's go through the various components step by step, shall we? First off, the client needs to login. We'll use a very basic login form: username, password and an "OK" button is all we need.
 
 ![Login Form](login-form.png)
 
 You can find this and all other files for this guide in the accompanying [Github Repo](https://github.com/deepstreamIO/ds-demo-userspecific-data)
 
-Once the user hits "login", the client executes deepstream's [login](TODO) method, providing the username and password as data
+Once the user hits "login", the client executes deepstream's [login](/docs/client-js/client/#login-authparams-callback-) method, providing the username and password as data
 
 ```javascript
 login() {
@@ -33,11 +51,24 @@ login() {
 }
 ```
 
-{{#infobox "info"}}
-Please note: I'm using ES6 class syntax and the amazingly simple yet powerful [KnockoutJS](http://knockoutjs.com/) for view-bindings. The same principles however apply for React, Angular, Vue, Android, iOS or whatever else your heart desires.
-{{/infobox}}
+<div class="info">
+Please note: I'm using ES6 class syntax and the amazingly simple yet powerful <a href="http://knockoutjs.com/">KnockoutJS</a> for view-bindings. The same principles however apply for React, Angular, Vue, Android, iOS or whatever else your heart desires.
+</div>
 
-The login data provided by the client is forwarded by deepstream to one of the available [permission endpoints](TODO). For this we'll use a simple http server written in [express](TODO) that keeps a local map of user-credentials and validates them accordingly:
+The username and password now need to be validated. We'll do this by telling deepstream to make an HTTP POST request to a given URL. This can be configured in the `auth` section of `config.yml`:
+
+```yaml
+auth:
+  type: http
+  options:
+    endpointUrl: http://localhost:3000/authenticate-user
+    permittedStatusCodes: [ 200 ]
+    requestTimeout: 2000
+```
+
+This request will be processed by a simple http server written in [Express](http://expressjs.com/) that checks the credentials and returns the HTTP status code `200` for successful logins and `403` for failed attempts.
+
+For simplicities sake we'll use a hardcoded map of cleartext passwords here. In the real world this information would ideally be hashed and stored in a database or provided by an open authentication API.
 
 ```javascript
 const express = require('express')
@@ -45,18 +76,11 @@ const bodyParser = require('body-parser')
 const app = express();
 const port = 3000;
 const users = {
-    'user-a': {
-        password: 'user-a-pass',
-        serverData: { role: 'user' }
-    },
-    'user-b': {
-        password: 'user-b-pass',
-        serverData: { role: 'user' }
-    },
-    'data-provider': {
-        password: 'provider-pass',
-        serverData: { role: 'provider' }
-    }
+  'user-a': { password: 'user-a-pass', serverData: { role: 'user' } },
+  'user-b': { password: 'user-b-pass', serverData: { role: 'user' } },
+  'data-provider': {
+    password: 'provider-pass', serverData: { role: 'provider'}
+  }
 }
 
 app.use(bodyParser.json());
@@ -72,16 +96,39 @@ app.post('/authenticate-user', function (req, res) {
     } else {
         res.sendStatus( 403 );
     }
-})
+});
 
 app.listen( port, function () {
-  console.log( `listening on port ${port}` );
+    console.log( `listening on port ${port}` );
 });
 ```
 
-the rest is reasonably straight forward. First a backend process registers as a provider for the `get-price` RPC:
+Did you notice the extra "user" called `data-provider` above? We'll use it to authenticate connections from backend processes that can provide data to the user. Such a "provider" would first need to connect and login to deepstream:
 
 ```javascript
+const deepstream = require( 'deepstream.io-client-js' );
+const deepstreamUrl = 'localhost:6020';
+const credentials = { username: 'data-provider', password: 'provider-pass' };
+const ds = deepstream( deepstreamUrl );
+
+ds.login( credentials, ( success, error, errorMsg ) => {
+    if( success ) {
+        console.log( 'connected to ' + deepstreamUrl );
+    } else {
+        console.log( `failed to connect to ${deepstreamUrl} with ${errorMsg}` );
+    }
+});
+```
+
+Next up, we'll want to `provide` an RPC called `get-price`. This means we tell deepstream that whenever a client asks for `get-price`, this provider will be able to answer that question.
+
+```javascript
+const itemPrice = 100;
+const userdata = {
+    'user-a': { discount: 0.1 },
+    'user-b': { discount: 0.3 }
+}
+
 ds.rpc.provide( 'get-price', ( data, response ) => {
     var discount = userdata[ data.username ].discount;
     var finalPrice = itemPrice - ( discount * itemPrice );
@@ -89,36 +136,46 @@ ds.rpc.provide( 'get-price', ( data, response ) => {
 });
 ```
 
-`userdata` is a map of users to associated data, e.g.
-
-```javascript
-const userdata = {
-    'user-a': {
-        discount: 0.1,
-        personalData: { firstname: 'john', lastname: 'doe'  }
-    },
-    'user-b': {
-        discount: 0.3,
-        personalData: { firstname: 'lisa', lastname: 'miller' }
-    }
-}
-```
-
-and `itemPrice` is just a static number of 100. Then the client `makes` the RPC:
+Let's look through the snippet above. For simplicities sake, we specify our price and our various discounts as static data. Now when a user makes a request, they **send their username as part of the RPC data**:
 
 ```javascript
 this.ds.rpc.make( 'get-price', { username: this.username() },
 this._onRpcResponse.bind( this ) );
 ```
 
-the deepstream server uses Valve to check that the username the client provided is in fact her own
+To ensure that the provided username is in fact the one the user is logged in as, we'll again use Valve:
 
 ```yaml
     request: "data.username === user.id"
 ```
 
-and if so forwards it to the RPC provider. The price with the user-specific discount is then passed back to the client that requested it.
+This means that the provider can be sure to get a valid and allowed username and can return a price with the correct discount applied.
 
-## Records
+## User Specific Events & Listening
+Ok, so what about user-specific "events", deepstream's pub-sub mechanism. Fundamentally, they work the same way as records: Make the username a part of the event-name and use Valve to ensure that only the right user can subscribe to the right event.
 
-## Events
+But does that mean that you have to constantly send out events for all users, whether they might be online or not? Fortunately not! Deepstream provides a concept called [listening](/docs/client-js/pubsub-client-event/#client-event-listen-pattern-callback-) that let's you spy on your clients record or event-subscriptions and only provide data when its actually needed.
+
+Let's look at a (somewhat nonsensical) example: For our guide we want users to be created with a series of event messages, e.g. 'Hey Lisa!', 'Ho Lisa!', 'Hey Lisa!'...and so on.
+
+```javascript
+this.ds.event.subscribe( 'user-updates/lisa-miller', ( msg ) => {
+    // display the message
+});
+```
+
+Within our backend provider we now register as a "listener"
+
+```javascript
+ds.event.listen( 'user-updates/*', ( match, isSubscribed, response ) => {
+    response.accept();
+    const username = match.replace( 'user-updates/', '' );
+    if( isSubscribed ) {
+        startUserGreeting( username )
+    } else {
+        endUserGreeting( username )
+    }
+})
+```
+
+Once a client subscribes to `user-updates/lisa-miller` we now start sending specific messages for lisa-miller - once Lisa unsubscribes we stop. And just to make sure, the same works for records as well.
