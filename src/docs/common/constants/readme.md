@@ -197,6 +197,8 @@ list:
 - ACTIONS.REQUEST | REQ | ✔ | ✔|
 - ACTIONS.RESPONSE | RES | ✔ | ✔ |
 - ACTIONS.REJECTION | REJ | ✔ | ✔ |
+- ACTIONS.PING | PI | ✔ |  |
+- ACTIONS.PONG | PO |  | ✔ |
 {{/table}}
 ```
 
