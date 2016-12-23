@@ -14,13 +14,14 @@ permissioning; deepstream also offers function-based permissioning using the
 
 ## Requirements
 
-For this tutorial, you need to know how deepstream [server configuration](/docs/server/configuration/) works. Since deepstream allows
-separate permissioning of actions involving records, events, (client) presence,
-and RPCs, you do not need to know about capabilities you are not interested in.
-Nevertheless, for this tutorial we assume you know how records work so that we
-can present examples. Moreover, deepstream offers user-based permissioning and
-in order to use this capability, you need to be familiar with [user
-authentication](/tutorials/core/security-overview/) in deepstream.
+For this tutorial, you need to know how deepstream [server configuration](/docs/server/configuration/)
+works. Since deepstream allows separate permissioning of actions involving
+records, events, (client) presence, and remote procedure calls (RPCs), you do
+not need to know about capabilities you are not interested in. Nevertheless,
+for this tutorial we assume you know how records work so that we can present
+examples. Moreover, deepstream offers user-based permissioning and in order
+to use this capability, you need to be familiar with [user authentication](/tutorials/core/security-overview/)
+in deepstream.
 
 
 ## An Example
@@ -140,10 +141,11 @@ the former case, `$firstname === 'John'` and in the latter case
 `$firstname === 'Jane'`.
 
 The wild card symbol in Valve is the asterisk (the symbol `*`) and it matches
-every character until the end of the string. Wild cards start with a dollar sign
-and match everything until a slash is encountered. Note that identifiers can in
-principle contain any character. Nevertheless, if you use an asterisk in an
-identifier, deepstream offers no way to match specifically this character.
+every character until the end of the string. Placeholders start with a dollar
+sign followed by alphanumberic characters and match everything until a slash is
+encountered. Note that identifiers can in principle contain any character.
+Nevertheless, if you use an asterisk in an identifier, deepstream offers no way
+to match specifically this character.
 
 
 ### Expressions
@@ -169,10 +171,13 @@ with a rule, e.g., for a record, this means one can examine old and new value.
 Since the data is dependent on the type (record, event, or RPC, and so on), we
 will discuss this detail in the sections on the specific types.
 
-Valve gives you the ability to cross reference data in your records, events, and
-RPCs. In your right-hand side expression, use the term `_(identifier-expr)`,
-where `identifier-expr` is interpreted as a JavaScript expression returning a
-string, e.g., `_('reference/' + $identifier)`.
+Valve gives you the ability to cross reference data in your records. In your
+right-hand side expression, use the term `_(identifier)` to access the record
+with the given identifier, where `identifier` is interpreted as a JavaScript
+expression returning a string, e.g., `_('reference/' + $identifier)`. The cross
+referenced record must exist. Note that cross references ignore Valve
+permissions meaning you gain indirect read access irrespective of the Valve
+rules.
 
 When evaluating expressions, you need to keep several pitfalls in mind. Using
 the current time with `now` requires you to consider the usual [limitations of
@@ -209,12 +214,13 @@ In Valve, you can access the current record contents by referencing `oldData`
 and for the `write` operation, the modified record can be examined with `data`.
 
 Note that `create` permissions are only invoked by `getRecord()` if the request
-record does not exist. Similarly, writes are always successful if the record
-does not have to be modified, e.g., modified and unmodified record are
-identical. Moreover, if a write operation is rejected by the server, then the
-client must handle the resulting error message; otherwise the client copy of the
-record will be out of sync with the server state. Finally, retrieving a record
-with `getRecord()` requires reading rights.
+record does not exist, otherwise only reading right are required. Similarly,
+writes are always successful if the record does not have to be modified, e.g.,
+modified and unmodified record are identical. Moreover, if a write operation is
+rejected by the server, then the client must handle the resulting error message;
+otherwise the client copy of the record will be out of sync with the server
+state. Finally, do not mix up the `path` given to `record.get()` and
+`record.set()` with the record _identifier_.
 
 
 ### User Presence
