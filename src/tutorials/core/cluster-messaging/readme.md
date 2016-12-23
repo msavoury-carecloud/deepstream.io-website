@@ -12,7 +12,7 @@ For smaller clusters it used to be possible to connect deepstream nodes directly
 
 ## Choosing a messaging system
 deepstream nodes use a simple publish/subscribe pattern with high-level topics to communicate with each other. Especially when used in conjunction with a cache this eliminates the need for persistent messaging or complex routing algorithms.
-Since state is kept within the persistence layer, deepstream nodes can even life without guaranteed message delivery as subsequent messages will reconcile inconsistent states.
+Since state is kept within the persistence layer, deepstream nodes can even live without guaranteed message delivery as subsequent messages will reconcile inconsistent states.
 
 This means that deepstream only utilises the most common subset of messaging functionality. When it comes to choosing a message broker therefor, the main criteria should be speed, scalability and ease of use.
 

@@ -15,7 +15,7 @@ To enable HTTP authentication, set the `type` to `http` in the `auth` section of
 ```yaml
 type: http
 options:
-  endpointUrl: https://someurl.com/validateLogin
+  endpointUrl: https://someurl.com/auth-user
   permittedStatusCodes: [ 200 ]
   requestTimeout: 2000
 ```
