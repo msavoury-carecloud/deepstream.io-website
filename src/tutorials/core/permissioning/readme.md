@@ -1,66 +1,78 @@
 ---
 title: Permissioning
-description: Learn the permissioning in Valve
+description: Learn permissioning with Valve
 ---
 
-Permissioning enables a deepstream server administrator to grant or restrict a
-client's ability to perform certain actions, e.g., to modify records, to emit
-events, or to be notified of the presence of other users. In this tutorial, we
-will introduce you to deepstream's access controls, its permissioning language
-Valve, and how access control can be enabled. This tutorial discusses file-based
-permissioning; deepstream also offers function-based permissioning using the
-[server API](/docs/server/node-api/) but we will not discuss this approach here.
+With permissioning you can define custom rules for what a client can do when it
+comes to reading data, writing data, events, or remote procedure calls (RPCs)
+and at deepstreamHub, we call this _permissioning_. deepstream supports two
+flavors of permissioning: file-based or [function-based](/docs/server/node-api/)
+with JavaScript code. Here, we discuss the file-based approach.
 
 
 ## Requirements
 
-For this tutorial, you need to know how deepstream [server configuration](/docs/server/configuration/)
-works. Since deepstream allows separate permissioning of actions involving
-records, events, (client) presence, and remote procedure calls (RPCs), you do
-not need to know about capabilities you are not interested in. Nevertheless,
-for this tutorial we assume you know how records work so that we can present
-examples. Moreover, deepstream offers user-based permissioning and in order
-to use this capability, you need to be familiar with [user authentication](/tutorials/core/security-overview/)
-in deepstream.
+For this tutorial, you must know how the deepstream [server
+configuration](/docs/server/configuration/) works since we will need to tell
+the server where we stored our permissioning rules. deepstream supports are
+variety of communication concepts including data-sync, publish-subscribe, as
+well as request-response and the permissioning language _Valve_ is flexible
+enough to allow different rules for each concept. Nevertheless, we will use
+[records](/tutorials/core/datasync-records/) (publish-subscribe) throughout this
+text so you should familiarize yourself with them and since permissioning is
+fundamentally about the rights of individual clients, you need to know how
+[user authentication](/tutorials/core/security-overview/) works in deepstream.
 
 
-## An Example
+### An Example
 
-Consider you are running a forum where users can share content. In order to
-avoid vandalism and spam, users have to wait 24 hours before they can create new
-content or modify existing data. Moreover, no user should be able to delete data
-from the server. Consequently, every user account possesses a `timestamp`
-property storing the time and date of registration in its server data.
-Corresponding user account data with file-based user authentication might look
-as follows:
+To give you an idea what permissioning with Valve looks like, we show a you
+permissioning example now. We use this example for demonstrating what Valve
+looks like and how it can be enabled in deepstream; the why and how is explained
+in the next section.
+
+Imagine you are running a discussion forum. To avoid vandalism and spam, users
+have to wait 24 hours before they can create new posts or modify existing posts
+after registration. Consequently, every user account possesses a `timestamp`
+property storing the time and date of registration. Using deepstream's
+file-based authentication, a user entry in `conf/users.yml` might look as
+follows:
 ```yaml
 JohnDoe:
-	password: password
+	password: gvb4563Z
 	serverData:
 		timestamp: 1482256123052
 ```
-Furthermore, imagine all service data is stored in records, then the following
-permissioning rules forbid the creation and alteration of records unless the
-user has been registered more than 24 hours ago:
+The snippet above shows a user `JohnDoe`. The server hosting the forum needs to
+know when John Doe registered so there is a `timestamp` in the `serverData`
+section.
+
+With deepstream as a back-end, it makes sense to store all forum threads in
+records (this is the [data-sync concept](/tutorials/core/datasync-records/)).
+The following Valve snippet gives new users read-only access:
 ```yaml
 record:
-	'*':
-		create: 'user.data.timestamp + 24 * 3600 * 1000 < now'
-		write: 'user.data.timestamp + 24 * 3600 * 1000 < now'
-		delete: false
+	"*":
 		read: true
 		listen: true
+		delete: false
+		create: "user.data.timestamp + 24 * 3600 * 1000 < now"
+		write: "user.data.timestamp + 24 * 3600 * 1000 < now"
 ```
 The `record` label signifies that the following rules apply to operations
-involving records and record factories. The string in the line below is matched
-to the name of every record. Here, the asterisk will match every record. The
-remaining lines specify expressions that need to be evaluated in order to
-determine if operations involving actions on the left-hand side are permissible.
-New users should not be allowed to create or modify content hence we compare the
-user's registration date with the current time in lines three and four and since
-we want to archive the service data, we forbid deleting records in line five.
+involving records; the pattern in the line below is a wild card matching every
+record name. In deepstream, records can be created, written to replacing all or
+parts of the data stored in the record, they can be deleted, read from, and you
+can listen to clients subscribing to a record. With Valve, you can have
+different permissions for each of these capabilities. In the Valve snippet
+above, we permit everyone to read records, listen to subscription, and we
+disallow record deletion. Finally, in the last two lines we grant users `create`
+and `write` permissions only if the accounts are older than 24 hours by
+comparing `timestamp` from the user's `serverData` with the current time; `now`
+returns [Unix time](https://en.wikipedia.org/wiki/Unix_time) like `Date.now()`
+in JavaScript, in milliseconds and 24 \* 3600 \* 1000 milliseconds are 24 hours.
 
-Finally, we need to update the config file to make use of our custom
+Lastly, we need to update the config file to make use of our custom
 permissions. Assuming we stored the permissions in the path
 `conf/permissions.yml`, we can instruct the deepstream server to load our
 settings with the following lines in `conf/config.yml`:
@@ -78,40 +90,26 @@ the availability of certain user data.
 
 ## Permissioning
 
-deepstream's permissioning language is called _Valve_. Every record, RPC, event,
-and authenticated user in deepstream possesses a unique identifier (name) and
-fundamentally, Valve uses a set of pairs consisting of a pattern and an
-expression to evaluate admissibility of actions. First, deepstream searches for
-the pair with the pattern matching the identifier best and then it evaluates the
-associated expression to determine if the client is allowed to execute the
-requested action. Actions in Valve correspond to specific functions in the
-different client APIs, e.g., `record.write: true` implies that every client is
-allowed to call `record.set()`, and we will list these associated functions
-below.
-
-
-### A Simple Example
-
-Consider an application using deepstream records. Due to legislation, you may be
-forbidden to delete records once you created them and this statute can be
-enforced easily with the following Valve snippet:
+A generic Valve rule might look as follows:
 ```yaml
-record:
-	'*':
-		create: true
-		read: true
-		write: true
-		listen: true
-		delete: false
+concept:
+	"pattern":
+		action: "expression"
 ```
-the first line instructs the Valve interpreter that the following code contains
-record permissions, the second line contains a wild card matching every possible
-record identifier, and the remaining lines allow every operation on records with
-the exception of deletion. In the client API, calling `record.delete()` will
-cause the invocation of the error handler.
+For every action, there is usually a corresponding function in the client API,
+e.g., the record `write` permissions are needed when calling `record.set()` in
+the JavaScript client API. Every record, RPC, event, and authenticated user in
+deepstream possesses a unique identifier (a name) and if Valve wants to find out
+if a certain operation is permitted, then
+- it looks for the appropriate section in the permissioning file for records,
+  RPCs, or events, and so on,
+- it searches for the rule with the best match between pattern and identifier,
+  and
+- it evaluates the right-hand side expression.
+In the following paragraphs, we present the possible actions.
 
 
-### Permissioning with Valve
+### File Format
 
 The Valve language uses [YAML](https://en.wikipedia.org/wiki/YAML) or
 [JSON](https://en.wikipedia.org/wiki/JSON) file format and the file with the
@@ -126,26 +124,27 @@ chosen such that rules can be selected only based on the identifier.
 ### Identifier Matching
 
 Valve can match identifiers using fixed (sub-)strings, wild cards, and
-placeholders (so-called _path variables_); these placeholders can be used in the
-right-hand side expressions and this will be described in the next paragraph.
-Suppose we store a user's first name, middle name, and last name in the format
-`name/lastname/middlename/firstname` and consider the permissioning rule below:
+placeholders (at deepstreamHub, we call them _path variables_); these
+placeholders can be used in the expressions. Suppose we store a user's first
+name, middle name, and last name in the format
+`name/lastname/middlename/firstname` and have a look at the following Valve
+code:
 ```yaml
 presence:
 	'name/Doe/$middlename/$firstname':
 		allow: false
 ```
-User names that match this rule are, e.g., John Adam Doe (the corresponding
-identifier is `name/Doe/Adam/John`) or Jane Eve Doe (`name/Doe/Eve/Jane`); in
-the former case, `$firstname === 'John'` and in the latter case
-`$firstname === 'Jane'`.
+User names that match this rule are, e.g., John Adam Doe (in this case, the
+record identifier is `name/Doe/Adam/John`) or Jane Eve Doe
+(`name/Doe/Eve/Jane`); in the former case, `$firstname === 'John'` and in the
+latter case `$firstname === 'Jane'`.
 
-The wild card symbol in Valve is the asterisk (the symbol `*`) and it matches
+The wild card symbol in Valve is the asterisk (the symbol `*`) and `*` matches
 every character until the end of the string. Placeholders start with a dollar
 sign followed by alphanumberic characters and match everything until a slash is
-encountered. Note that identifiers can in principle contain any character.
-Nevertheless, if you use an asterisk in an identifier, deepstream offers no way
-to match specifically this character.
+encountered. In principle, identifiers can contain any character. Nevertheless,
+if you use an asterisk in an identifier, deepstream offers no way to match
+specifically this character.
 
 
 ### Expressions
@@ -157,24 +156,25 @@ expression. The expression can use a subset of JavaScript including
 - comparison operators,
 - the string functions `startsWith`, `endsWith`, `indexOf`, `match`,
   `toUpperCase`, `toLowerCase`, and `trim`.
-Additionally, you can use the current time (on the server) with `now`, you can
-access deepstream data, and cross-reference it.
 
-Any deepstream client needs to log onto the server as a user before performing
-actions and the user data can be accessed in Valve. Since users need to log in
-but not necessarily authenticate themselves with a username and a password, you
-can check for authenticated users with `user.isAuthenticated` (the ternary
-operator may prove useful when checking this property). If a client
-authenticated, its user name can be accessed with `user.name` and its server
-data with `user.data`. Additionally, Valve allows you to examine data associated
-with a rule, e.g., for a record, this means one can examine old and new value.
-Since the data is dependent on the type (record, event, or RPC, and so on), we
-will discuss this detail in the sections on the specific types.
+Additionally, you can use the current time (on the server) with `now`, you can
+access deepstream data, and cross-reference records.
+
+Any deepstream client needs to log onto the server and the user data can be
+accessed with Valve but note that user's are not necessarily authenticated
+unless this is forbidden in the config. You can check for authenticated users
+with `user.isAuthenticated` (the ternary operator `?:` may prove useful when checking
+this property). If a client authenticated, its user name can be accessed with
+`user.name` and its server data with `user.data`.  Additionally, Valve allows
+you to examine data associated with a rule, e.g., for a record, this means one
+can examine old and new value.  Since the data is dependent on the type (record,
+event, or RPC, and so on), we will discuss this detail in the sections on the
+specific types.
 
 Valve gives you the ability to cross reference data in your records. In your
 right-hand side expression, use the term `_(identifier)` to access the record
 with the given identifier, where `identifier` is interpreted as a JavaScript
-expression returning a string, e.g., `_('reference/' + $identifier)`. The cross
+expression returning a string, e.g., `_('family/' + $lastname)`. The cross
 referenced record must exist. Note that cross references ignore Valve
 permissions meaning you gain indirect read access irrespective of the Valve
 rules.
@@ -203,7 +203,7 @@ unsubscribing from, discarding, and deleting records). The following snippet is
 the default Valve code for records:
 ```yaml
 record:
-	'*':
+	"*":
 		create: true # client.record.getRecord()
 		read: true # client.record.getRecord(), record.get()
 		write: true # record.set()
@@ -213,14 +213,15 @@ record:
 In Valve, you can access the current record contents by referencing `oldData`
 and for the `write` operation, the modified record can be examined with `data`.
 
-Note that `create` permissions are only invoked by `getRecord()` if the request
-record does not exist, otherwise only reading right are required. Similarly,
-writes are always successful if the record does not have to be modified, e.g.,
-modified and unmodified record are identical. Moreover, if a write operation is
-rejected by the server, then the client must handle the resulting error message;
-otherwise the client copy of the record will be out of sync with the server
-state. Finally, do not mix up the `path` given to `record.get()` and
-`record.set()` with the record _identifier_.
+Note that `create` permissions are only invoked by `getRecord()` if the
+requested record does not exist, otherwise only reading rights are required.
+Similarly, writes are always successful if the record does not have to be
+modified, e.g., modified and unmodified record are identical. Moreover, if a
+write operation is rejected by the server, then the client must handle the
+resulting error message; otherwise the client copy of the record will be out of
+sync with the server state. Finally, do not mix up the `path` given to
+`record.get()` and `record.set()` with the record _identifier_ that is used by
+Valve.
 
 
 ### User Presence
@@ -229,7 +230,7 @@ deepstream can notify you when authenticated users log in. The permissioning key
 is called `presence` and the only option is to allow or disallow listening:
 ```yaml
 presence:
-	'*':
+	"*":
 		allow: true # client.subscribe()
 ```
 
@@ -241,7 +242,7 @@ Moreover, a client emitting events may listen to event subscriptions. The
 actions can be permissioned in the section `events`:
 ```yaml
 events:
-	'*':
+	"*":
 		publish: true # client.event.emit()
 		subscribe: true # client.event.subscribe()
 		listen: true # client.event.listen()
@@ -257,7 +258,7 @@ or requested. The corresponding permissioning section is identified by the key
 `rpc`:
 ```yaml
 rpc:
-	'*':
+	"*":
 		provide: true # client.rpc.provide()
 		request: true # client.rpc.make()
 ```
