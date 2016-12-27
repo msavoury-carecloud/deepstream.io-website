@@ -282,3 +282,11 @@ permission:
 	options:
 		path: ./permissions.yml
 ```
+
+
+## Further Reading
+
+More compact introductions (or refreshers) are the tutorials [_Valve
+Permissioning Simple_](/tutorials/core/permission-conf-simple/), [_Valve
+Permissioning Advanced_](/tutorials/core/permission-conf-advanced/), and
+[_Dynamic Permissions using Valve_](/tutorials/core/permissions-dynamic/).
