@@ -141,7 +141,7 @@ latter case `$firstname === 'Jane'`.
 
 The wild card symbol in Valve is the asterisk (the symbol `*`) and `*` matches
 every character until the end of the string. Placeholders start with a dollar
-sign followed by alphanumberic characters and match everything until a slash is
+sign followed by alphanumeric characters and match everything until a slash is
 encountered. In principle, identifiers can contain any character. Nevertheless,
 if you use an asterisk in an identifier, deepstream offers no way to match
 specifically this character.
