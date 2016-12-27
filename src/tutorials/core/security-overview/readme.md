@@ -57,7 +57,7 @@ Permissioning is the act of deciding whether a specific action, e.g. writing to 
 To help with this, deepstream uses an expressive, JSON-based permissioning
 language called Valve. There's a lot to say about Valve. Here's a small Valve
 File that should give you a first impression, to learn more though head over to
-the [permissioning tutorial](/tutorials/core/permissioning/).
+the [permissioning tutorial](/tutorials/core/permission-conf-simple/)
 
 ```yaml
 record:

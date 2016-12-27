@@ -18,8 +18,7 @@ deepstream is a standalone server that is installed the same way you’d install
 
 Clients establish persistent, bidirectional WebSocket connections with the deepstream server using lightweight SDKs that are available for [Browsers/Node](/tutorials/core/getting-started-quickstart/#getting-the-client) and [Java/Android](/install/android/) and soon/partially as well for [iOS(ObjC/Swift)](https://github.com/deepstreamIO/deepstream.io/issues/68), [Python](https://github.com/deepstreamIO/deepstream.io/issues/72), [.NET](https://github.com/deepstreamIO/deepstream.io/issues/70) and [C/C++](/deepstreamIO/deepstream.io/issues/69).
 
-The server itself is [configurable](/docs/server/configuration/) and uses
-[permission files](/tutorials/core/permissioning/) to validate incoming messages, but doesn’t hold any logic other than that. All logic is provided by “clients” which can be backend processes as well as end-users. deepstream provides numerous features such as [listening and active subscriptions](/tutorials/core/active-data-providers/) to hook into what users request and provide/transform data accordingly as well as integrate and retrieve data from third party components or APIs.
+The server itself is [configurable](/docs/server/configuration/) and uses [permission files](/tutorials/core/permission-conf-simple/) to validate incoming messages, but doesn’t hold any logic other than that. All logic is provided by “clients” which can be backend processes as well as end-users. deepstream provides numerous features such as [listening and active subscriptions](/tutorials/core/active-data-providers/) to hook into what users request and provide/transform data accordingly as well as integrate and retrieve data from third party components or APIs.
 This makes deepstream useful as both a realtime server for mobile/browser and desktop clients as well as a backbone for microservice architectures.
 What is it for?
 deepstream is useful as a backend for most applications, but is mostly used for
@@ -65,8 +64,9 @@ If no external system is specified, deepstream will run as a single node and sto
 deepstream supports [encrypted connections](/tutorials/core/security-overview/)
 and [multiple authentication strategies](/tutorials/core/auth-http-webhook/) to
 validate incoming connections. It also uses a granular permission language
-called [_Valve_](/tutorials/core/permissioning/) that lets you configure exactly
-which user can manipulate which record, event or rpc with which data.
+called [_Valve_](/tutorials/core/permission-conf-simple/) that lets you
+configure exactly which user can manipulate which record, event or rpc with
+which data.
 
 ### How far does it scale?
 deepstream nodes are built as small, single threaded processes with asynchronous I/O that scale in clusters, designed to work well in cloud environments. A single node can comfortably stream 160.000-200.000 updates a second.
