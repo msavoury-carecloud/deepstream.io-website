@@ -6,6 +6,7 @@
 - `cd` into the cloned repo,
 - optionally run `bin/setup-dependencies.sh`, and
 - execute `npm install`.
+
 `bin/setup-dependencies.sh` clones several git repos and generates documentation
 from them.
 
@@ -19,7 +20,11 @@ brew install fswatch
 ````
 
 ###### Windows
-https://github.com/emcrisostomo/fswatch/issues/88
+
+`fswatch` should work on Windows since release 1.6.0 (see [fswatch issue #88](https://github.com/emcrisostomo/fswatch/issues/88)). Installation
+instructions can be found in the `fswatch` git repository in the file
+[`README.windows`](https://github.com/emcrisostomo/fswatch/blob/master/README.windows) (as of December 21, 2016).
+
 
 ## Usage
 

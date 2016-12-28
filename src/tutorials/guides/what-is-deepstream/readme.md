@@ -61,7 +61,12 @@ Connectors are available for many popular systems, e.g. [RethinkDB](/tutorials/i
 If no external system is specified, deepstream will run as a single node and store data in internal memory, but won't persist it to disk.
 
 ### How is security handled?
-deepstream supports [encrypted connections](/tutorials/core/security-overview/) and [multiple authentication strategies](/tutorials/core/auth-http-webhook/) to validate incoming connections. It also uses a granular permission language called “[Valve](/tutorials/core/permission-conf-simple/)” that lets you configure exactly which user can manipulate which record, event or rpc with which data.
+deepstream supports [encrypted connections](/tutorials/core/security-overview/)
+and [multiple authentication strategies](/tutorials/core/auth-http-webhook/) to
+validate incoming connections. It also uses a granular permission language
+called [_Valve_](/tutorials/core/permission-conf-simple/) that lets you
+configure exactly which user can manipulate which record, event or rpc with
+which data.
 
 ### How far does it scale?
 deepstream nodes are built as small, single threaded processes with asynchronous I/O that scale in clusters, designed to work well in cloud environments. A single node can comfortably stream 160.000-200.000 updates a second.

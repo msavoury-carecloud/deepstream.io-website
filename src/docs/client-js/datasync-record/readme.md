@@ -80,7 +80,7 @@ record.whenReady(record => {
 })
 ```
 
-### set(path, value)
+### set(path, value, callback)
 
 ```
 {{#table mode="api"}}
@@ -88,15 +88,24 @@ record.whenReady(record => {
   arg: path
   typ: String
   opt: true
-  des: A particular path within the JSON structure that should be set.
+  des: A particular path within the JSON structure that should be set
 -
   arg: value
   typ: Various
   opt: false
-  des: The value the record or path should be set to.
+  des: The value the record or path should be set to
+-
+  arg: callback
+  typ: Function
+  opt: true
+  des: Will be called with the result of the write when using record write acknowledgements (available in deepstream 2.1.0 or newer)
 {{/table}}
 ```
-Used to set the record's data and can be called with a value. A path can optionally be included.
+Used to set the record's data and can be called with a value. A path and callback can optionally be included.
+
+Including a callback will indicate that write acknowledgement to cache or
+storage is required and will slow down the operation. The callback is available
+in deepstream 2.1.0 or newer.
 
 {{#infobox "info"}}
 -  After calling `set`, you still have to wait for the record to be ready before
@@ -116,6 +125,27 @@ record.set({
 
 // Update only firstname
 record.set('personalData.firstname', 'Marge')
+
+// Set the entire record with write acknowledgement
+record.set({
+  personalData: { ... },
+  children: [ ... ]
+}, err => {
+  if (err) {
+    console.log('Record set with error:', err)
+  } else {
+    console.log('Record set without error')
+  }
+});
+
+// Update only a property with write acknowledgement
+record.set('personalData.firstname', 'Homer', err => {
+  if (err) {
+    console.log('Record set with error:', err)
+  } else {
+    console.log('Record set without error')
+  }
+})
 ```
 
 ### get(path)
@@ -192,7 +222,7 @@ user.subscribe('status', statusChanged, true)
 -
   arg: callback
   typ: Function
-  opt: false
+  opt: true
   des: The previously registered callback function.
 {{/table}}
 ```
