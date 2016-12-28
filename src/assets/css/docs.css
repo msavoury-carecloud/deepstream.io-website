@@ -207,11 +207,41 @@ div.two-col .right.big {
 }
 
 .content pre{
-	margin: 0 0 16px;
+	margin: 16px 0;
 }
 .content code,
 .content code *{
 	font-family: "Courier New", monospace;
+}
+
+.content .info{
+    border: 1px solid #8ab4d0;
+    padding: 10px 10px 10px 60px;
+    background: #f6f9fb;
+    margin: 16px 0;
+    box-sizing: border-box;
+    position: relative;
+    color: #235d84;
+    line-height: 30px;
+}
+
+.content .info:before {
+    content: "\f14a";
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    color: #8ab4d0;
+    position: absolute;
+    left: 25px;
+    top: 8px;
+    font-size: 50px;
 }
 
 .install-link{
