@@ -3,40 +3,26 @@ title: Permissioning
 description: Learn permissioning with Valve
 ---
 
-With permissioning you can define custom rules for what a client can do when it
-comes to reading data, writing data, events, or remote procedure calls (RPCs)
-and at deepstreamHub, we call this _permissioning_. deepstream supports two
-flavors of permissioning: file-based or [function-based](/docs/server/node-api/)
-with JavaScript code. Here, we discuss the file-based approach.
+deepstream uses a powerful permission-language called Valve that allows you to specify which user can perform which action with which data.
 
+With Valve you can
+- Restrict access for individual users or groups
+- Permission individual actions (e.g. write, publish or listen)
+- Permission individual records, events or rpcs
+- validate incoming data
+- compare against stored data
 
 ## Requirements
+For this tutorial it's helpful to know your way around the deepstream [
+configuration](/docs/server/configuration/) as we'll need to tell
+the server where we stored our permissioning rules. deepstream supports a
+variety of communication concepts such as data-sync, publish-subscribe or request-response and _Valve_ is flexible enough to allow different rules for each concept. This guide will mostly focus on [records](/tutorials/core/datasync-records/), so it'd be good to familiarize yourself with them. Since permissioning is fundamentally about the rights of individual clients, it would also be good to know how [user authentication](/tutorials/core/security-overview/) works in deepstream.
 
-For this tutorial, you must know how the deepstream [server
-configuration](/docs/server/configuration/) works since we will need to tell
-the server where we stored our permissioning rules. deepstream supports are
-variety of communication concepts including data-sync, publish-subscribe, as
-well as request-response and the permissioning language _Valve_ is flexible
-enough to allow different rules for each concept. Nevertheless, we will use
-[records](/tutorials/core/datasync-records/) (publish-subscribe) throughout this
-text so you should familiarize yourself with them and since permissioning is
-fundamentally about the rights of individual clients, you need to know how
-[user authentication](/tutorials/core/security-overview/) works in deepstream.
-
-
-### An Example
-
-To give you an idea what permissioning with Valve looks like, we show a you
-permissioning example now. We use this example for demonstrating what Valve
-looks like and how it can be enabled in deepstream; the why and how is explained
-in the next section.
-
+### Let's start with an example
 Imagine you are running a discussion forum. To avoid vandalism and spam, users
 have to wait 24 hours before they can create new posts or modify existing posts
-after registration. Consequently, every user account possesses a `timestamp`
-property storing the time and date of registration. Using deepstream's
-file-based authentication, a user entry in `conf/users.yml` might look as
-follows:
+after registration. 
+This means we'll need to store the time the user registered along with their account information. This can be done dynamically using [http authentication](/tutorials/core/auth-http-webhook/), but to keep things simple for this tutorial we'll just store it as `timestamp` within the `serverData` using deepstream's file-based authentication. A user entry in `conf/users.yml` might look as follows:
 ```yaml
 JohnDoe:
 	password: gvb4563Z
@@ -61,15 +47,11 @@ record:
 ```
 The `record` label signifies that the following rules apply to operations
 involving records; the pattern in the line below is a wild card matching every
-record name. In deepstream, records can be created, written to replacing all or
-parts of the data stored in the record, they can be deleted, read from, and you
-can listen to clients subscribing to a record. With Valve, you can have
-different permissions for each of these capabilities. In the Valve snippet
+record name. In deepstream, records can be created, written to, deleted, read from, and you can listen to clients subscribing to a record. With Valve, you can have different permissions for each of these actions. In the Valve snippet
 above, we permit everyone to read records, listen to subscription, and we
 disallow record deletion. Finally, in the last two lines we grant users `create`
 and `write` permissions only if the accounts are older than 24 hours by
-comparing `timestamp` from the user's `serverData` with the current time; `now`
-returns [Unix time](https://en.wikipedia.org/wiki/Unix_time) like `Date.now()`
+comparing the `timestamp` from the user's `serverData` with the current time; `now` returns [Unix time](https://en.wikipedia.org/wiki/Unix_time) like `Date.now()`
 in JavaScript, in milliseconds and 24 \* 3600 \* 1000 milliseconds are 24 hours.
 
 Lastly, we need to update the config file to make use of our custom
@@ -84,12 +66,9 @@ permission:
 ```
 
 As you saw above, setting up deepstream's file-based permissioning facilities
-requires a file with permissioning rules, changes to the configuration file, and
-the availability of certain user data.
-
+requires a file with permissioning rules, changes to the configuration file, and optionally some user-specific data.
 
 ## Permissioning
-
 A generic Valve rule might look as follows:
 ```yaml
 concept:
@@ -289,4 +268,4 @@ permission:
 More compact introductions (or refreshers) are the tutorials [_Valve
 Permissioning Simple_](/tutorials/core/permission-conf-simple/), [_Valve
 Permissioning Advanced_](/tutorials/core/permission-conf-advanced/), and
-[_Dynamic Permissions using Valve_](/tutorials/core/permissions-dynamic/).
+[_Dynamic Permissions using Valve_](/tutorials/core/permissions-dynamic/). To learn how to sent user-specific data using Valve, have a look at the [user-specific data guide](/tutorials/guides/user-specific-data/).
