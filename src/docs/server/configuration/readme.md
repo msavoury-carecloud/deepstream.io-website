@@ -173,7 +173,7 @@ You set the authentication type as a subkey the `auth` key. The available
 authentication options are `none`, `file`, and `http`, each of them having
 different `options` which are described in the tutorials on [Auth
 None](/tutorials/core/auth-none/), [file-based
-authentication](/tutorials/core/auth-none/), and [HTTP
+authentication](/tutorials/core/auth-file/), and [HTTP
 authentication](/tutorials/core/auth-http-webhook/), respectively.
 
 ```yaml
