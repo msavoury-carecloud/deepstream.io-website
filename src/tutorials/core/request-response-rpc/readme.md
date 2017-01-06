@@ -63,3 +63,11 @@ client.rpc.provide( 'resize-image', ( url, response ) => {
     }
 });
 ```
+
+
+## Video Demo
+
+If you would like to learn more find out our video tutorial with Yasser Fadl, explaining more in detail about request/response in deepstreamHub.
+
+<br/>
+<iframe width="740" height="439" src="https://www.youtube.com/embed/MvizQ8ChjUo" frameborder="0" allowfullscreen></iframe>
