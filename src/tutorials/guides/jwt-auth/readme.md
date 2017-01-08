@@ -56,8 +56,6 @@ The steps shown here are
 
 So much for the theory - here's how this works in practise:
 
-# !!! ------------- !!!
-
 ## Enabling HTTP Auth
 By default, HTTP Authentication is disabled. It needs to be enabled via the [configuration file](/docs/server/configuration/) while setting up some configuration as well:
 
@@ -85,7 +83,9 @@ var client = deepstream('localhost:6020')
 	     });
 ```
 
-The deepstream client only becomes functional once `login` is called. Please note
+The deepstream client only becomes functional once `login` is called. 
+
+# !!! ------------- !!!
 
 The method takes no credentials and can be known as anonymous authentication. There is more to the `login` method. An authentication object containing the `username` and `password` could be passed in:
 
