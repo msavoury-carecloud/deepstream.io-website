@@ -278,7 +278,7 @@ export class AppComponent implements OnInit{
 What is going is, we created a list that records can be added to as seen in the `addChat` method and then listen to this list for data entry. Once the list is updated, we update the `chatArray` which is the property that we need to iterate on the UI to display the chats as shown below:
 
 ```html
-// ./src/app/app.component.html
+<!-- ./src/app/app.component.html -->
 <div class="chats">
       <p *ngFor="let chat of chatArray"><strong>{{chat.username}}: </strong> {{chat.text}}</p>
     </div>
