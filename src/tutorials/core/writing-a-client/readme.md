@@ -98,12 +98,27 @@ Once you do the client should be in `AUTHENTICATING` state, and if the login is
 successful, then the connection will end up in `OPEN` state meaning everything
 worked fine.
 
+Initially, a connection starts in the `AWAIT_CONNECTION` state with the client
+waiting for the server to send a connection challenge moving the client into the
+`CHALLENGING` state. Here, the client is expected to send a challenge response
+containing the server URL and to transition into `CHALLENGING_WAIT` afterwards.
+The server server can
+- accept the response and put the client into `AWAIT_AUTH` state,
+- reject the client, optionally providing a reason, or
+- redirect the client to a different server.
+In `AWAIT_AUTH` state, the client has to send a valid username and password
+combination to the server before it can move into the `AUTHENTICATING` state.
+The server can
+- accept the credentials which finalizes the connection setup,
+- reject the credentials and return the client to `AWAIT_AUTH` state, or
+- drop the connection altogether after too many failed authentication attempts.
+
 If the connection does drop, clients are expected to go into reconnecting mode
 to allow them to try and reestablish the connection. In this state, the client
 can either return to the `AWAITING_AUTHENTICATION` state or it will close the
 connection to the server after a certain number of reconnection attempts.
 
-![Connection state diagram](connection-state-diagram.png)
+![Connection state diagram](deepstream-client-states.svg)
 
 ## Message Buffering
 
