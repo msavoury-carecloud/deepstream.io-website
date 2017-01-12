@@ -77,7 +77,7 @@ declare var deepstream:any;
 ```
 
 ## 3. Create deepstream Service (DsService)
-deepstream will work perfectly fine when used directly in the component but as your project grows large, you might find yourself in the deep mess of violating DRY. A common pattern in Angular (both 1.x and the newer versions) is to create a service that abstracts a group of tasks so this services can be used and re-used by multiple components if need be.
+deepstream will work perfectly fine when used directly in the component but as your project grows large, you might find yourself in the deep mess of violating [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself). A common pattern in Angular (both 1.x and the newer versions) is to create a service that abstracts a group of tasks so this services can be used and re-used by multiple components if need be.
 
 In our case, we need a service to group all our deepstream task and expose methods to our components to interact with:
 
