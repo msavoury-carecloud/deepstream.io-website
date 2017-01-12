@@ -4,9 +4,11 @@ description: Learn how to use Angular 2 with deepstream
 draft: true
 ---
 
-The "new Angular" popularly known as "Angular 2", [though a bad name](https://toddmotto.com/please-stop-worrying-about-angular-3#real-versioning), is component architected and follows the W3C component standards thereby forcing us ( for a good reason ) to build apps as reusable UI components/widgets. This means you can't continue to build apps the exact same way you did while using Angular 1.x.
+The "new Angular" popularly known as "Angular 2", [though a bad name](https://toddmotto.com/please-stop-worrying-about-angular-3#real-versioning), is component architected and follows the W3C component standards thereby forcing us ( for a good reason ) to build apps as reusable UI components/widgets. This means you can't continue to build apps the same way you did while using Angular 1.x. You can get started with Angular 2 using the [Quickstart guide](https://angular.io/docs/ts/latest/quickstart.html) which is enough knowledge to get started with Angular 2. 
 
-You can get started with Angular 2 using the [Quickstart guide](https://angular.io/docs/ts/latest/quickstart.html) which is enough knowledge to start using deepstream in Angular 2. Using deepstream in Angular is what this guide is about.
+[deepstreamIO](https://deepstream.io/) is a free realtime open source server that is fast, scales and makes working with realtime data easy. deepstream is a good choice because it gives you the freedom to install a server on your machine or hosted server.
+
+This article will walk you through building a chat application using the most popular front-end framework, Angular, alongside with [deepstreamIO](https://deepstream.io/) to take care of the chat's realtime feature.
 
 ## 1. Setup Angular
 Angular provides a [CLI tool](https://github.com/angular/angular-cli) which takes the pain of booting and scaffolding an Angular project by reducing the process to just one command:
@@ -23,7 +25,7 @@ Of course, you would get an error because `ng` is not installed to your PATH but
 npm install -g angular-cli
 ```
 
-You can run the `new` command again to start a new project. Once that is done, the new project can actually be launched and you can do that using:
+You can run the `new` command again to start a new project. Once that is done, the new project can be launched, and you can do that using:
 
 ```bash
 # First, move a step into
@@ -37,7 +39,15 @@ ng serve
 ![](first-run.png)
 
 ## 2. Install deepstream
-deepstream needs to be installed on both the client and server. Angular is a client tool so we are focusing on the client installation but you can follow the steps [here](https://deepstream.io/install/) to install deepstream on the server.
+deepstream needs to be installed on both the client and server. To install deepstream on the server: 
+
+1. Download deepstream from the [deepstream install page](https://deepstream.io/install/) for your OS.
+2. Unzip the downloaded content to your working directory or project folder
+3. Start the server by opening a command window on the unzipped folder and running the following command:
+
+```bash
+./deepstream
+```
 
 Installing deepstream in Angular projects is quite simple. Angular bundles up scripts using Webpack and splits these bundles in a manner that makes it easier for browsers load them faster. To help Angular with this process, rather than just installing the scripts anywhere, we install with `npm` and load the script as a vendor file.
 
@@ -77,7 +87,7 @@ declare var deepstream:any;
 ```
 
 ## 3. Create deepstream Service (DsService)
-deepstream will work perfectly fine when used directly in the component but as your project grows large, you might find yourself in the deep mess of violating [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself). A common pattern in Angular (both 1.x and the newer versions) is to create a service that abstracts a group of tasks so this services can be used and re-used by multiple components if need be.
+deepstream will work perfectly fine when used directly in the component, but as your project grows large, you might find yourself in the deep mess of violating [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself). A familiar pattern in Angular (both 1.x and the newer versions) is to create a service that abstracts a group of tasks, so this services can be used and re-used by multiple components if need be.
 
 In our case, we need a service to group all our deepstream task and expose methods to our components to interact with:
 
@@ -98,7 +108,7 @@ export class DsService {
 }
 ```
 
-The `dsInstance` is public (though we know the deal with privacy in JavaScript) so you can access all `deepstream`'s method from it. If that you think this is all you need from such service, fine, but you can also wrap the common methods by creating more members on the service:
+The `dsInstance` is public (though we know the deal with privacy in JavaScript), so you can access all `deepstream`'s method from it. If you think this is all you need from such service, fine, but you can also wrap the standard methods by creating more members of the service:
 
 ```js
 // ./src/app/services/ds.service.ts
@@ -176,6 +186,22 @@ export class AppComponent implements OnInit{
 ```
 
 The `ngOnInit` method is a lifecycle method that is called when the component is initialized. This means that when the component is initialized, we try to authenticate deepstream with no credentials. The username is gotten from `prompt` is just used to identify who is who.
+
+## A Note on deepstream Records and Lists
+
+Records are deepstream's building blocks are responsible for data syncing. This means that a record can be created and watched for data changes and when there are changes, all connected clients are notified. They can as well be likened to record in databases because they store a JSON entity.
+
+```js
+ds.getRecord('recordname').set(jsonPayload);
+```
+
+The above snippet creates a record named `recordname` if the record name does not exist or returns the record if the record name exists. The `set` method is then used to pass in a payload for the record to store.
+
+Lists on the hand, are used to treat a group of records like collections. When such is the case, the records can be easily sorted, pages, etc. Lists can be created with the `getList` method and updated with `addEntry`:
+
+```js
+ds.getList('chats').addEntry('recordname')
+```
 
 ## 5. Chat Messaging
 
