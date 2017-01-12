@@ -5,25 +5,24 @@ draft: true
 ---
 Authentication is vital to most apps and the way it is achieved has evolved substantially in recent years. One of the most popular of today's concepts is a standard called [JSON Web Token](https://jwt.io/) or JWT for short that lets you store encrypted information in verifiable tokens.
 
-deepstream can use a number of strategies to authenticate incoming connections. For JWT we'll use deepstream's [HTTP-Webhook](/tutorials/core/auth-http-webhook/) - a configurable URL that deepstream will send both login and connection data to for verification.
+deepstream can use a number of strategies to authenticate incoming connections. For JWT we'll use the [HTTP-Webhook](/tutorials/core/auth-http-webhook/) - a configurable URL that deepstream will send both login and connection data to for verification.
 
 ## Should you use JWT with deepstream?
-Maybe. Traditional tokens serve as primary keys to session data, meaning they help the backend retrieve data relative to a user's session. A JWT, on the other hand, IS the actual session data - the cookie itself contains a payload and releases the backend from having to constantly look session data up.
+Maybe. Traditional tokens serve as primary keys to session data, meaning they help the backend retrieve data relative to a user's session from a database or cache. A JWT, on the other hand, IS the actual session data - the cookie itself contains a payload and releases the backend from having to constantly look session data up.
 
 This is great for HTTP workflows where clients make many individual requests that are all associated with the same user. deepstream, however, uses a persistent connection that is only established once when the client connects (okay, and maybe occasionally again if the connection drops). All session data stays associated with that connection, rather than with the requests and subscriptions made through it. As a result, deepstream messages are significantly smaller and faster than their HTTP equivalents.
 
 This, however, does mean that deepstream itself doesn't benefit much from using JWT. It doesn't hurt much either though and can still be helpful when deepstream is used in conjunction with traditional HTTP endpoints.
 
 ## deepstream's Auth Webhook
-
-Before you begin performing authentication with JWT, it's worth noting that deepstream allows you to register an HTTP endpoint URL to which a POST request is sent whenever a client or backend process attempts to log in.
+Before you begin performing authentication with JWT, it's worth noting that deepstream allows you to register an HTTP endpoint URL to which connection data is forwarded as POST request whenever a client or backend process attempts to log in.
 
 ![HTTP authentication flow](/tutorials/core/auth-http-webhook/webhook-flow.png)
 
 The [HTTP Authentication](/tutorials/core/auth-http-webhook/) guide covers how to setup this workflow in your project.
 
 ## deepstream HTTP Auth with JWT
-[JWT](https://jwt.io) allows us to transport claims securely from the server to client and vice versa using an encoded JSON string. This token is persisted on the client and used to make authorized requests as long as the token is valid (not tampered and not expired).
+[JWT](https://jwt.io) allows us to transport claims securely from the server to client and vice versa using an encoded JSON string. This token is persisted on the client and used to make authorized requests as long as the token is valid (not tampered with and not expired).
 
 Looking back at the flow described above, JWT needs to be put somewhere in the picture. For that, there are two choices:
 
@@ -38,7 +37,7 @@ The endpoint creates the JWT and passes it back through deepstream to the client
 For subsequent requests, the token is already in localStorage and will be sent by the client instead of asking the user for credentials.
 
 ### Why is this less secure?
-Storing the token in localStorage or in a cookie using javascript leaves it readable to all scripts on the page. This leaves it open for cross-site scripting attacks (XSS) that can hijack the session.
+Storing the token in localStorage or in a cookie using javascript makes it readable by all scripts on the page. This leaves it open for cross-site scripting attacks (XSS) that can hijack the session.
 
 Likewise, this approach requires the web application itself and all its assets to be publicly readable. Using the following approach, however, would allow you to redirect all unauthenticated requests to the web app to a login page.
 
@@ -56,60 +55,9 @@ The steps shown here are
 
 So much for the theory - here's how this works in practise:
 
-## Enabling HTTP Auth
-By default, HTTP Authentication is disabled. It needs to be enabled via the [configuration file](/docs/server/configuration/) while setting up some configuration as well:
+## Let's start with the login page
+/login
 
-```yaml
-type: http
-options:
-  endpointUrl: https://someurl.com/auth-user
-  permittedStatusCodes: [ 200 ]
-  requestTimeout: 2000
-```
-
-Remember, the ds client makes a request to ds server through your browser so there should be a way to forward this request to our own server. This is achieved using the `endpointUrl`. `permittedStatusCodes` allows you to specify a list of acceptable HTTP status codes while the `requestTimeout` option specifies how long the request should wait for a response before hanging up.
-
-## deepstream Login
-From what you know already, deepstream's `login` method is always called immediately after initialization:
-
-```js
-var client = deepstream('localhost:6020')
-          // Login method
-          .login( null, ( success, clientData ) => {
-
-      })
-        .on( 'error', ( error ) => {
-            console.error(error);
-         });
-```
-
-The deepstream client only becomes functional once `login` is called. 
-
-# !!! ------------- !!!
-
-The method takes no credentials and can be known as anonymous authentication. There is more to the `login` method. An authentication object containing the `username` and `password` could be passed in:
-
-```js
-var usernameText = document.getElementById('username').value,
-    passwordText = document.getElementById('password').value;
-    
-var client 
-    = deepstream('0.0.0.0:6020')
-          .login({
-          // Credentials from text input
-            username: usernameText,
-            password: passwordText
-            })
-          .on( 'error', ( error ) => {
-            console.error(error);
-          });
-```
-
-Your next login attempt will produce the following log:
-
-![Login log](login-log.png)
-
-We are making use of JWT for authentication, therefore, the credentials are not necessary so we stick to anonymous.
 
 From the recommended flow diagram, we need to attempt a login using a form and if that is successful, we generate a token and persist the token to cookie:
 
@@ -179,6 +127,61 @@ module.exports = router;
 ```
 
 The `jsonwebtoken` module is used to generate and sign a token using the auth payload which of course is verified first. The token is then stored in the cookie as `access_token` while the `httpOnly` flag is set to `true` so as disable `script` access from the client. Finally, the user is redirected to the home page if everything works out fine.
+
+
+## Enabling HTTP Auth
+By default, HTTP Authentication is disabled. It needs to be enabled via the [configuration file](/docs/server/configuration/) while setting up some configuration as well:
+
+```yaml
+type: http
+options:
+  endpointUrl: https://someurl.com/auth-user
+  permittedStatusCodes: [ 200 ]
+  requestTimeout: 2000
+```
+
+Remember, the ds client makes a request to ds server through your browser so there should be a way to forward this request to our own server. This is achieved using the `endpointUrl`. `permittedStatusCodes` allows you to specify a list of acceptable HTTP status codes while the `requestTimeout` option specifies how long the request should wait for a response before hanging up.
+
+## deepstream Login
+From what you know already, deepstream's `login` method is always called immediately after initialization:
+
+```js
+var client = deepstream('localhost:6020')
+          // Login method
+          .login( null, ( success, clientData ) => {
+
+      })
+        .on( 'error', ( error ) => {
+            console.error(error);
+         });
+```
+
+The deepstream client only becomes functional once `login` is called. Please
+The method takes no credentials and can be known as anonymous authentication. There is more to the `login` method. An authentication object containing the `username` and `password` could be passed in:
+
+```js
+var usernameText = document.getElementById('username').value,
+    passwordText = document.getElementById('password').value;
+    
+var client 
+    = deepstream('0.0.0.0:6020')
+          .login({
+          // Credentials from text input
+            username: usernameText,
+            password: passwordText
+            })
+          .on( 'error', ( error ) => {
+            console.error(error);
+          });
+```
+
+Your next login attempt will produce the following log:
+
+![Login log](login-log.png)
+
+We are making use of JWT for authentication, therefore, the credentials are not necessary so we stick to anonymous.
+
+
 
 ## Auth Webhook
 Back to the homepage or app page, deepstream login is attempted with `null` credentials. This is because the payload is no longer necessary as they can be retrieved from the token when it is decoded.
