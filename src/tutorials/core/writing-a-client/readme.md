@@ -98,7 +98,7 @@ Once you do the client should be in `AUTHENTICATING` state, and if the login is
 successful, then the connection will end up in `OPEN` state meaning everything
 worked fine.
 
-Initially, a connection starts in the `AWAIT_CONNECTION` state with the client
+Initially, a connection starts in the `AWAITING_CONNECTION` state with the client
 waiting for the server to send a connection challenge moving the client into the
 `CHALLENGING` state. Here, the client is expected to send a challenge response
 containing the server URL and to transition into `CHALLENGING_WAIT` afterwards.
