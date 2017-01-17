@@ -95,7 +95,7 @@ client.record.listen('settings/.*', (match, isSubscribed, response) => {
       response.accept()
       // star publishing to this record via `client.record.getRecord(match).set(/* data */)`
     } else {
-      repsonse.reject() // let deepstream ask another provider
+      response.reject() // let deepstream ask another provider
     }
   } else {
     // stop publishing data
