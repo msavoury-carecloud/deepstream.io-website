@@ -47,7 +47,7 @@ It is not an HTTP server, so won’t be able to serve images, HTML or CSS files.
 It does not handle binary data. deepstream uses a minimal, proprietary text-based protocol - so it won’t be able to help with file uploads, video streaming or similar tasks.
 
 ### What can it be compared to?
-The most frequent comparison is a “self hosted Firebase”. That’s quite close although deepstream also offers pub/sub and request/response and breaks its data down into small objects called “records” with individual life cycles, rather than Firebase’s monolithic single tree structure. This makes it conceptually closer to the way financial trading or multiplayer game servers are build - as well as magnitudes faster. Please find more about about the realtime space and how deepstream sits within it in our overview of realtime frameworks.
+The most frequent comparison is a “self hosted Firebase”. That’s quite close although deepstream also offers pub/sub and request/response and breaks its data down into small objects called “records” with individual life cycles, rather than Firebase’s monolithic single tree structure. This makes it conceptually closer to the way financial trading or multiplayer game servers are built - as well as magnitudes faster. Please find more about about the realtime space and how deepstream sits within it in our overview of realtime frameworks.
 
 ### What can it integrate with?
 deepstream can optionally be integrated with three types of systems:
@@ -79,4 +79,4 @@ Benchmarks have shown that even under load the average latency for deepstream me
 Probably one of the most controversial decision, but one we’ve spend a lot of time researching and are super happy with: a rare, but very fast and efficient combination of low level C for messaging and networking and Node logic, compiled into a self contained executable.
 
 ### Who’s behind it?
-deepstream is developed by a small, but fast growing company in Berlin’s bustling startup scene, backed by some of Europe’s most exciting VCs.. It was started by Yasser Fadl and Wolfram Hempel, two trading technology geeks that used to build similar systems for Investment Banks and Hedge Funds in London until they’ve got somewhat irritated by this world and decided to move into open source.
+deepstream is developed by a small, but fast growing company in Berlin’s bustling startup scene, backed by some of Europe’s most exciting VCs. It was started by Yasser Fadl and Wolfram Hempel, two trading technology geeks that used to build similar systems for Investment Banks and Hedge Funds in London until they’ve got somewhat irritated by this world and decided to move into open source.
