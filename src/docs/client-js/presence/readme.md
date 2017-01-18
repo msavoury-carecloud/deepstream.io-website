@@ -69,3 +69,10 @@ client.presence.getAll((clients) => {
     // [ 'Alex', 'Ben', 'Charlie' ]
 })
 ```
+
+## Video Demo 
+If you would like to learn more find out our video tutorial with Alex Harley, explaining more in detail about presence in deepstream.
+
+
+</br>
+<iframe width="780" height="439" src="https://www.youtube.com/embed/EdYzxVKIjJs" frameborder="0" allowfullscreen></iframe>
