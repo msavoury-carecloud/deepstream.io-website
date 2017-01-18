@@ -1,7 +1,7 @@
 ---
 title: Authentication using JWT
 description: How to use JSON Web Token to authenticate with deepstream
-draft: true
+tags: JWT, JSON Web Tocken, Tocken Auth, Session
 ---
 Authentication is vital to most apps and the way it is achieved has evolved substantially in recent years. One of the most popular of today's concepts is a standard called [JSON Web Token](https://jwt.io/) or JWT for short that lets you store encrypted information in verifiable tokens.
 
@@ -55,14 +55,17 @@ The steps shown here are
 
 So much for the theory - here's how this works in practise:
 
+Our app will offer the following URLs:
+- `/` the actual webapp with the deepstream client script. The server will only allow access to paths within that route if a JWT is provided
+- `/login` the publicly accessible login page
+- `/handle-login` the login form posts its content to this URL
+- `/check-token` deepstream will forward the auth data for incoming connections to this URL
+-
 ## Let's start with the login page
-/login
-
-
-From the recommended flow diagram, we need to attempt a login using a form and if that is successful, we generate a token and persist the token to cookie:
+We'll start by creating a static HTML page with a simple login form. 
 
 ```html
-<form action="/handleLogin" method="POST">
+<form action="/handle-login" method="POST">
     <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" class="form-control">
@@ -77,16 +80,13 @@ From the recommended flow diagram, we need to attempt a login using a form and i
 </form>
 ```
 
-Just two controls -- a username and a password. The form is submission is to be handled by a `/handleLogin` route, let's see what that looks like.
-
-Using [Node](https://nodejs.org) with [Express](http://expressjs.com/) the route can be handled using the following approach:
+Just two inputs -- a username and a password. Once te user hits login, the credentials are sent to a `/handle-login` route. Using [Node](https://nodejs.org) with [Express](http://expressjs.com/) the route can be handled using the following approach:
 
 ```js
 // . . .
 var jwt = require('jsonwebtoken');
 
-/* GET home page. */
-app.post('/', function(req, res, next) {
+app.post('/handle-login', function(req, res, next) {
   
    var users = {
     wolfram: {
@@ -110,149 +110,96 @@ app.post('/', function(req, res, next) {
         res.status(403).send('Invalid Password')
       } else {
 
-        
         // if user is found and password is right
         // create a token
         var token = jwt.sign(user, 'abrakadabra');
 
-        
         // return the information including token as JSON
         // set token to cookie using the httpOnly flag
         res.cookie('access_token', token, {httpOnly: true}).status(301).redirect('/');
       }   
     }
 });
-
-module.exports = router;
 ```
 
-The `jsonwebtoken` module is used to generate and sign a token using the auth payload which of course is verified first. The token is then stored in the cookie as `access_token` while the `httpOnly` flag is set to `true` so as disable `script` access from the client. Finally, the user is redirected to the home page if everything works out fine.
+This method validates the provided credentials. For simplicities sake they're hardcoded in this example - in a real world app store usernames and password hashes in a database.
 
+Once validated,  the `jsonwebtoken` module is used to generate and sign a token using the auth payload. The token is then stored in a client-side cookie as `access_token` while the `httpOnly` flag is set to `true` in order to disable javascript access from the client. Finally, authenticated users are redirected to the actual application page containing the deepstream client.
 
 ## Enabling HTTP Auth
-By default, HTTP Authentication is disabled. It needs to be enabled via the [configuration file](/docs/server/configuration/) while setting up some configuration as well:
+Next up, we need to start a deepstream server with enabled HTTP Authentication. This can be achieved via the [configuration file](/docs/server/configuration/) while setting up some configuration as well:
 
 ```yaml
 type: http
 options:
-  endpointUrl: https://someurl.com/auth-user
+  endpointUrl: https://someurl.com/check-token
   permittedStatusCodes: [ 200 ]
   requestTimeout: 2000
 ```
 
-Remember, the ds client makes a request to ds server through your browser so there should be a way to forward this request to our own server. This is achieved using the `endpointUrl`. `permittedStatusCodes` allows you to specify a list of acceptable HTTP status codes while the `requestTimeout` option specifies how long the request should wait for a response before hanging up.
+This configuration instructs the deepstream server to make a POST request to `https://someurl.com/check-token` every time a client tries to connect. Only if it receives a response with an HTTP status code of 200 in less than 2 seconds it will allow the connection.
 
 ## deepstream Login
-From what you know already, deepstream's `login` method is always called immediately after initialization:
+From the deepstream client we can now call `client.login()`
 
 ```js
+var deepstream = require( 'deepstream.io-client-js');
 var client = deepstream('localhost:6020')
-          // Login method
-          .login( null, ( success, clientData ) => {
+  // Login method
+  .login( null, ( success, clientData ) => {
 
-      })
-        .on( 'error', ( error ) => {
-            console.error(error);
-         });
+  })
+  .on( 'error', ( error ) => {
+    console.error(error);
+  });
 ```
 
-The deepstream client only becomes functional once `login` is called. Please
-The method takes no credentials and can be known as anonymous authentication. There is more to the `login` method. An authentication object containing the `username` and `password` could be passed in:
-
-```js
-var usernameText = document.getElementById('username').value,
-    passwordText = document.getElementById('password').value;
-    
-var client 
-    = deepstream('0.0.0.0:6020')
-          .login({
-          // Credentials from text input
-            username: usernameText,
-            password: passwordText
-            })
-          .on( 'error', ( error ) => {
-            console.error(error);
-          });
-```
+Rather than user-credentials we just pass `null` to this method - the information we're interested in, the JWT will be part of the header-data that's sent along with the authentication request as `req.body.connectionData.headers.cookie`.
 
 Your next login attempt will produce the following log:
 
 ![Login log](login-log.png)
 
-We are making use of JWT for authentication, therefore, the credentials are not necessary so we stick to anonymous.
-
-
-
-## Auth Webhook
-Back to the homepage or app page, deepstream login is attempted with `null` credentials. This is because the payload is no longer necessary as they can be retrieved from the token when it is decoded.
-
-When the login method executes successfully, it is expected to call the `endpointUrl` specified in the `conf.yml` file. The call is as a result of deepstream server forwarding request to the HTTP server. This `endpointUrl` handler should be prepared to receive payload in the following manner:
-
-```json
-{
-  "connectionData": {...},
-  "authData": {
-      username: 'chris',
-      password: 'password'
-  }
-}
-```
-
-The `endpointUrl` is expected to tell deepstream that Auth was successful by returning `200` which is the only status code we want to allow as seen in `conf.yml`:
+## HTTP Auth Call
+Upon calling `ds.login()` deepstream posts the connection data to the configured `/check-token` route:
 
 ```js
 //. . .
 var jwt = require('jsonwebtoken');
 
-app.post('/', function(req, res) {
+app.post('/check-token', function(req, res) {
   var token = getCookie(req.body.connectionData.headers.cookie, 'access_token');
   jwt.verify(token, 'abrakadabra', function(err, decoded) {      
       if (err) {
-        return res.status(403).send('Failed to authenticate token.' );    
+        res.status(403).send('Failed to authenticate token.' );    
       } else {
         // if everything is good, save to request for use in other routes
         res.status(200).json({
-          username: decoded.username, 
-          clientData: { username: decoded.username }
+          username: decoded.username
         });
       }
     });
 });
 
-function getCookie(src, cname) {
-    // utility method to retrieve a cookie from cookie string
+function getCookie( src, name ) {
+  var value = "; " + src;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }
-
-module.exports = router;
 ```
-We still use the `jsonwebtoken` module to verify the token and decode the string into JSON. The decoded value contains the auth payload (username and password) which is sent to the deepstream client.
 
-The client expects a result after the login and this result can be captured using the `client.login` second argument which is a callback:
-
-```js
-client.login(null, function(success, data) {
-    if(!success) {
-      console.log('Error occured');
-      return
-    }
-    // Data is the payload sent back from 
-    // the  `/validateLogin` route which includes a token
-    console.log(data); // {username: chris}
-  })
-```
+Again we use the `jsonwebtoken` module to verify the token and decode the string into a JavaScript object containing the username which we pass back to deepstream to identify the connection.
 
 ## Protecting Routes
+This covers the general JWT authentication flow - however using JWT we can also prevent any unauthenticated access to our application at route `/`
 
-At the moment we have completed the authentication process following the recommended flow diagram. What we have not done which is the point after all is to protect resources and routes from being accessed by an unapproved user.
-
-Express makes this quite easy so all you need to do is create what is called a middleware which checks if the token is present and whether it is valid. If that is the case, the user is allowed access else, the user is thrown out:
+Express makes this easy by adding a middleware function that checks for the existence of a valid JWT before proceeding to process a request.
 
 ```js
 var jwt = require('jsonwebtoken');
-module.exports = function(req, res, next) {
+app.add( '/', function(req, res, next) {
 
-  console.log(req);
-  // check header for cookies
+
   var token = req.cookies.access_token;
   
   // decode token
@@ -272,18 +219,11 @@ module.exports = function(req, res, next) {
 
     // if there is no token
     // return an error
-    return res.status(403).redirect('/');
+    return res.status(403).redirect('/login');
     
   }
 };
 ```
 
-Middlewares are much like routes but rather than returning a valid route when all goes well, it calls the `next` method which tells Express to continue down the routes pipeline. If `next` is not called and an error is thrown, the routes down the pipeline are never executed.
 
-To protect a route with the middleware, you can do something like the following:
 
-```js
-app.get('/users', authMiddleware, users);
-```
-
-Where `authMiddleware` is the middleware function and `users` is the route handler.
