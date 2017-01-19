@@ -109,3 +109,11 @@ This is useful to create "active" data providers - backend processes that only s
 - The listen-callback is called with `isSubscribed = true` once the first client subscribes to a matching record and with `isSubscribed = false` once the last subscriber for a matching record unsubscribes.
 
 - Listening also keeps state. Registering as a listener for a pattern that already has matching subscriptions will call the callback multiple times straight away, once for every matching subscription.
+
+
+## Video Demo 
+If you would like to learn more find out our video tutorial with Yasser Fadl, explaining more in detail about records in deepstream.
+
+
+</br>
+<iframe width="780" height="439" src="https://www.youtube.com/embed/kpsGDJlkCTE" frameborder="0" allowfullscreen></iframe>
