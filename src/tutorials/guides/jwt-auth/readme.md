@@ -5,6 +5,13 @@ tags: JWT, JSON Web Tocken, Tocken Auth, Session
 ---
 Authentication is vital to most apps and the way it is achieved has evolved substantially in recent years. One of the most popular of today's concepts is a standard called [JSON Web Token](https://jwt.io/) or JWT for short that lets you store encrypted information in verifiable tokens.
 
+These tokens are compact and self-contained encoded JSON objects that hold vital information which is transferred between different parties (clients/servers most times). The compact nature makes it possible to exchange them via request headers while the self-contained characteristics shine at JWT's ability to store authentication payload making JWT not just useful at authentication but also handy in information exchange.
+
+JWTs have three parts: header, payload, and signature: 
+
+- The __header__ holds the hashing algorithm, and the type (which is most time `jwt`). 
+- The second part which is __payload__ consists of authentication data usually known as __claims__. - The __signature__ is created by signing the header and payload using the hashing algorithm and secret. This signing process is what verifies the token.
+
 deepstream can use a number of strategies to authenticate incoming connections. For JWT we'll use the [HTTP-Webhook](/tutorials/core/auth-http-webhook/) - a configurable URL that deepstream will send both login and connection data to for verification.
 
 ## Should you use JWT with deepstream?
@@ -60,7 +67,7 @@ Our app will offer the following URLs:
 - `/login` the publicly accessible login page
 - `/handle-login` the login form posts its content to this URL
 - `/check-token` deepstream will forward the auth data for incoming connections to this URL
--
+
 ## Let's start with the login page
 We'll start by creating a static HTML page with a simple login form. 
 
@@ -197,7 +204,7 @@ Express makes this easy by adding a middleware function that checks for the exis
 
 ```js
 var jwt = require('jsonwebtoken');
-app.add( '/', function(req, res, next) {
+var authMiddleware = function(req, res, next) {
 
 
   var token = req.cookies.access_token;
@@ -222,7 +229,10 @@ app.add( '/', function(req, res, next) {
     return res.status(403).redirect('/login');
     
   }
-};
+}
+
+// Protect route with middleware
+app.post('/protected', authMiddleware, routeHandler);
 ```
 
 
