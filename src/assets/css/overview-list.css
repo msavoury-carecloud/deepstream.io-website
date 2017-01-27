@@ -49,6 +49,9 @@ body #tut-overview .wrapper a:hover{
 #tut-overview a.angular{
     background-image: url(/assets/img/tutorials/angular.png);
 }
+#tut-overview a.reactnative{
+    background-image: url(/assets/img/tutorials/react-native.png);
+}
 #tut-overview a.knockout{
     background-image: url(/assets/img/tutorials/knockout.png);
 }
