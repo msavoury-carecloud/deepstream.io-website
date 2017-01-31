@@ -87,8 +87,21 @@
 <polygon fill="#000000" stroke="#000000" points="93.5001,-205.2121 90,-195.2121 86.5001,-205.2121 93.5001,-205.2121"/>
 <text text-anchor="middle" x="127.8574" y="-215.8" font-family="Times,serif" font-size="14.00" fill="#0000ff">A|REQ|auth+</text>
 </g>
-<!-- auth&#45;&gt;await_auth -->
+<!-- closed_aa -->
+<g id="node9" class="node">
+<title>closed_aa</title>
+<polygon fill="none" stroke="#000000" points="468,-281 288,-281 288,-245 468,-245 468,-281"/>
+<text text-anchor="middle" x="378" y="-258.8" font-family="Times,serif" font-size="14.00" fill="#000000">Connection closed</text>
+</g>
+<!-- await_auth&#45;&gt;closed_aa -->
 <g id="edge9" class="edge">
+<title>await_auth&#45;&gt;closed_aa</title>
+<path fill="none" stroke="#000000" d="M180.3348,-263C211.2963,-263 246.1202,-263 277.8143,-263"/>
+<polygon fill="#000000" stroke="#000000" points="277.9858,-266.5001 287.9857,-263 277.9857,-259.5001 277.9858,-266.5001"/>
+<text text-anchor="middle" x="234" y="-268.8" font-family="Times,serif" font-size="14.00" fill="#000000">A|E|TMAA</text>
+</g>
+<!-- auth&#45;&gt;await_auth -->
+<g id="edge10" class="edge">
 <title>auth&#45;&gt;await_auth</title>
 <path fill="none" stroke="#000000" d="M150.4643,-195.0919C165.68,-202.9818 175.5573,-213.5527 167,-227 164.1516,-231.4761 160.5845,-235.405 156.5567,-238.8521"/>
 <polygon fill="#000000" stroke="#000000" points="154.3016,-236.1657 148.3113,-244.9045 158.4437,-241.8087 154.3016,-236.1657"/>
@@ -106,19 +119,6 @@
 <path fill="none" stroke="#000000" d="M90,-158.7616C90,-147.3597 90,-132.4342 90,-119.494"/>
 <polygon fill="#000000" stroke="#000000" points="93.5001,-119.2121 90,-109.2121 86.5001,-119.2121 93.5001,-119.2121"/>
 <text text-anchor="middle" x="105.4595" y="-129.8" font-family="Times,serif" font-size="14.00" fill="#000000">A|A+</text>
-</g>
-<!-- closed_a -->
-<g id="node9" class="node">
-<title>closed_a</title>
-<polygon fill="none" stroke="#000000" points="468,-195 288,-195 288,-159 468,-159 468,-195"/>
-<text text-anchor="middle" x="378" y="-172.8" font-family="Times,serif" font-size="14.00" fill="#000000">Connection closed</text>
-</g>
-<!-- auth&#45;&gt;closed_a -->
-<g id="edge10" class="edge">
-<title>auth&#45;&gt;closed_a</title>
-<path fill="none" stroke="#000000" d="M180.3348,-177C211.2963,-177 246.1202,-177 277.8143,-177"/>
-<polygon fill="#000000" stroke="#000000" points="277.9858,-180.5001 287.9857,-177 277.9857,-173.5001 277.9858,-180.5001"/>
-<text text-anchor="middle" x="234" y="-182.8" font-family="Times,serif" font-size="14.00" fill="#000000">A|E|TMAA</text>
 </g>
 <!-- Connection closed -->
 <g id="node7" class="node">
