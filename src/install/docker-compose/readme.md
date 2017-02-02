@@ -31,10 +31,10 @@ services:
             - redis
             - rethinkdb
     deepstream-search-provider:
-        image: deepstreamio/deepstream.io-provider-search-rethinkdb
+        image: deepstreamio/provider-search-rethinkdb
         environment:
             - DEEPSTREAM_HOST=deepstream
-            - DEEPSTREAM_PORT=6021
+            - DEEPSTREAM_PORT=6020
             - RETHINKDB_HOST=rethinkdb
         depends_on:
             - deepstream
