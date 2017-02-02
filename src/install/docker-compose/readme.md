@@ -25,8 +25,7 @@ services:
             - "6020:6020"
             - "6021:6021"
         volumes:
-            - ./conf:/usr/local/deepstream/conf
-            - ./var:/usr/local/deepstream/var
+            - ./conf:/etc/deepstream
         depends_on:
             - redis
             - rethinkdb
