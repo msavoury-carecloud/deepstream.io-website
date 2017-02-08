@@ -1,14 +1,13 @@
 ---
 title: React Native
 description: Learn how to use React Native with deepstream
-draft: true
 ---
 
 [React Native](https://facebook.github.io/react-native/) lets you build mobile apps using only JavaScript. It uses the same design as React, letting you compose a rich mobile UI from declarative components.
 
 Now that deepstream implements websockets, integrating it with your React Native app via the [JS connector](/docs/client-js/client/) has become a breeze. The following steps will take you through the process with a hello world-esque example ([skip to solution](#8-complete-)).
 
-![](deepstream-react-native.gif)
+![Using React Native](deepstream-react-native.gif)
 
 ## 1. Start the server
 
