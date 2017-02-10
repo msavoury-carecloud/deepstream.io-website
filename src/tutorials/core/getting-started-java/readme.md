@@ -1,5 +1,5 @@
 ---
-title: Getting started
+title: Getting started with Java
 description: Learn how to start a server and connect a java client
 ---
 

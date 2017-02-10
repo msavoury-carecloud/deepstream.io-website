@@ -1,5 +1,5 @@
 ---
-title: Getting started
+title: Getting started with JavaScript
 description: Learn how to start a server and connect a simple client
 ---
 
