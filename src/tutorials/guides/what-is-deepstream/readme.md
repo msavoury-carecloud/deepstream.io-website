@@ -51,9 +51,10 @@ The most frequent comparison is a “self hosted Firebase”. That’s quite clo
 
 ### What can it integrate with?
 deepstream can optionally be integrated with three types of systems:
-Databases can be used for long-term data storage and querying
-Caches can be used for fast, short-term data access
-Message Busses can be used for deepstream nodes to communicate with each other
+- Databases can be used for long-term data storage and querying
+- Caches can be used for fast, short-term data access
+- Message Busses can be used for deepstream nodes to communicate with each other
+
 Connectors are available for many popular systems, e.g. [RethinkDB](/tutorials/integrations/db-rethinkdb/), [MongoDB](/tutorials/integrations/db-mongodb/), [Redis](/tutorials/integrations/cache-redis/), [AMQP](/tutorials/integrations/msg-amqp/), [Kafka](/tutorials/integrations/msg-kafka/) or [ElasticSearch](/tutorials/integrations/db-elasticsearch/) and can also easily be written yourself. This animation aims to provide an impression of how deepstream interacts with other systems
 
 ![how it works](/tutorials/core/cluster-messaging/internal-workings.svg)
