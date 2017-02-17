@@ -7,7 +7,7 @@ Events are deepstream's implementation of the "publish/subscribe" or "observer" 
 
 ![Pub/Sub diagram](pubsub-diagram.png)
 
-The emphasis on "zero or more" underlines one of the main characteristics of pub/sub: Publishers and subscribers are completely decoupled. It's a bit like a newspaper - journalists write articles assuming, but not knowing that they will be read and readers open the sports section expecting, but not knowing that something will be written on it.
+The emphasis on "zero or more" underlines one of the main characteristics of pub/sub: Publishers and subscribers are completely decoupled. It's a bit like a newspaper - journalists write articles assuming but not knowing that they will be read, and readers open the sports section expecting but not knowing that something will be written on it.
 
 This decoupling makes pub/sub scalable and fault tolerant, but sometimes you want to know if there's someone out there waiting for your messages. For that, deepstream's events come with a feature called "listening".
 
