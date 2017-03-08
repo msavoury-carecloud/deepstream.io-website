@@ -61,7 +61,7 @@ client.event.listen('^news/.*', (eventName, isSubscribed, response) => {
       response.accept()
       // start publishing data via `client.event.emit(eventName, /* data */)`
     } else {
-      repsonse.reject() // let deepstream ask another provider
+      response.reject() // let deepstream ask another provider
     }
   } else {
     // stop publishing data
