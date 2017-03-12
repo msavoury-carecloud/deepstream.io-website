@@ -7,16 +7,16 @@ thumbnail: deepstream-clients.png
 
 Writing a deepstream client only requires a TCP connection, basic string manipulation and a bit of JSON parsing. This means it can run on any hardware platform with any programming language. And to prove it I’m going to attempt to get it working on an Arduino uno!
 
-What we will be covering in this blog entry is building a basic client with the ability to login and recieve/publish events. The same process can then be applied to achieve the full set of functionality including records, RPCs and webRTC.
+What we will be covering in this blog entry is building a basic client with the ability to login and receive/publish events. The same process can then be applied to achieve the full set of functionality including records, RPCs and webRTC.
 
 Let's first set the requirements:
 
 * Arduino can setup a TCP connection
 * Arduino can authenticate
-* Arduino can recieve events telling it to switch the LED on or off
+* Arduino can receive events telling it to switch the LED on or off
 * Arduino can listen if any clients are subscribed to temperature events
 * Arduino can send out the temperature whenever it changes
-* Bonus: Setup another client to recieve/send events
+* Bonus: Setup another client to receive/send events
 
 # The board
 
