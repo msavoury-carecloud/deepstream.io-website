@@ -49,7 +49,10 @@ Stops the server.
 This method allows you to overwrite particular configuration options which were built via the
 configuration initialization step.
 
-💡 **NOTE:** If deepstream is initialized with a configuration object, `set()` will override the keys in your initial configuration. This is useful for passing in objects which are shared between deepstream and the rest of your application, such as a HTTPServer or cache connector. You can override any of the options using the same name within your [configuration](/docs/server/configuration/), except for the notable difference(s) below.
+💡 **NOTE:** If deepstream is initialized with a configuration object, `set()` will override the keys in your initial configuration. This is useful for passing in objects which are shared between deepstream and the rest of your application, such as a cache connector. You can override any of the options using the same name within your [configuration](/docs/server/configuration/), except for the notable difference(s) below.
+
+**NOTE:** 
+httpServer parameter removed in 2.x
 
 ```
 {{#table mode="api"}}
@@ -77,7 +80,6 @@ Here the `value` is treated as a string for these options:
 
 Actually these options can be passed by an configuration object, but if you use a file-based configuration it only works with a `.js` file. YAML and JSON config files are not supporting these options.
 
-- `httpServer`
 - `dataTransforms`
 
 These options might have a different name and location in the structure of the configuration object. If you use `set()` you also need to provide the instantiated instance as the `value`.
@@ -94,18 +96,6 @@ Make sure you run `server.start()` after you set all your options.
 Some examples:
 
 ```javascript
-
-/**
-* An existing http server to listen to rather
-* then letting deepstream create its own.
-*
-* Note: If webServerEnabled is false it will ignore
-* the passed in httpServer
-*
-* @type net.HttpServer || net.HttpsServer
-* @default true
-*/
-server.set('httpServer', httpServer)
 
 /**
 * The public key to use if using ssl
