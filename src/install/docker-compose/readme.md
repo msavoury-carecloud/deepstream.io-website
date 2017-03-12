@@ -25,16 +25,15 @@ services:
             - "6020:6020"
             - "6021:6021"
         volumes:
-            - ./conf:/usr/local/deepstream/conf
-            - ./var:/usr/local/deepstream/var
+            - ./conf:/etc/deepstream
         depends_on:
             - redis
             - rethinkdb
     deepstream-search-provider:
-        image: deepstreamio/deepstream.io-provider-search-rethinkdb
+        image: deepstreamio/provider-search-rethinkdb
         environment:
             - DEEPSTREAM_HOST=deepstream
-            - DEEPSTREAM_PORT=6021
+            - DEEPSTREAM_PORT=6020
             - RETHINKDB_HOST=rethinkdb
         depends_on:
             - deepstream
