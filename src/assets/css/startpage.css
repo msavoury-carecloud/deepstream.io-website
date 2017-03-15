@@ -853,6 +853,56 @@ header.main-header .page-description *{
 }
 
 /*************************
+* DEEPSTREAMHUB
+* ***********************/
+#deepstreamhub{
+	padding: 0;
+}
+
+#deepstreamhub a{
+    display: block;
+    width: 100%;
+    padding: 100px 200px;
+    color: #fff;
+    box-sizing: border-box;
+    background-image: url(../img/bg-dsh.jpg);
+    background-position: top right;
+    background-color: #262626;
+    background-repeat: no-repeat;
+}
+
+#deepstreamhub a h2{
+	color: #ccc;
+	font-size: 40px;
+}
+
+#deepstreamhub a p{
+	color: #fff;
+    font-size: 20px;
+    width: 50%;
+}
+
+#deepstreamhub a em {
+    color: #3caae0;
+    font-size: 20px;
+    font-style: normal;
+    cursor: pointer;
+    font-weight: 400;
+    border-bottom: 1px solid #3caae0;
+}
+
+@media screen and (max-width: 900px) {
+	#deepstreamhub a{
+		background-position: -134px 243px;
+		background-size: cover;
+		padding: 80px 20px;
+	}
+
+	#deepstreamhub a p{
+		width: 100%;
+	}
+}
+/*************************
 * GET IN TOUCH
 * ***********************/
 #get-in-touch{
