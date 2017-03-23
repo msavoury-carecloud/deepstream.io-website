@@ -52,7 +52,7 @@ DeepstreamClient client = new DeepstreamClient( 'localhost:6021' );
 Before you can start communicating with the server, you first need to login.
 
 ```java
-LoginResult result = ds.login();
+LoginResult result = client.login();
 if( result.loggedIn() ) {
     System.out.println( "Log in success!" );
 }
@@ -65,7 +65,7 @@ Now we can start using deepstreams API's for data-sync, events and rpcs.
 Let's first look at getting a record and setting it's data:
 
 ```java
-Record record = ds.record.getRecord( "weather/berlin" );
+Record record = client.record.getRecord( "weather/berlin" );
 ```
 
 You can set its a specific part of it's data using json paths:
@@ -98,7 +98,7 @@ client.event.emit( 'app' );
 And to subscribe:
 
 ```java
-ds.event.subscribe( "app", new EventListener() {
+client.event.subscribe( "app", new EventListener() {
   @Override
   public void onEvent(String eventName, Object... objects) {
     System.out.println( "Event " + eventName + " has occured!" );
@@ -113,7 +113,7 @@ And finally, we have RPCs. The remote procedure calls can either be requested or
 To make a remote procedure call:
 
 ```java
-RpcResult rpcResult = ds.rpc.make("multiplyByTwo", 2 );
+RpcResult rpcResult = client.rpc.make("multiplyByTwo", 2 );
 if( rpcResult.success() ) {
   System.out.println( "Result is: " + rpcResult.getData() );
 } else {
@@ -124,7 +124,7 @@ if( rpcResult.success() ) {
 And to provide it:
 
 ```java
-ds.rpc.provide("multiplyByTwo", new RpcRequestedListener() {
+client.rpc.provide("multiplyByTwo", new RpcRequestedListener() {
     @Override
     public void onRPCRequested(String rpcName, Object data, RpcResponse rpcResponse) {
         rpcResponse.send( (Integer) data * 2 );
