@@ -1,0 +1,114 @@
+---
+title: Class DeepstreamClient
+description: DeepstreamClient
+navLabel: DeepstreamClient
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--init:-->
+<a name="init_"></a>
+<h3 id="init_" name="init_">init:</h3>
+<p class="description"><p>deepstream.io javascript client, defaults to using default properties
+                      <code data-lang="swift" class="language-swift">DeepstreamClient.DeepstreamClient(String,Properties)</code> @throws URISyntaxException Thrown if the url in incorrect</p></p>
+
+<!--init:options:-->
+<a name="init_options:"></a>
+<h3 id="init_options:" name="init_options:">init:options:</h3>
+<p class="description"><p>deepstream.io javascript client @throws URISyntaxException Thrown if the url in incorrect</p></p>
+
+<!--init:properties:-->
+<a name="init_properties:"></a>
+<h3 id="init_properties:" name="init_properties:">init:properties:</h3>
+<p class="description"><p>deepstream.io javascript client @throws URISyntaxException Thrown if the url in incorrect</p></p>
+
+<!--addConnectionChangeListener:-->
+<a name="addConnectionChangeListener_"></a>
+<h3 id="addConnectionChangeListener_" name="addConnectionChangeListener_">addConnectionChangeListener:</h3>
+<p class="description"><p>Add a listener that can be notified via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/ConnectionStateListener">ConnectionStateListener</a> .connectionStateChanged(<a href="/docs/client-swift/ConnectionState">ConnectionState</a> )</code>                      whenever the <code data-lang="swift" class="language-swift">ConnectionState</code> changes</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>connectionStateListener</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The deepstream client</dd></dl>
+<!--close-->
+<a name="close"></a>
+<h3 id="close" name="close">close</h3>
+<p class="description"><p>Closes the connection to the server.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The deepstream client</dd></dl>
+<!--getConnectionState-->
+<a name="getConnectionState"></a>
+<h3 id="getConnectionState" name="getConnectionState">getConnectionState</h3>
+<p class="description"><p>Returns the current state of the connection.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The connection state</dd></dl>
+<!--getEventHandler-->
+<a name="getEventHandler"></a>
+<h3 id="getEventHandler" name="getEventHandler">getEventHandler</h3>
+<p class="description"><p>Gets the <code data-lang="swift" class="language-swift">EventHandler</code> used for events in deepstream. Through subscribing and emitting events
+                      <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/EventHandler">EventHandler</a> .subscribe(String,<a href="/docs/client-swift/EventListener">EventListener</a> )</code>, <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/EventHandler">EventHandler</a> .emit(String)</code>,
+                      as well as provider functionality such as <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/EventHandler">EventHandler</a> .listen(String,<a href="/docs/client-swift/ListenListener">ListenListener</a> )</code></p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>the EventHandler</dd></dl>
+<!--getPresenceHandler-->
+<a name="getPresenceHandler"></a>
+<h3 id="getPresenceHandler" name="getPresenceHandler">getPresenceHandler</h3>
+<p class="description"><p>Gets the <code data-lang="swift" class="language-swift">PresenceHandler</code> for presence functionality in deepstream. Both querying for clients via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/PresenceHandler">PresenceHandler</a> .getAll()</code>                      and subscribing/unsubscribing to
+                      <a href="#//api/name/login">login</a>  events via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/PresenceHandler">PresenceHandler</a> .subscribe(<a href="/docs/client-swift/PresenceEventListener">PresenceEventListener</a> )</code> and
+                      <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/PresenceHandler">PresenceHandler</a> .unsubscribe(<a href="/docs/client-swift/PresenceEventListener">PresenceEventListener</a> )</code></p></p>
+
+<!--getRecordHandler-->
+<a name="getRecordHandler"></a>
+<h3 id="getRecordHandler" name="getRecordHandler">getRecordHandler</h3>
+<p class="description"><p>Gets the <code data-lang="swift" class="language-swift">RecordHandler</code> used for data-sync in deepstream. Through records and lists <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .get<a href="/docs/client-swift/Record">Record</a> (String)</code>,
+                      <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .get<a href="/docs/client-swift/List">List</a> (String)</code>, as well as provider functionality such as <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .listen(String,<a href="/docs/client-swift/ListenListener">ListenListener</a> )</code> and single requests like <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .snapshot(String)</code></p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>the RecordHandler</dd></dl>
+<!--getRpcHandler-->
+<a name="getRpcHandler"></a>
+<h3 id="getRpcHandler" name="getRpcHandler">getRpcHandler</h3>
+<p class="description"><p>Gets the <code data-lang="swift" class="language-swift">RpcHandler</code> used for rpcs in deepstream. Used for both requesting them via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RpcHandler">RpcHandler</a> .make(String,Object)</code>                      and providing them via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RpcHandler">RpcHandler</a> .provide(String,<a href="../Protocols/RpcRequestedListener.html">RpcRequestedListener</a> )</code></p></p>
+
+<!--getUid-->
+<a name="getUid"></a>
+<h3 id="getUid" name="getUid">getUid</h3>
+<p class="description"><p>Returns a random string. The first block of characters is a timestamp, in order to allow databases to optimize for semi- sequentuel numberings</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A unique id</dd></dl>
+<!--login-->
+<a name="login"></a>
+<h3 id="login" name="login">login</h3>
+<p class="description"><ul>
+                      <li>seealso: DeepstreamClient#login(
+                        <a href="/docs/client-swift/JsonElement">JsonElement</a> ) Does not call the login callback, used mainly for anonymous logins where your guaranteed login</li>
+                    </ul></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The login result</dd></dl>
+<!--login:-->
+<a name="login_"></a>
+<h3 id="login_" name="login_">login:</h3>
+<p class="description"><p>Send authentication parameters to the client to fully open the connection. Please note: Authentication parameters are send over an already established connection, rather than appended to the server URL. This means the parameters will
+                      be encrypted when used with a WSS / HTTPS connection. If the deepstream server on the other side has message logging enabled it will however be written to the logs in plain text. If additional security is a requirement it might therefor
+                      make sense to hash the password on the client. If the connection is not yet established the authentication parameter will be stored and send once it becomes available authParams can be any JSON serializable data structure and its
+                      up for the permission handler on the server to make sense of them, although something like { username: &#x2018;someName&#x2019;, password: &#x2018;somePass&#x2019; } will probably make the most sense.
+                      <a href="#//api/name/login">login</a>  can be called multiple times until either the connection is authenticated or forcefully closed by the server since its maxAuthAttempts threshold has been exceeded</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>authParams</code> - JSON.serializable authentication data</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The
+                      login  result</dd></dl>
+<!--removeConnectionChangeListener:-->
+<a name="removeConnectionChangeListener_"></a>
+<h3 id="removeConnectionChangeListener_" name="removeConnectionChangeListener_">removeConnectionChangeListener:</h3>
+<p class="description"><p>Removes a <code data-lang="swift" class="language-swift">ConnectionStateListener</code> added via <code data-lang="swift" class="language-swift">DeepstreamClient.addConnectionChangeListener(<a href="/docs/client-swift/ConnectionStateListener">ConnectionStateListener</a> )</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>connectionStateListener</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The deepstream client</dd></dl>
+<!--setRuntimeErrorHandler:-->
+<a name="setRuntimeErrorHandler_"></a>
+<h3 id="setRuntimeErrorHandler_" name="setRuntimeErrorHandler_">setRuntimeErrorHandler:</h3>
+<p class="description"><p>Adds a <code data-lang="swift" class="language-swift">DeepstreamRuntimeErrorHandler</code> that will catch all RuntimeErrors such as AckTimeouts and allow the user to gracefully handle them.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>deepstreamRuntimeErrorHandler</code> - The listener to set</dd></dl>
+<!--init:deepstreamConfig:-->
+<a name="init_deepstreamConfig:"></a>
+<h3 id="init_deepstreamConfig:" name="init_deepstreamConfig:">init:deepstreamConfig:</h3>
+<p class="description"><p>deepstream.io java client</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>url</code> - URL to connect to. The protocol can be omited, e.g.
+                            :</dd><dd><code>deepstreamConfig</code> - A map of options that extend the ones specified in DefaultConfig.properties @throws URISyntaxException Thrown if the url in incorrect</dd></dl>

@@ -1,0 +1,52 @@
+---
+title: Class RecordEventsListener
+description: RecordEventsListener
+navLabel: RecordEventsListener
+category: interface
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--onError:errorType:errorMessage: 
+                required method-->
+<a name="onError_errorType:errorMessage:-
+----------------required-method"></a>
+<h3 id="onError_errorType:errorMessage:-
+----------------required-method" name="onError_errorType:errorMessage:-
+----------------required-method">onError:errorType:errorMessage: 
+                required method</h3>
+<p class="description"><p>Notified whenever an error has occurred on the record, usually due to an async operation such as a timeout or VersionConflict that can&#x2019;t be caught sync.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordName</code> - The name of the record an error occured to</dd><dd><code>errorType</code> - The error type, such as Event .ACK_TIMEOUT or Event .MESSAGE_DENIED</dd><dd><code>errorMessage</code> - An error message in english, describing the issue. Do not use this message other than for logging! All checks should be against errorType</dd></dl>
+<!--onRecordHasProviderChanged:hasProvider: 
+                required method-->
+<a name="onRecordHasProviderChanged_hasProvider:-
+----------------required-method"></a>
+<h3 id="onRecordHasProviderChanged_hasProvider:-
+----------------required-method" name="onRecordHasProviderChanged_hasProvider:-
+----------------required-method">onRecordHasProviderChanged:hasProvider: 
+                required method</h3>
+<p class="description"><p>Notified when a listener has confirmed that it will be publishing data. This is extremely useful in the case of records, where you can indicate whether the values shown are cached or up to date.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordName</code> - The name of the record which has gained/lost a provider</dd><dd><code>hasProvider</code> - true if provider was found, false otherwise</dd></dl>
+<!--onRecordDeleted: 
+                required method-->
+<a name="onRecordDeleted_-
+----------------required-method"></a>
+<h3 id="onRecordDeleted_-
+----------------required-method" name="onRecordDeleted_-
+----------------required-method">onRecordDeleted: 
+                required method</h3>
+<p class="description"><p>Notified when the record was deleted, whether by this client or by another.
+                      <br> Once this is called the record object must be cleaned up and a new one created if you wish to continue setting data.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordName</code> - The name of the deleted record</dd></dl>
+<!--onRecordDiscarded: 
+                required method-->
+<a name="onRecordDiscarded_-
+----------------required-method"></a>
+<h3 id="onRecordDiscarded_-
+----------------required-method" name="onRecordDiscarded_-
+----------------required-method">onRecordDiscarded: 
+                required method</h3>
+<p class="description"><p>Notified once the record was discarded.
+                      <br> Once this is called the record object must be cleaned up and a new one created if you wish to continue setting data.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordName</code> - The name of the discarded record</dd></dl>

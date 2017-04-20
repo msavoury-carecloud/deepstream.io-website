@@ -1,0 +1,319 @@
+---
+title: Class Record
+description: Record
+navLabel: Record
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--addRecordEventsListener:-->
+<a name="addRecordEventsListener_"></a>
+<h3 id="addRecordEventsListener_" name="addRecordEventsListener_">addRecordEventsListener:</h3>
+<p class="description"><p>Adds a Listener that will notify you if a Discard, Delete or Error event occurs</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordEventsListener</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--delete-->
+<a name="delete"></a>
+<h3 id="delete" name="delete">delete</h3>
+<p class="description"><p>Delete the record. This is called when you want to remove the record entirely from deepstream, deleting it from storage and cache and telling all other users that it has been deleted. This in turn will force all clients to
+                      <a href="#//api/name/discard">discard</a>  the record.
+                      <br> Once the record is successfully deleted, you can be notified via <code data-lang="swift" class="language-swift"><a href="../Protocols/RecordEventsListener.html">RecordEventsListener</a> .onRecordDeleted(String)</code> (String)}<br>
+                    </p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record @throws
+                      DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd></dl>
+<!--discard-->
+<a name="discard"></a>
+<h3 id="discard" name="discard">discard</h3>
+<p class="description"><p>Discard the record. This should be called whenever you are done with the record retrieved by <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getRecord(String)</code>. This does
+                      not guarantee that your subscriptions have been unsubscribed, so make sure to do that first!
+                      <br> If all usages of the same record have been discarded, the record will no longer be updated from the server and any further usages will require the record to be retrieved again via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getRecord(String)</code>
+                      <br> Once the record is successfully discard, you can be notified via <code data-lang="swift" class="language-swift"><a href="../Protocols/RecordEventsListener.html">RecordEventsListener</a> .onRecordDiscarded(String)</code></p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record @throws
+                      DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd></dl>
+<!--get-->
+<a name="get"></a>
+<h3 id="get" name="get">get</h3>
+<p class="description"><p>Gets the entire record data and should always return a <code data-lang="swift" class="language-swift">JsonObject</code>, except when using a <code data-lang="swift" class="language-swift">io.deepstream.List</code>, but then you should
+                      always be using it via <code data-lang="swift" class="language-swift">io.deepstream.<a href="/docs/client-swift/List">List</a> .getEntries()</code> ;) - seealso: Record#get(String)</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record data as a json element</dd></dl>
+<!--get:-->
+<a name="get_"></a>
+<h3 id="get_" name="get_">get:</h3>
+<p class="description"><p>Gets the value at the path indicated.
+                      <br>
+                      <br> For example, if the record data is:
+                      <br> { &#x201C;name&#x201D;: &#x201C;Yasser&#x201D;, pets: [ { type: &#x201C;Dog&#x201D;, &#x201C;name&#x201D;: &#x201C;Whiskey&#x201D;, age: 3} ]}
+                      <br>
+                      <br> We can do:
+                      <br>
+                      <a href="#//api/name/get">get</a> ( &#x201C;name&#x201D; ) -&gt; <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/JsonElement">JsonElement</a> .getAsString()</code>
+                      <br>
+                      <a href="#//api/name/get">get</a> ( &#x201C;pets[0]&#x201D; ) -&gt; <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/JsonElement">JsonElement</a> .getAs<a href="/docs/client-swift/JsonObject">JsonObject</a> ()</code>
+                      <br>
+                      <a href="#//api/name/get">get</a> ( &#x201C;pets[0].age&#x201D;) -&gt; <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/JsonElement">JsonElement</a> .getAsInt()</code>
+                      <br>
+                    </p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record data as a
+                      JsonElement</dd></dl>
+<!--hasProvider-->
+<a name="hasProvider"></a>
+<h3 id="hasProvider" name="hasProvider">hasProvider</h3>
+<p class="description"><p>Return whether the record has an active provider</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if record has been loaded</dd></dl>
+<!--isDestroyed-->
+<a name="isDestroyed"></a>
+<h3 id="isDestroyed" name="isDestroyed">isDestroyed</h3>
+<p class="description"><p>Return whether the record data has been destroyed. If true and you need to use the method create it again via
+                      <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getRecord(String)</code></p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if record has been destroyed</dd></dl>
+<!--isReady-->
+<a name="isReady"></a>
+<h3 id="isReady" name="isReady">isReady</h3>
+<p class="description"><p>Return whether the record data has been loaded from the server</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if record has been loaded</dd></dl>
+<!--name-->
+<a name="name"></a>
+<h3 id="name" name="name">name</h3>
+<p class="description"><p>Return the record name</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record name</dd></dl>
+<!--removeRecordEventsListener:-->
+<a name="removeRecordEventsListener_"></a>
+<h3 id="removeRecordEventsListener_" name="removeRecordEventsListener_">removeRecordEventsListener:</h3>
+<p class="description"><p>Remove listener added via <code data-lang="swift" class="language-swift">io.deepstream.Record.add<a href="../Protocols/RecordEventsListener.html">RecordEventsListener</a> (<a href="../Protocols/RecordEventsListener.html">RecordEventsListener</a> )</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordEventsListener</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--set:-->
+<a name="set_"></a>
+<h3 id="set_" name="set_">set:</h3>
+<p class="description"><p>Set the value for the entire record
+                      <br> Make sure that the Object passed in can be serialised to a
+                      <a href="/docs/client-swift/JsonElement">JsonElement</a>, otherwise it will throw a <code data-lang="swift" class="language-swift">IllegalStateException</code>. Best way to guarantee this is by setting Json friendly objects, such as <code data-lang="swift" class="language-swift">Map</code>.
+                      <a href="../Protocols/Since.html">Since</a>  this is a root the object should also not be a primitive. - seealso: Record#set(String,Object)</p></p>
+
+<!--set:value:-->
+<a name="set_value:"></a>
+<h3 id="set_value:" name="set_value:">set:value:</h3>
+<p class="description"><p>Set the value for a specific path in your Record data.
+                      <br> Make sure that the Object passed in can be serialised to a
+                      <a href="/docs/client-swift/JsonElement">JsonElement</a>, otherwise it will throw a <code data-lang="swift" class="language-swift">IllegalStateException</code>.
+                      <br> The best way to guarantee this is by setting Json friendly objects, such as <code data-lang="swift" class="language-swift">Map</code>.
+                      <br> If you path is not null, you can pass in primitives as long as the path is not null, which is the equivalent of calling <code data-lang="swift" class="language-swift">Record.set(<a href="/docs/client-swift/JsonElement">JsonElement</a> )</code>.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path with the
+                            JsonElement  at which to set the value</dd><dd><code>value</code> - The value to set</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record @throws
+                      DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd></dl>
+<!--setMergeStrategy:-->
+<a name="setMergeStrategy_"></a>
+<h3 id="setMergeStrategy_" name="setMergeStrategy_">setMergeStrategy:</h3>
+<p class="description"><p>Set a merge strategy that comes with deepstream. These are currently LOCAL_WINS and REMOTE_WINS</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>mergeStrategy</code> - The
+                            name  of the built in merge strategy to use</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--setCustomMergeStrategy:-->
+<a name="setCustomMergeStrategy_"></a>
+<h3 id="setCustomMergeStrategy_" name="setCustomMergeStrategy_">setCustomMergeStrategy:</h3>
+<p class="description"><p>Set a custom merge strategy for this record</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>mergeStrategy</code> - The custom merge strategy to use</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--setWithAck:-->
+<a name="setWithAck_"></a>
+<h3 id="setWithAck_" name="setWithAck_">setWithAck:</h3>
+<p class="description"><p>Set the value for the entire record synchronously and gives acknowledgement whether there were any errors storing the record data in cache or storage.
+                      <br> Make sure that the Object passed in can be serialised to a
+                      <a href="/docs/client-swift/JsonElement">JsonElement</a>, otherwise it will throw a <code data-lang="swift" class="language-swift">IllegalStateException</code>. Best way to guarantee this is by setting Json friendly objects, such as <code data-lang="swift" class="language-swift">Map</code>.
+                      <a href="../Protocols/Since.html">Since</a>  this is a root the object should also not be a primitive. - seealso: Record#set(String,Object)</p></p>
+
+<!--setWithAck:value:-->
+<a name="setWithAck_value:"></a>
+<h3 id="setWithAck_value:" name="setWithAck_value:">setWithAck:value:</h3>
+<p class="description"><p>Set the value for a specific path in your Record data synchronously and gives acknowledgement whether there were any errors storing the record data in cache or storage.
+                      <br> Make sure that the Object passed in can be serialised to a
+                      <a href="/docs/client-swift/JsonElement">JsonElement</a>, otherwise it will throw a <code data-lang="swift" class="language-swift">IllegalStateException</code>.
+                      <br> The best way to guarantee this is by setting Json friendly objects, such as <code data-lang="swift" class="language-swift">Map</code>.
+                      <br> If your path is not null, you can pass in primitives, which is the equivalent of calling <code data-lang="swift" class="language-swift">Record.set(String,Object)</code>.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path with the
+                            JsonElement  at which to set the value</dd><dd><code>value</code> - The value to set</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record @throws
+                      DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd></dl>
+<!--subscribe:-->
+<a name="subscribe_"></a>
+<h3 id="subscribe_" name="subscribe_">subscribe:</h3>
+<p class="description"><p>Notifies the user whenever anything inside the Record has changed. - seealso: Record#subscribe(
+                      <a href="/docs/client-swift/RecordChangedCallback">RecordChangedCallback</a>,boolean)</p></p>
+
+<!--subscribe:triggerNow:-->
+<a name="subscribe_triggerNow:"></a>
+<h3 id="subscribe_triggerNow:" name="subscribe_triggerNow:">subscribe:triggerNow:</h3>
+<p class="description"><p>Notifies the user whenever anything inside the Record has changed, and triggers the listener immediately.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordChangedCallback</code> - The callback for whenever anything within the record changes</dd><dd><code>triggerNow</code> - Whether to call the callback immediately with the current value</dd></dl>
+<!--subscribe:recordPathChangedCallback:-->
+<a name="subscribe_recordPathChangedCallback:"></a>
+<h3 id="subscribe_recordPathChangedCallback:" name="subscribe_recordPathChangedCallback:">subscribe:recordPathChangedCallback:</h3>
+<p class="description"><p>Notifies the user whenever anything under the path provided has changed. - seealso: Record#subscribe(String,
+                      <a href="/docs/client-swift/RecordPathChangedCallback">RecordPathChangedCallback</a>,boolean)</p></p>
+
+<!--subscribe:recordPathChangedCallback:triggerNow:-->
+<a name="subscribe_recordPathChangedCallback:triggerNow:"></a>
+<h3 id="subscribe_recordPathChangedCallback:triggerNow:" name="subscribe_recordPathChangedCallback:triggerNow:">subscribe:recordPathChangedCallback:triggerNow:</h3>
+<p class="description"><p>Subscribe to record changes.
+                      <br> If a path is provided, updates will be based on everything in or under it.
+                      <br> If trigger now is true, the listener will be immediately fired with the current value.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path to listen to</dd><dd><code>recordPathChangedCallback</code> - The listener to add</dd><dd><code>triggerNow</code> - Whether to immediately trigger the listener with the current value</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record @throws
+                      DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd></dl>
+<!--unsubscribe:-->
+<a name="unsubscribe_"></a>
+<h3 id="unsubscribe_" name="unsubscribe_">unsubscribe:</h3>
+<p class="description"><p>Remove the listener added via <code data-lang="swift" class="language-swift">Record.subscribe(<a href="/docs/client-swift/RecordChangedCallback">RecordChangedCallback</a>,boolean)</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordChangedCallback</code> - The listener to remove @throws
+                            DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--unsubscribe:recordPathChangedCallback:-->
+<a name="unsubscribe_recordPathChangedCallback:"></a>
+<h3 id="unsubscribe_recordPathChangedCallback:" name="unsubscribe_recordPathChangedCallback:">unsubscribe:recordPathChangedCallback:</h3>
+<p class="description"><p>Remove the listener added via <code data-lang="swift" class="language-swift">Record.subscribe(String,<a href="/docs/client-swift/RecordPathChangedCallback">RecordPathChangedCallback</a>,boolean)</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path to unsubscribe from</dd><dd><code>recordPathChangedCallback</code> - The listener to remove @throws
+                            DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--version-->
+<a name="version"></a>
+<h3 id="version" name="version">version</h3>
+<p class="description"><p>Return the record version. This is solely used within a <code data-lang="swift" class="language-swift">RecordMergeStrategy</code>.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>-1 if not loaded, otherwise the local version number</dd></dl>
+<!--init:recordOptions:connection:deepstreamConfig:client:-->
+<a name="init_recordOptions:connection:deepstreamConfig:client:"></a>
+<h3 id="init_recordOptions:connection:deepstreamConfig:client:" name="init_recordOptions:connection:deepstreamConfig:client:">init:recordOptions:connection:deepstreamConfig:client:</h3>
+<p class="description"><p>Constructor is not public since it is created via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getRecord(String)</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>name</code> - The unique
+                            name  of the record</dd><dd><code>recordOptions</code> - A map of deepstreamConfig, e.g. { persist: true }</dd><dd><code>connection</code> - The instance of the server connection</dd><dd><code>deepstreamConfig</code> - Deepstream deepstreamConfig</dd><dd><code>client</code> - deepstream.io client</dd></dl>
+<!--addRecordDestroyPendingListener:-->
+<a name="addRecordDestroyPendingListener_"></a>
+<h3 id="addRecordDestroyPendingListener_" name="addRecordDestroyPendingListener_">addRecordDestroyPendingListener:</h3>
+<p class="description"><p>Add a
+                      <a href="#//api/name/destroy">destroy</a>  pending listener, used by the
+                      <a href="/docs/client-swift/RecordHandler">RecordHandler</a>  and potentially other internal stores</p></p>
+
+<!--getWithIOSClass:-->
+<a name="getWithIOSClass_"></a>
+<h3 id="getWithIOSClass_" name="getWithIOSClass_">getWithIOSClass:</h3>
+<p class="description"><p>Gets the a class to represent the record Type. This is currently not public as it is used for the list class, but we should investigate the work done by AlexH to
+                      <a href="#//api/name/get">get</a>  this to be a more intuitive API
+                    </p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The object with the type passed in and containing the records data</dd></dl>
+<!--onMessage:-->
+<a name="onMessage_"></a>
+<h3 id="onMessage_" name="onMessage_">onMessage:</h3>
+<p class="description"><p>Invoked when a message is received from <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .handle(<a href="/docs/client-swift/Message">Message</a> )</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>message</code> - The message received from the server</dd></dl>
+<!--setRecordRemoteUpdateHandler:-->
+<a name="setRecordRemoteUpdateHandler_"></a>
+<h3 id="setRecordRemoteUpdateHandler_" name="setRecordRemoteUpdateHandler_">setRecordRemoteUpdateHandler:</h3>
+<p class="description"><p>This gives us a handle to before and after a record is updated remotely. This is currently used by <code data-lang="swift" class="language-swift">io.deepstream.List</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordRemoteUpdateHandler</code> - The listener to notify before and after an update is applied</dd></dl>
+<!--start-->
+<a name="start"></a>
+<h3 id="start" name="start">start</h3>
+<p class="description"><p>Send the subscriber request to the server</p></p>
+
+<!--whenReady:-->
+<a name="whenReady_"></a>
+<h3 id="whenReady_" name="whenReady_">whenReady:</h3>
+<p class="description"><p>Add a recordReadyListener as a callback. This means it will be called once when the record is ready, either in sync or async if the record is not already ready.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordReadyListener</code> - The recordReadyListener that will be triggered only **once</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--applyUpdate:-->
+<a name="applyUpdate_"></a>
+<h3 id="applyUpdate_" name="applyUpdate_">applyUpdate:</h3>
+<p class="description"><p>Apply the message received on the server on the record</p></p>
+
+<!--recoverRecord:remoteData:-->
+<a name="recoverRecord_remoteData:"></a>
+<h3 id="recoverRecord_remoteData:" name="recoverRecord_remoteData:">recoverRecord:remoteData:</h3>
+<p class="description"><p>Called when a merge conflict is detected by a VERSION_EXISTS error or if an update received is directly after the clients. If no merge strategy is configure it will emit a VERSION_EXISTS error and the record will remain in an inconsistent
+                      state.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>remoteVersion</code> - The remote
+                            version  number</dd><dd><code>remoteData</code> - The remote object data</dd></dl>
+<!--scheduleAcks-->
+<a name="scheduleAcks"></a>
+<h3 id="scheduleAcks" name="scheduleAcks">scheduleAcks</h3>
+<p class="description"><p>Start response timeouts</p></p>
+
+<!--clearTimeouts-->
+<a name="clearTimeouts"></a>
+<h3 id="clearTimeouts" name="clearTimeouts">clearTimeouts</h3>
+<p class="description"><p>Remove response timeouts</p></p>
+
+<!--beginChange-->
+<a name="beginChange"></a>
+<h3 id="beginChange" name="beginChange">beginChange</h3>
+<p class="description"><p>First of two steps that are called for incoming and outgoing updates. Saves the current value of all paths the app is subscribed to.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The record</dd></dl>
+<!--completeChangeWithJavaUtilMap:-->
+<a name="completeChangeWithJavaUtilMap_"></a>
+<h3 id="completeChangeWithJavaUtilMap_" name="completeChangeWithJavaUtilMap_">completeChangeWithJavaUtilMap:</h3>
+<p class="description"><p>Second of two steps that are called for incoming and outgoing updates. Compares the new values for every path with the previously stored ones and updates the subscribers if the value has changed</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>oldValues</code> - The previous paths and values</dd></dl>
+<!--throwExceptionIfDestroyedWithNSString:-->
+<a name="throwExceptionIfDestroyedWithNSString_"></a>
+<h3 id="throwExceptionIfDestroyedWithNSString_" name="throwExceptionIfDestroyedWithNSString_">throwExceptionIfDestroyedWithNSString:</h3>
+<p class="description"><p>Throw an exception if the record has been destroyed</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>method</code> - The method to call @throws
+                            DeepstreamRecordDestroyedException  Thrown if the record has been destroyed and can’t perform more actions</dd></dl>
+<!--processAckMessage:-->
+<a name="processAckMessage_"></a>
+<h3 id="processAckMessage_" name="processAckMessage_">processAckMessage:</h3>
+<p class="description"><p>The ack <code data-lang="swift" class="language-swift">Message</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>message</code> - The ack Message</dd></dl>
+<!--onRead:-->
+<a name="onRead_"></a>
+<h3 id="onRead_" name="onRead_">onRead:</h3>
+<p class="description"><p>Callback for incoming read messages</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>message</code> - The read Message</dd></dl>
+<!--setReady-->
+<a name="setReady"></a>
+<h3 id="setReady" name="setReady">setReady</h3>
+<p class="description"><p>Invokes method calls that where queued while the record wasn&#x2019;t ready and emits the ready event</p></p>
+
+<!--sendRead-->
+<a name="sendRead"></a>
+<h3 id="sendRead" name="sendRead">sendRead</h3>
+<p class="description"><p>Sends the read message, either initially at record creation or after a lost connection has been re-established</p></p>
+
+<!--sendUpdate:value:-->
+<a name="sendUpdate_value:"></a>
+<h3 id="sendUpdate_value:" name="sendUpdate_value:">sendUpdate:value:</h3>
+<p class="description"><p>Send the update to the server, either as an update or patch</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>key</code> - The key to update if a patch</dd><dd><code>value</code> - The value to update the record with</dd></dl>
+<!--destroy-->
+<a name="destroy"></a>
+<h3 id="destroy" name="destroy">destroy</h3>
+<p class="description"><p>Destroys the record and nulls all its dependencies</p></p>
+
+<!--deepCopy:-->
+<a name="deepCopy_"></a>
+<h3 id="deepCopy_" name="deepCopy_">deepCopy:</h3>
+<p class="description"><p>Generate a deep copy of the object to prevent user to modify record data directly</p></p>
+
+<!--deepCopyWithJsonElement:withIOSClass:-->
+<a name="deepCopyWithJsonElement_withIOSClass:"></a>
+<h3 id="deepCopyWithJsonElement_withIOSClass:" name="deepCopyWithJsonElement_withIOSClass:">deepCopyWithJsonElement:withIOSClass:</h3>
+<p class="description"><p>Generate a deep copy of the object and cast it to a class of any type, used by <code data-lang="swift" class="language-swift">io.deepstream.List</code></p></p>
+
+<!--set:value:force:-->
+<a name="set_value:force:"></a>
+<h3 id="set_value:force:" name="set_value:force:">set:value:force:</h3>
+<p class="description"><p>This forces an update, which is useful when trying to reconcile a merge conflict when the merge is the same but the
+                      <a href="#//api/name/version">version</a>  number isn&#x2019;t.</p></p>

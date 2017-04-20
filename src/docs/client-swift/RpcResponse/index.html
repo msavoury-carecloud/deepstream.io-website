@@ -1,0 +1,39 @@
+---
+title: Class RpcResponse
+description: RpcResponse
+navLabel: RpcResponse
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--ack-->
+<a name="ack"></a>
+<h3 id="ack" name="ack">ack</h3>
+<p class="description"><p>Acknowledges the receipt of the request. This will happen implicitly unless the request callback explicitly sets autoAck to false</p></p>
+
+<!--error:-->
+<a name="error_"></a>
+<h3 id="error_" name="error_">error:</h3>
+<p class="description"><p>Notifies the server that an error has occured while trying to process the request. This will complete the rpc.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>errorMsg</code> - the message used to describe the error that occured</dd></dl>
+<!--reject-->
+<a name="reject"></a>
+<h3 id="reject" name="reject">reject</h3>
+<p class="description"><p>Reject the request. This might be necessary if the client is already processing a large number of requests. If deepstream receives a rejection message it will try to route the request to another provider - or return a NO_RPC_PROVIDER
+                      error if there are no providers left</p></p>
+
+<!--send:-->
+<a name="send_"></a>
+<h3 id="send_" name="send_">send:</h3>
+<p class="description"><p>Completes the request by sending the response data to the server. If data is an array or object it will automatically be serialised.
+                      <br> If autoAck is disabled and the response is sent before the
+                      <a href="#//api/name/ack">ack</a>  message the request will still be completed and the
+                      <a href="#//api/name/ack">ack</a>  message ignored</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>data</code> - the data send by the provider. Has to be JsonSerializable</dd></dl>
+<!--init:name:correlationId:-->
+<a name="init_name:correlationId:"></a>
+<h3 id="init_name:correlationId:" name="init_name:correlationId:">init:name:correlationId:</h3>
+<p class="description"><p>This object provides a number of methods that allow a rpc provider to respond to a request</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>connection</code> - the clients connection object</dd><dd><code>name</code> - the name of the rpc</dd><dd><code>correlationId</code> - the correlationId for the RPC</dd></dl>

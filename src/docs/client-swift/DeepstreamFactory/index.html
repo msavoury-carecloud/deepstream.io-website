@@ -1,0 +1,35 @@
+---
+title: Class DeepstreamFactory
+description: DeepstreamFactory
+navLabel: DeepstreamFactory
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--getClient-->
+<a name="getClient"></a>
+<h3 id="getClient" name="getClient">getClient</h3>
+<p class="description"><p>Returns the last client that was created. This is useful for most applications that only require a single connection. The first time a client is connected however it has to be via <code data-lang="swift" class="language-swift">DeepstreamFactory.getClient(String)</code>                      or <code data-lang="swift" class="language-swift">DeepstreamFactory.getClient(String,Properties)</code></p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A deepstream client</dd></dl>
+<!--getClient:-->
+<a name="getClient_"></a>
+<h3 id="getClient_" name="getClient_">getClient:</h3>
+<p class="description"><p>Returns a client that was previous created via the same url using this method or <code data-lang="swift" class="language-swift">DeepstreamFactory.<a href="#//api/name/getClient">getClient</a> (String,Properties)</code>. If one wasn&#x2019;t
+                      created, it creates it first and stores it for future reference.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>url</code> - The url to connect to, also the key used to retrieve in future calls</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A deepstream client @throws URISyntaxException An error if the url syntax is invalid</dd></dl>
+<!--getClient:options:-->
+<a name="getClient_options:"></a>
+<h3 id="getClient_options:" name="getClient_options:">getClient:options:</h3>
+<p class="description"><p>Returns a client that was previous created via the same url using this method or <code data-lang="swift" class="language-swift">DeepstreamFactory.<a href="#//api/name/getClient">getClient</a> (String)</code>. If one wasn&#x2019;t created,
+                      it creates it first and stores it for future reference.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>url</code> - The url to connect to, also the key used to retrieve in future calls</dd><dd><code>options</code> - The options to use within the deepstream connection</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A deepstream client @throws URISyntaxException An error if the url syntax is invalid @throws
+                      InvalidDeepstreamConfig  An exception if any of the options are invalid</dd></dl>
+<!--init-->
+<a name="init"></a>
+<h3 id="init" name="init">init</h3>
+<p class="description"><p>DeepstreamFactory is a map of all url connections created</p></p>

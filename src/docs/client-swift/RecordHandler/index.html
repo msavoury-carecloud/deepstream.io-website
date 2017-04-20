@@ -1,0 +1,73 @@
+---
+title: Class RecordHandler
+description: RecordHandler
+navLabel: RecordHandler
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--getAnonymousRecord-->
+<a name="getAnonymousRecord"></a>
+<h3 id="getAnonymousRecord" name="getAnonymousRecord">getAnonymousRecord</h3>
+<p class="description"><p>Returns an anonymous record. A anonymous record is effectively a wrapper that mimicks the API of a record, but allows for the underlying record to be swapped without losing subscriptions etc.
+                      <br> This is particularly useful when selecting from a number of similarly structured records. E.g. a list of users that can be choosen from a list
+                      <br> The only API differences to a normal record is an additional <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/AnonymousRecord">AnonymousRecord</a> .setName(String)</code> method</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>AnonymousRecord</dd></dl>
+<!--getList:-->
+<a name="getList_"></a>
+<h3 id="getList_" name="getList_">getList:</h3>
+<p class="description"><p>Returns an existing
+                      <a href="/docs/client-swift/List">List</a>  or creates a new one. A list is a specialised type of record that holds an array of recordNames.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>name</code> - The name of the list to retrieve</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>List  The
+                      List</dd></dl>
+<!--getRecord:-->
+<a name="getRecord_"></a>
+<h3 id="getRecord_" name="getRecord_">getRecord:</h3>
+<p class="description"><p>Returns an existing record or creates a new one. If creating a new one the record will not be in a ready state till it is loaded from the server.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>name</code> - The name of the record to get</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>Record  The record</dd></dl>
+<!--has:-->
+<a name="has_"></a>
+<h3 id="has_" name="has_">has:</h3>
+<p class="description"><p>Allows the user to query to see whether or not the record exists
+                      <br> If the record is created locally the listener will be called sync, else once the record is ready.
+                      <br>
+                    </p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>name</code> - The name of the record to check</dd></dl>
+<!--listen:listenCallback:-->
+<a name="listen_listenCallback:"></a>
+<h3 id="listen_listenCallback:" name="listen_listenCallback:">listen:listenCallback:</h3>
+<p class="description"><p>Allows to listen for record subscriptions made by this or other clients. This is useful to create &#x201C;active&#x201D; data providers, e.g. providers that only provide data for a particular record if a user is actually interested in
+                      it.
+                      <br> You can only listen to a pattern once, and if multiple listeners match the same pattern only a single one will be notified!</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>pattern</code> - The pattern to match all records your interested in</dd><dd><code>listenCallback</code> - The listen callback when a match has been found or removed.</dd></dl>
+<!--snapshot:-->
+<a name="snapshot_"></a>
+<h3 id="snapshot_" name="snapshot_">snapshot:</h3>
+<p class="description"><p>Retrieve the current record data without subscribing to changes
+                      <br> If the record does not exist an error will be thrown</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>name</code> - The name of the record which state to retrieve</dd></dl>
+<!--unlisten:-->
+<a name="unlisten_"></a>
+<h3 id="unlisten_" name="unlisten_">unlisten:</h3>
+<p class="description"><p>Removes a listener that was previously registered with listenForSubscriptions</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>pattern</code> - The pattern to stop listening to</dd></dl>
+<!--handle:-->
+<a name="handle_"></a>
+<h3 id="handle_" name="handle_">handle:</h3>
+<p class="description"><p>Will be called by the client for incoming messages on the RECORD topic</p></p>
+
+<!--init:connection:client:-->
+<a name="init_connection:client:"></a>
+<h3 id="init_connection:client:" name="init_connection:client:">init:connection:client:</h3>
+<p class="description"><p>A collection of factories for records. This class is exposed as client.record</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>deepstreamConfig</code> - The deepstreamConfig the client was created with</dd><dd><code>connection</code> - The connection</dd><dd><code>client</code> - The deepstream client</dd></dl>
+<!--isDiscardAck:-->
+<a name="isDiscardAck_"></a>
+<h3 id="isDiscardAck_" name="isDiscardAck_">isDiscardAck:</h3>
+<p class="description"><p>The following methods checks to prevent errors that occur when a record is discarded or deleted and recreated before the discard / delete ack message is received. A (presumably unsolvable) problem remains when a client deletes a record
+                      in the exact moment between another clients creation and read message for the same record</p></p>

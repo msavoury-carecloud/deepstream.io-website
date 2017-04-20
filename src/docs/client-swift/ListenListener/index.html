@@ -1,0 +1,33 @@
+---
+title: Class ListenListener
+description: ListenListener
+navLabel: ListenListener
+category: interface
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--onSubscriptionForPatternAdded: 
+                required method-->
+<a name="onSubscriptionForPatternAdded_-
+----------------required-method"></a>
+<h3 id="onSubscriptionForPatternAdded_-
+----------------required-method" name="onSubscriptionForPatternAdded_-
+----------------required-method">onSubscriptionForPatternAdded: 
+                required method</h3>
+<p class="description"><p>Called whenever a subscription has been found a pattern you previously added.
+                      <br>
+                      This method must return a true if it is willing to provide the subscription, and false otherwise. This also has to be done in a timely fashion since the server will assume the provider is unresponsive if it takes too long.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>subscription</code> - The name of the subscription that can be provided</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if the server responds is willing to accept the request, false to reject</dd></dl>
+<!--onSubscriptionForPatternRemoved: 
+                required method-->
+<a name="onSubscriptionForPatternRemoved_-
+----------------required-method"></a>
+<h3 id="onSubscriptionForPatternRemoved_-
+----------------required-method" name="onSubscriptionForPatternRemoved_-
+----------------required-method">onSubscriptionForPatternRemoved: 
+                required method</h3>
+<p class="description"><p>If a provider has accepted a request, they will then be notified when the subscription is no longer needed so that they can stop providing</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>subscription</code> - The name of the subscription to stop providing</dd></dl>

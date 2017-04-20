@@ -1,0 +1,28 @@
+---
+title: Class PresenceHandler
+description: PresenceHandler
+navLabel: PresenceHandler
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--getAll-->
+<a name="getAll"></a>
+<h3 id="getAll" name="getAll">getAll</h3>
+<p class="description"><p>Queries for clients logged into deepstream</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>List
+                       a list of currently connected clients @throws
+                        DeepstreamError</dd></dl>
+<!--subscribe:-->
+<a name="subscribe_"></a>
+<h3 id="subscribe_" name="subscribe_">subscribe:</h3>
+<p class="description"><p>Subscribes to clients login/logout events</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>eventListener</code> - The listener that will be called with the username of the client and a boolean to indicated whether they logged in or out</dd></dl>
+<!--unsubscribe:-->
+<a name="unsubscribe_"></a>
+<h3 id="unsubscribe_" name="unsubscribe_">unsubscribe:</h3>
+<p class="description"><p>Removes the listener added via <code data-lang="swift" class="language-swift">PresenceHandler</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>eventListener</code> - The listener that will be called with the username of the client and a boolean to indicated whether they logged in or out</dd></dl>

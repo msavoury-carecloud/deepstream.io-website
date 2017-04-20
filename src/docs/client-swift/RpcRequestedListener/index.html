@@ -1,0 +1,20 @@
+---
+title: Class RpcRequestedListener
+description: RpcRequestedListener
+navLabel: RpcRequestedListener
+category: interface
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--onRPCRequested:data:response: 
+                required method-->
+<a name="onRPCRequested_data:response:-
+----------------required-method"></a>
+<h3 id="onRPCRequested_data:response:-
+----------------required-method" name="onRPCRequested_data:response:-
+----------------required-method">onRPCRequested:data:response: 
+                required method</h3>
+<p class="description"><p>This listener will be invoked whenever the client recieves an rpc request from the server, and will be able to respond via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RpcResponse">RpcResponse</a> .send(Object)</code>                      or <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RpcResponse">RpcResponse</a> .reject()</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>rpcName</code> - The name of the rpc being requested</dd><dd><code>data</code> - The data the request was made with</dd><dd><code>response</code> - The RpcResponse to respond to the request with</dd></dl>

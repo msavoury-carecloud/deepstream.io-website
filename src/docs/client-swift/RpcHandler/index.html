@@ -1,0 +1,55 @@
+---
+title: Class RpcHandler
+description: RpcHandler
+navLabel: RpcHandler
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--make:data:-->
+<a name="make_data:"></a>
+<h3 id="make_data:" name="make_data:">make:data:</h3>
+<p class="description"><p>Create a remote procedure call. This requires a rpc name for routing, a JSON serializable object for any associated arguments and a callback to notify you with the rpc result or potential error.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>rpcName</code> - The name of the rpc</dd><dd><code>data</code> - Serializable data that will be passed to the provider</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>Find out if the rpc succeeded via RpcResult .success() and associated data via RpcResult .getData()</dd></dl>
+<!--provide:rpcRequestedListener:-->
+<a name="provide_rpcRequestedListener:"></a>
+<h3 id="provide_rpcRequestedListener:" name="provide_rpcRequestedListener:">provide:rpcRequestedListener:</h3>
+<p class="description"><p>Registers a <code data-lang="swift" class="language-swift">RpcRequestedListener</code> as a RPC provider. If another connected client calls
+                      <code data-lang="swift" class="language-swift">RpcHandler.make(String,Object)</code> the request will be routed to the supplied listener.
+                      <br> Only one listener can be registered for a RPC at a time.
+                      <br> Please note: Deepstream tries to deliver data in its original format. Data passed to
+                      <code data-lang="swift" class="language-swift">RpcHandler.make(String,Object)</code> as a String will arrive as a String, numbers or implicitly JSON serialized objects will arrive in their respective format as well.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>rpcName</code> - The rpcName of the RPC to provide</dd><dd><code>rpcRequestedListener</code> - The listener to invoke when requests are received</dd></dl>
+<!--unprovide:-->
+<a name="unprovide_"></a>
+<h3 id="unprovide_" name="unprovide_">unprovide:</h3>
+<p class="description"><p>Unregister a <code data-lang="swift" class="language-swift">RpcRequestedListener</code> registered via Rpc<code data-lang="swift" class="language-swift">provide(String,<a href="../Protocols/RpcRequestedListener.html">RpcRequestedListener</a> )</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>rpcName</code> - The rpcName of the RPC to stop providing</dd></dl>
+<!--init:connection:client:-->
+<a name="init_connection:client:"></a>
+<h3 id="init_connection:client:" name="init_connection:client:">init:connection:client:</h3>
+<p class="description"><p>The main class for remote procedure calls Provides the rpc interface and handles incoming messages on the rpc topic</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>deepstreamConfig</code> - The deepstreamConfig the client was created with</dd><dd><code>connection</code> - The connection to deepstream</dd><dd><code>client</code> - The deepstream client</dd></dl>
+<!--handle:-->
+<a name="handle_"></a>
+<h3 id="handle_" name="handle_">handle:</h3>
+<p class="description"><p>Main interface. Handles incoming messages from the message distributor</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>message</code> - The message recieved from the server</dd></dl>
+<!--getRpc:raw:-->
+<a name="getRpc_raw:"></a>
+<h3 id="getRpc_raw:" name="getRpc_raw:">getRpc:raw:</h3>
+<p class="description"><p>Retrieves a RPC instance for a correlationId or throws an error if it can&#x2019;t be found (which should never happen)</p></p>
+
+<!--respondToRpc:-->
+<a name="respondToRpc_"></a>
+<h3 id="respondToRpc_" name="respondToRpc_">respondToRpc:</h3>
+<p class="description"><p>Handles incoming rpc REQUEST messages. Instantiates a new response object and invokes the provider callback or rejects the request if no rpc provider is present (which shouldn&#x2019;t really happen, but might be the result of a race
+                      condition if this client sends a unprovide message whilst an incoming request is already in flight)</p></p>
+
+<!--sendRPCSubscribe:-->
+<a name="sendRPCSubscribe_"></a>
+<h3 id="sendRPCSubscribe_" name="sendRPCSubscribe_">sendRPCSubscribe:</h3>
+<p class="description"><p>Send an unsubscribe or subscribe event if the connection is open</p></p>

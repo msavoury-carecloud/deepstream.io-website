@@ -1,0 +1,35 @@
+---
+title: Class Rpc
+description: Rpc
+navLabel: Rpc
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--init:client:rpcName:uid:callback:-->
+<a name="init_client:rpcName:uid:callback:"></a>
+<h3 id="init_client:rpcName:uid:callback:" name="init_client:rpcName:uid:callback:">init:client:rpcName:uid:callback:</h3>
+<p class="description"><p>An RPC represents a single remote procedure Request made from the client to the server. It&#x2019;s main function is to encapsulate the logic around timeouts and to convert the incoming response data</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>deepstreamConfig</code> - The deepstreamConfig the client was created with</dd><dd><code>client</code> - The deepstream client</dd><dd><code>rpcName</code> - The rpc name</dd><dd><code>uid</code> - The unique RPC identifier</dd><dd><code>callback</code> - The callb
+                            ack  when an RPC has been completed</dd></dl>
+<!--ack-->
+<a name="ack"></a>
+<h3 id="ack" name="ack">ack</h3>
+<p class="description"><p>Called once an ack message is received from the server.
+                      <br>
+                    </p></p>
+
+<!--error:err:-->
+<a name="error_err:"></a>
+<h3 id="error_err:" name="error_err:">error:err:</h3>
+<p class="description"><p>Callb
+                      <a href="#//api/name/ack">ack</a>  for error messages received from the server. Once an error is received the request is considered completed. Even if a response arrives later on it will be ignored / cause an UNSOLICITED_MESSAGE error</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>rpcName</code> - The rpc name</dd><dd><code>err</code> - The error
+                            Message  received from the server</dd></dl>
+<!--respond:data:-->
+<a name="respond_data:"></a>
+<h3 id="respond_data:" name="respond_data:">respond:data:</h3>
+<p class="description"><p>Called once a response message is received from the server. Converts the typed data and completes the request.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>rpcName</code> - The rpc name</dd><dd><code>data</code> - The data received from the server</dd></dl>

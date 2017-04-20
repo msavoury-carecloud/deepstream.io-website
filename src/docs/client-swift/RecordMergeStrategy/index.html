@@ -1,0 +1,25 @@
+---
+title: Class RecordMergeStrategy
+description: RecordMergeStrategy
+navLabel: RecordMergeStrategy
+category: interface
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--merge:remoteValue:remoteVersion: 
+                required method-->
+<a name="merge_remoteValue:remoteVersion:-
+----------------required-method"></a>
+<h3 id="merge_remoteValue:remoteVersion:-
+----------------required-method" name="merge_remoteValue:remoteVersion:-
+----------------required-method">merge:remoteValue:remoteVersion: 
+                required method</h3>
+<p class="description"><p>Whenever a version conflict occurs the
+                      <a href="/docs/client-swift/MergeStrategy">MergeStrategy</a>  set via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .set<a href="/docs/client-swift/MergeStrategy">MergeStrategy</a> (Record<a href="/docs/client-swift/MergeStrategy">MergeStrategy</a> )</code>                      will be called to merge the data and send the data back to the server.
+                      <br> This is mainly used for scenarios such as when working on very collaborative records where messages cross on the wire, or for connection drops where the client still updates records in an offline mode.
+                      <br> Throw an error if the merge fails, but keep in mind that this only means it will postpone the merge conflict until the next remote/local update.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>record</code> - The Record, used to retrieve the local Record .version and data via Record .get()</dd><dd><code>remoteValue</code> - The remote value on the server</dd><dd><code>remoteVersion</code> - The remote version on the server, used to find out if the remote is ahead of the local</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The merged value @throws
+                      RecordMergeStrategyException  Thrown if a merge conflict occurs, mainly if any dependent logic doesn’t work.</dd></dl>

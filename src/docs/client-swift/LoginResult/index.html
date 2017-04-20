@@ -1,0 +1,38 @@
+---
+title: Class LoginResult
+navLabel: LoginResult
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--getData-->
+<a name="getData"></a>
+<h3 id="getData" name="getData">getData</h3>
+<p class="description"><p>Return the data associated with login. If login was successful, this would be the user associated data. Otherwise data explaining the reason why it wasn&#x2019;t.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A
+                      JsonElement  containing the data recieved from the server during login</dd></dl>
+<!--getErrorEvent-->
+<a name="getErrorEvent"></a>
+<h3 id="getErrorEvent" name="getErrorEvent">getErrorEvent</h3>
+<p class="description"><p>The error message the server sent to explain why the client couldn&#x2019;t log in.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>an error event</dd></dl>
+<!--loggedIn-->
+<a name="loggedIn"></a>
+<h3 id="loggedIn" name="loggedIn">loggedIn</h3>
+<p class="description"><p>Whether or not the login occurred successfully</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if login was successful, false otherwise</dd></dl>
+<!--init:errorEvent:data:-->
+<a name="init_errorEvent:data:"></a>
+<h3 id="init_errorEvent:data:" name="init_errorEvent:data:">init:errorEvent:data:</h3>
+<p class="description"><p>Called when <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/DeepstreamClient">DeepstreamClient</a> .login(<a href="/docs/client-swift/JsonElement">JsonElement</a> )</code> is unsuccessful</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>loggedIn</code> - false</dd><dd><code>errorEvent</code> - error event</dd><dd><code>data</code> - Contains data associated to the failed login, such as the reason</dd></dl>
+<!--init:userData:-->
+<a name="init_userData:"></a>
+<h3 id="init_userData:" name="init_userData:">init:userData:</h3>
+<p class="description"><p>Called when <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/DeepstreamClient">DeepstreamClient</a> .login(<a href="/docs/client-swift/JsonElement">JsonElement</a> )</code> is successful</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>loggedIn</code> - true</dd><dd><code>userData</code> - Optional data that is specific to the user and returned on succesfuly authentication</dd></dl>

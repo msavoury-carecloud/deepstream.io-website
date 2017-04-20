@@ -1,0 +1,167 @@
+---
+title: Class List
+navLabel: List
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--addEntry:-->
+<a name="addEntry_"></a>
+<h3 id="addEntry_" name="addEntry_">addEntry:</h3>
+<p class="description"><p>Add an entry to the end of the list</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>entry_</code> - The entry to add to the list</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--addEntry:index:-->
+<a name="addEntry_index:"></a>
+<h3 id="addEntry_index:" name="addEntry_index:">addEntry:index:</h3>
+<p class="description"><p>Add an entry at a certain index into the list</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>entry_</code> - The entry to add to the list</dd><dd><code>index</code> - The index to add the entry to</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--addRecordEventsListener:-->
+<a name="addRecordEventsListener_"></a>
+<h3 id="addRecordEventsListener_" name="addRecordEventsListener_">addRecordEventsListener:</h3>
+<p class="description"><p>Adds a Listener that will notify you if a Discard, Delete or Error event occurs</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordEventsListener</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--discard-->
+<a name="discard"></a>
+<h3 id="discard" name="discard">discard</h3>
+<p class="description"><p>Discard the List. This should be called whenever you are done with the List retrieved by <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getList(String)</code>. This does not
+                      guarantee that your subscriptions have been unsubscribed, so make sure to do that first!
+                      <br> If all usages of the same List have been discarded, the List will no longer be updated from the server and any further usages will require the List to be retrieved again via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getList(String)</code>
+                      <br>
+                    </p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list @throws
+                      DeepstreamRecordDestroyedException  Thrown if the list has been destroyed and can’t perform more actions</dd></dl>
+<!--getEntries-->
+<a name="getEntries"></a>
+<h3 id="getEntries" name="getEntries">getEntries</h3>
+<p class="description"><p>Returns the array of list entries or an empty array if the list hasn&#x2019;t been populated yet.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A List containing all the recordNames</dd></dl>
+<!--isDestroyed-->
+<a name="isDestroyed"></a>
+<h3 id="isDestroyed" name="isDestroyed">isDestroyed</h3>
+<p class="description"><p>Return whether the list has been destroyed. If true and you need to use the method create it again via
+                      <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getList(String)</code> (String)}</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if list has been destroyed</dd></dl>
+<!--isEmpty-->
+<a name="isEmpty"></a>
+<h3 id="isEmpty" name="isEmpty">isEmpty</h3>
+<p class="description"><p>Returns true if the list is empty</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if this list contains no elements</dd></dl>
+<!--isReady-->
+<a name="isReady"></a>
+<h3 id="isReady" name="isReady">isReady</h3>
+<p class="description"><p>Return whether the list data has been loaded from the server</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>true if record has been loaded</dd></dl>
+<!--name-->
+<a name="name"></a>
+<h3 id="name" name="name">name</h3>
+<p class="description"><p>Return the list name</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list name</dd></dl>
+<!--removeEntry:-->
+<a name="removeEntry_"></a>
+<h3 id="removeEntry_" name="removeEntry_">removeEntry:</h3>
+<p class="description"><p>Removes the first occurrence of an entry from the list</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>entry_</code> - The entry to remove from the list</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--removeEntry:index:-->
+<a name="removeEntry_index:"></a>
+<h3 id="removeEntry_index:" name="removeEntry_index:">removeEntry:index:</h3>
+<p class="description"><p>Removes an entry from the list if it resides at a specific index</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>entry_</code> - The entry to remove from the list</dd><dd><code>index</code> - The index at which the entry should reside at</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--removeRecordEventsListener:-->
+<a name="removeRecordEventsListener_"></a>
+<h3 id="removeRecordEventsListener_" name="removeRecordEventsListener_">removeRecordEventsListener:</h3>
+<p class="description"><p>Remove listener added via <code data-lang="swift" class="language-swift">List.add<a href="../Protocols/RecordEventsListener.html">RecordEventsListener</a> (<a href="../Protocols/RecordEventsListener.html">RecordEventsListener</a> )</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordEventsListener</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--setEntries:-->
+<a name="setEntries_"></a>
+<h3 id="setEntries_" name="setEntries_">setEntries:</h3>
+<p class="description"><p>Updates the list with a new set of entries</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>entries</code> - The recordNames to update the list with</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--subscribe:-->
+<a name="subscribe_"></a>
+<h3 id="subscribe_" name="subscribe_">subscribe:</h3>
+<p class="description"><p>Notifies the user whenever the list has changed</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>listChangedListener</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--subscribe:triggerNow:-->
+<a name="subscribe_triggerNow:"></a>
+<h3 id="subscribe_triggerNow:" name="subscribe_triggerNow:">subscribe:triggerNow:</h3>
+<p class="description"><p>Notifies the user whenever the list has changed, and notifies immediately if triggerNow is true</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>listChangedListener</code> - The listener to add</dd><dd><code>triggerNow</code> - Whether to trigger the listener immediately</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--subscribeToListEntryChange:-->
+<a name="subscribeToListEntryChange_"></a>
+<h3 id="subscribeToListEntryChange_" name="subscribeToListEntryChange_">subscribeToListEntryChange:</h3>
+<p class="description"><p>Notifies the user whenever the list has changed</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>listEntryChangedListener</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--unsubscribe:-->
+<a name="unsubscribe_"></a>
+<h3 id="unsubscribe_" name="unsubscribe_">unsubscribe:</h3>
+<p class="description"><p>Removes the listener added via <code data-lang="swift" class="language-swift">List.subscribe(<a href="../Protocols/ListChangedListener.html">ListChangedListener</a>,boolean)</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>listChangedListener</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--unsubscribeToListEntryChange:-->
+<a name="unsubscribeToListEntryChange_"></a>
+<h3 id="unsubscribeToListEntryChange_" name="unsubscribeToListEntryChange_">unsubscribeToListEntryChange:</h3>
+<p class="description"><p>Removes the listener added via <code data-lang="swift" class="language-swift">List.subscribe(<a href="../Protocols/ListChangedListener.html">ListChangedListener</a>,boolean)</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>listEntryChangedListener</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The list</dd></dl>
+<!--version-->
+<a name="version"></a>
+<h3 id="version" name="version">version</h3>
+<p class="description"><p>Return the list version. This is solely used within a <code data-lang="swift" class="language-swift">RecordMergeStrategy</code>.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>-1 if not loaded, otherwise the local version number</dd></dl>
+<!--init:name:-->
+<a name="init_name:"></a>
+<h3 id="init_name:" name="init_name:">init:name:</h3>
+<p class="description"><p>Constructor is not public since it is created via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getList(String)</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordHandler</code> - The recordHandler to get the underlying record</dd><dd><code>name</code> - The list
+                            name</dd></dl>
+<!--getUnderlyingRecord-->
+<a name="getUnderlyingRecord"></a>
+<h3 id="getUnderlyingRecord" name="getUnderlyingRecord">getUnderlyingRecord</h3>
+<p class="description"><p>Returns the underlying record, used with the ready handler to allow the API to be sync</p></p>
+
+<!--getEntriesArrayList-->
+<a name="getEntriesArrayList"></a>
+<h3 id="getEntriesArrayList" name="getEntriesArrayList">getEntriesArrayList</h3>
+<p class="description"><p>Returns the array of list entries or an empty array if the list hasn&#x2019;t been populated yet.</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>A List containing all the recordNames</dd></dl>
+<!--updateList:-->
+<a name="updateList_"></a>
+<h3 id="updateList_" name="updateList_">updateList:</h3>
+<p class="description"><p>Useful entry point for diffing previous list and new one to get entries added, removed and moved</p></p>
+
+<!--beforeChange-->
+<a name="beforeChange"></a>
+<h3 id="beforeChange" name="beforeChange">beforeChange</h3>
+<p class="description"><p>Establishes the current structure of the list, provided the client has attached any add / move / remove listener This will be called before any change to the list, regardsless if the change was triggered by an incoming message from
+                      the server or by the client</p></p>
+
+<!--afterChangeWithJavaUtilMap:-->
+<a name="afterChangeWithJavaUtilMap_"></a>
+<h3 id="afterChangeWithJavaUtilMap_" name="afterChangeWithJavaUtilMap_">afterChangeWithJavaUtilMap:</h3>
+<p class="description"><p>Compares the structure of the list after a change to its previous structure and notifies any add / move / remove listener. Won&#x2019;t do anything if no listeners are attached.</p></p>
+
+<!--getStructure-->
+<a name="getStructure"></a>
+<h3 id="getStructure" name="getStructure">getStructure</h3>
+<p class="description"><p>Iterates through the list and creates a map with the entry as a key and an array of its position(s) within the list as a value, e.g . { &#x2018;recordA&#x2019;: [ 0, 3 ], &#x2018;recordB&#x2019;: [ 1 ], &#x2018;recordC&#x2019;: [ 2 ] }
+                    </p></p>

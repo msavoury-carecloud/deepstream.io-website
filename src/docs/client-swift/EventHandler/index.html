@@ -1,0 +1,43 @@
+---
+title: Class EventHandler
+description: EventHandler
+navLabel: EventHandler
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--emit:-->
+<a name="emit_"></a>
+<h3 id="emit_" name="emit_">emit:</h3>
+<p class="description"><ul>
+                      <li>seealso: EventHandler</li>
+                    </ul></p>
+
+<!--emit:data:-->
+<a name="emit_data:"></a>
+<h3 id="emit_data:" name="emit_data:">emit:data:</h3>
+<p class="description"><p>Emit an event that you want all subscribers, both local and remote to be informed of. You can provide any object that can be serialised to json</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>eventName</code> - the event name</dd><dd><code>data</code> - the data to serialise and send with the event</dd></dl>
+<!--listen:listenListener:-->
+<a name="listen_listenListener:"></a>
+<h3 id="listen_listenListener:" name="listen_listenListener:">listen:listenListener:</h3>
+<p class="description"><p>Listen to any subscriptions that have been made on the system that match the provided pattern. If that subscription is found it will give the client the opportunity to accept the role of being the provider, or rejecting it to pass
+                      responsibility to someone else.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>pattern</code> - The pattern to match, must be valid regex</dd><dd><code>listenListener</code> - The listener to inform the client when a subscription has been found or removed</dd></dl>
+<!--subscribe:eventListener:-->
+<a name="subscribe_eventListener:"></a>
+<h3 id="subscribe_eventListener:" name="subscribe_eventListener:">subscribe:eventListener:</h3>
+<p class="description"><p>Subscribes to eventName and notifies the listener via <code data-lang="swift" class="language-swift">EventListener</code> whenever it occurs locally or remotely</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>eventName</code> - The event name</dd><dd><code>eventListener</code> - The eventListener</dd></dl>
+<!--unlisten:-->
+<a name="unlisten_"></a>
+<h3 id="unlisten_" name="unlisten_">unlisten:</h3>
+<p class="description"><p>Remove the listener added via <code data-lang="swift" class="language-swift">EventHandler</code>, this will remove the provider as the active provider and allow another provider to take its place</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>pattern</code> - The pattern that has been previously listened to</dd></dl>
+<!--unsubscribe:eventListener:-->
+<a name="unsubscribe_eventListener:"></a>
+<h3 id="unsubscribe_eventListener:" name="unsubscribe_eventListener:">unsubscribe:eventListener:</h3>
+<p class="description"><p>Removes the listener added via <code data-lang="swift" class="language-swift">EventHandler</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>eventName</code> - The event name</dd><dd><code>eventListener</code> - The listener that was previous added</dd></dl>

@@ -1,0 +1,22 @@
+---
+title: Class DeepstreamRuntimeErrorHandler
+description: DeepstreamRuntimeErrorHandler
+navLabel: DeepstreamRuntimeErrorHandler
+category: interface
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--onException:event:errorMessage: 
+                required method-->
+<a name="onException_event:errorMessage:-
+----------------required-method"></a>
+<h3 id="onException_event:errorMessage:-
+----------------required-method" name="onException_event:errorMessage:-
+----------------required-method">onException:event:errorMessage: 
+                required method</h3>
+<p class="description"><p>Triggered whenever a runtime error occurs ( mostly async such as TimeOuts or MergeConflicts ). Recieves a topic to indicate if it was e.g. RPC, event and a english error message to simplify debugging purposes.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>topic</code> - The
+                            Topic  the error occured on</dd><dd><code>event</code> - The Error
+                            Event</dd><dd><code>errorMessage</code> - The error message</dd></dl>

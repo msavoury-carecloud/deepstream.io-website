@@ -1,0 +1,145 @@
+---
+title: Class AnonymousRecord
+description: AnonymousRecord
+navLabel: AnonymousRecord
+category: class
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--addRecordEventsListener:-->
+<a name="addRecordEventsListener_"></a>
+<h3 id="addRecordEventsListener_" name="addRecordEventsListener_">addRecordEventsListener:</h3>
+<p class="description"><p>Proxies the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .addRecordEventsListener</code> method. The same parameters can be used. Can be called prior to <code data-lang="swift" class="language-swift">Anonymous<a href="/docs/client-swift/Record">Record</a> .setName</code>).</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordEventListener</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--addRecordNameChangedListener:-->
+<a name="addRecordNameChangedListener_"></a>
+<h3 id="addRecordNameChangedListener_" name="addRecordNameChangedListener_">addRecordNameChangedListener:</h3>
+<p class="description"><p>Add a callback to be notified whenever <code data-lang="swift" class="language-swift">Anonymous<a href="/docs/client-swift/Record">Record</a> .setName(String)</code> is called.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>anonymousRecordNameChangedCallback</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--delete-->
+<a name="delete"></a>
+<h3 id="delete" name="delete">delete</h3>
+<p class="description"><p>Proxies to the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .delete()</code> method. If a record does not exist it will throw a <code data-lang="swift" class="language-swift">AnonymousRecordUninitialized</code>                      exception</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--discard-->
+<a name="discard"></a>
+<h3 id="discard" name="discard">discard</h3>
+<p class="description"><p>Proxies to the actual<code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .discard()</code> method. If a record does not exist it will throw a <code data-lang="swift" class="language-swift">AnonymousRecordUninitialized</code>                      exception</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--get-->
+<a name="get"></a>
+<h3 id="get" name="get">get</h3>
+<p class="description"><p>Proxies to the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .get()</code> method. It is valid to call get prior to setName - if no record exists, the method returns null</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The
+                      JsonElement</dd></dl>
+<!--get:-->
+<a name="get_"></a>
+<h3 id="get_" name="get_">get:</h3>
+<p class="description"><p>Proxies to the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .<a href="#//api/name/get">get</a> (String)</code> method. It is valid to call
+                      <a href="#//api/name/get">get</a>  prior to setName - if no record exists, the method returns null</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path to retrieve</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The
+                      JsonElement</dd></dl>
+<!--name-->
+<a name="name"></a>
+<h3 id="name" name="name">name</h3>
+<p class="description"><p>The record name the anonymous record is currently referring to</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>the name of the record being represented</dd></dl>
+<!--removeRecordEventsListener:-->
+<a name="removeRecordEventsListener_"></a>
+<h3 id="removeRecordEventsListener_" name="removeRecordEventsListener_">removeRecordEventsListener:</h3>
+<p class="description"><p>Proxies the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .removeRecordEventsListener</code> method. The same parameters can be used. Can be called prior to <code data-lang="swift" class="language-swift">Anonymous<a href="/docs/client-swift/Record">Record</a> .setName</code>).</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordEventListener</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--removeRecordNameChangedCallback:-->
+<a name="removeRecordNameChangedCallback_"></a>
+<h3 id="removeRecordNameChangedCallback_" name="removeRecordNameChangedCallback_">removeRecordNameChangedCallback:</h3>
+<p class="description"><p>Remove a callback used to be notified whenever <code data-lang="swift" class="language-swift">Anonymous<a href="/docs/client-swift/Record">Record</a> .setName(String)</code> is called.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>anonymousRecordNameChangedCallback</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--set:-->
+<a name="set_"></a>
+<h3 id="set_" name="set_">set:</h3>
+<p class="description"><p>Proxies to the actual<code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .set(<a href="/docs/client-swift/JsonElement">JsonElement</a> )</code> method. It is valid to call
+                      <a href="#//api/name/get">get</a>  prior to setName - if no record exists, the method returns null</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--set:Object:-->
+<a name="set_Object:"></a>
+<h3 id="set_Object:" name="set_Object:">set:Object:</h3>
+<p class="description"><p>Proxies to the actual<code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .set(String,Object)</code> method. It is valid to call
+                      <a href="#//api/name/get">get</a>  prior to setName - if no record exists, the method returns null</p></p>
+<dl><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--setName:-->
+<a name="setName_"></a>
+<h3 id="setName_" name="setName_">setName:</h3>
+<p class="description"><p>Sets the underlying record the anonymous record is bound to. Can be called multiple times.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordName</code> - The
+                            name  of the underlying record to use</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--subscribe:-->
+<a name="subscribe_"></a>
+<h3 id="subscribe_" name="subscribe_">subscribe:</h3>
+<p class="description"><ul>
+                      <li>see also: AnonymousRecord#subscribe</li>
+                    </ul></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordChangedCallback</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--subscribe:recordPathChangedCallback:-->
+<a name="subscribe_recordPathChangedCallback:"></a>
+<h3 id="subscribe_recordPathChangedCallback:" name="subscribe_recordPathChangedCallback:">subscribe:recordPathChangedCallback:</h3>
+<p class="description"><p>Proxies the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .subscribe</code> method. The same parameters can be used. Can be called prior to <code data-lang="swift" class="language-swift">Anonymous<a href="/docs/client-swift/Record">Record</a> .setName</code>).
+                      Please note, triggerIfReady will always be set to true to reflect changes in the underlying record.</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path to listen to</dd><dd><code>recordPathChangedCallback</code> - The listener to add</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--unsubscribe:-->
+<a name="unsubscribe_"></a>
+<h3 id="unsubscribe_" name="unsubscribe_">unsubscribe:</h3>
+<p class="description"><ul>
+                      <li>see also: AnonymousRecord#unsubscribe</li>
+                    </ul></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordChangedCallback</code> - The listener to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--unsubscribe:recordPathChangedCallback:-->
+<a name="unsubscribe_recordPathChangedCallback:"></a>
+<h3 id="unsubscribe_recordPathChangedCallback:" name="unsubscribe_recordPathChangedCallback:">unsubscribe:recordPathChangedCallback:</h3>
+<p class="description"><p>Proxies the actual <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .unsubscribe</code> method. The same parameters can be used. Can be called prior to <code data-lang="swift" class="language-swift">Anonymous<a href="/docs/client-swift/Record">Record</a> .setName</code>).</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>path</code> - The path to unlisten to</dd><dd><code>recordPathChangedCallback</code> - The listen to remove</dd><dt><span class="returnLabel">Returns:</span></dt>
+		<dd>The Anonymous
+                      Record</dd></dl>
+<!--init:-->
+<a name="init_"></a>
+<h3 id="init_" name="init_">init:</h3>
+<p class="description"><p>This constructor is called by the <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/RecordHandler">RecordHandler</a> .getAnonymous<a href="/docs/client-swift/Record">Record</a> ()</code></p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordHandler</code> - The recordHandler used to
+                            get  record instances</dd></dl>
+<!--subscribeRecord-->
+<a name="subscribeRecord"></a>
+<h3 id="subscribeRecord" name="subscribeRecord">subscribeRecord</h3>
+<p class="description"><p>Subscribe all callbacks to current record</p></p>
+
+<!--unsubscribeRecord-->
+<a name="unsubscribeRecord"></a>
+<h3 id="unsubscribeRecord" name="unsubscribeRecord">unsubscribeRecord</h3>
+<p class="description"><p>Unsubscribe all callbacks from current record</p></p>

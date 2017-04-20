@@ -1,0 +1,21 @@
+---
+title: Class RecordChangedCallback
+description: RecordChangedCallback
+navLabel: RecordChangedCallback
+category: interface
+body_class: dark
+---
+
+<h2>Methods</h2>
+
+<!--onRecordChanged:data: 
+                required method-->
+<a name="onRecordChanged_data:-
+----------------required-method"></a>
+<h3 id="onRecordChanged_data:-
+----------------required-method" name="onRecordChanged_data:-
+----------------required-method">onRecordChanged:data: 
+                required method</h3>
+<p class="description"><p>Called when the listener is added via <code data-lang="swift" class="language-swift"><a href="/docs/client-swift/Record">Record</a> .subscribe(RecordChangedCallback,boolean)</code>
+                      <br> Will contain the entire record data, regardless of whether triggered by a Patch or Update</p></p>
+<dl><dt><span class="paramLabel">Parameters:</span></dt><dd><code>recordName</code> - The name of the record change</dd><dd><code>data</code> - The entire data as a JsonElement, can be retrieved via JsonElement .getAsJsonObject ()</dd></dl>
