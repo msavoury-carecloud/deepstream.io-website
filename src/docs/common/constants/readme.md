@@ -6,8 +6,15 @@ description: A list of all constants deepstream uses
 Constants are used throughout deepstream. They can be accessed via the module.
 
 ```javascript
-const deepstream = require('deepstream.io-client-js')
-deepstream.CONSTANTS
+// client
+const {
+  CONSTANTS
+} = require('deepstream.io-client-js');
+
+// server
+const {
+  constants
+} = require('deepstream.io');
 ```
 
 ## General
