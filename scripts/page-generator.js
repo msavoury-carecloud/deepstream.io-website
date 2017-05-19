@@ -104,6 +104,14 @@ module.exports = function( metalsmith ) {
 					files[ filePath ] = file;
 				}
 
+				if( file.filename.match( 'index.html' ) && file.filename.indexOf('docs/client-swift/') !== -1) {
+					delete files[ filePath ];
+					filePath = file.filename.replace( 'index.html', `${fileName}.html` );
+					file.filename = file.filename.replace( 'index.html', `${fileName}.html` );
+					files[ filePath ] = file;
+				}
+
+
 				if( !file.filename.match( 'index.md|index.html' ) ) {
 					filePath = filePath.replace( `readme.md`, `${fileName}.md` )
 					filePath = filePath.replace( `${fileName}.md`, 'index.md' )
