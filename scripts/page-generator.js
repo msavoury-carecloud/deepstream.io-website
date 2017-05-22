@@ -99,30 +99,9 @@ module.exports = function( metalsmith ) {
 
 				if( file.filename.match( 'readme.md' ) ) {
 					delete files[ filePath ];
-					filePath = file.filename.replace( 'readme.md', `${fileName}.md` );
-					file.filename = file.filename.replace( 'readme.md', `${fileName}.md` );
+					filePath = file.filename.replace( 'readme.md', `index.md` );
+					file.filename = file.filename.replace( 'readme.md', `index.md` );
 					files[ filePath ] = file;
-				}
-
-				if( file.filename.match( 'index.html' ) && file.filename.indexOf('docs/client-swift/') !== -1) {
-					delete files[ filePath ];
-					filePath = file.filename.replace( 'index.html', `${fileName}.html` );
-					file.filename = file.filename.replace( 'index.html', `${fileName}.html` );
-					files[ filePath ] = file;
-				}
-
-
-				if( !file.filename.match( 'index.md|index.html' ) ) {
-					filePath = filePath.replace( `readme.md`, `${fileName}.md` )
-					filePath = filePath.replace( `${fileName}.md`, 'index.md' )
-					filePath = filePath.replace( `${fileName}.html`, 'index.html' )
-					filePath = filePath.replace( `install.html`, 'index.html' ) //TODO
-
-					files[ filePath ] = {};
-					merge( files[ filePath ], file, data );
-					files[ filePath ].filename = filePath
-					files[ filePath ].contents = new Buffer( file.contents )
-
 				}
 
 				// Merge meta data for levels

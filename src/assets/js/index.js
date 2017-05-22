@@ -173,54 +173,6 @@ $(function(){
     $( '.sub-section-toggle' ).click(function(){
         $(this).parent().toggleClass( 'open' );
     });
-
-    $( '.tree-nav .entry a' ).click(function( e ){
-        e.preventDefault();
-        var pathname = $(this).attr( 'href' );
-        window._history.push( {
-            pathname: pathname,
-            state: {
-                realPathname: pathname + getBaseName( pathname ) + '.html',
-            }
-        } );
-    });
-
-    var unlisten = window._history.listen(function(location) {
-        var pathname = (location.state || {}).realPathname
-        if (pathname == null) {
-            // the first page visit didn't set the state
-            // so recover the ajax page from its basename
-            pathname = location.pathname + getBaseName(location.pathname) + '.html'
-        }
-        changeEntryPage( {
-            pathname: pathname
-        } );
-    })
-
-    function changeEntryPage( location ) {
-        var dirname = getDirname(location.pathname);
-        var link = $( '.tree-nav [href="' + dirname + '"]' )
-        $( '.entry .active' ).removeClass( 'active' );
-
-        link.parent().addClass( 'active' );
-
-        // ensure that the subsection is open when navigating via browser history
-        link.parents('.sub-section-container').addClass('open')
-
-        $( '.col.right .header h1' ).text( link.text() );
-        $.get( location.pathname, function( result ){
-
-            //TODO Error handling
-            $( '.breadcrumbs span:last-child' ).text( link.text() );
-            $( '.col.big.right .content' ).html( result );
-
-            $('.content pre code').each(function(i, block) {
-                Prism.highlightElement( block );
-            });
-
-            updateDownloadLinks();
-        });
-    };
 });
 
 function updateDownloadLinks() {
