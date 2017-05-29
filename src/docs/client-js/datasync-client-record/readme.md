@@ -133,6 +133,51 @@ client.record.snapshot('user/johndoe', (error, data) => {
 })
 ```
 
+### client.record.setData(name, path, data, callback)
+```
+{{#table mode="api"}}
+-
+  arg: name
+  typ: String
+  opt: false
+  des: The name of the record.
+-
+  arg: path
+  typ: String
+  opt: true
+  des: The path of the record to set data.
+-
+  arg: data
+  typ: Various
+  opt: false
+  des: The data to set on the record.
+-
+  arg: callback
+  typ: Function
+  opt: true
+  des: Arguments are (String) error
+{{/table}}
+```
+An upsert operation that allows updating of a record without being subscribed to it (available from deepstream.io version `2.3.0` and deepstream.io-client-js version `2.2.0`). If the record does not exist deepstream will try and permission the request to create the record. The callback if provided will be called with any errors that occurred while writing to the record.
+
+```javascript
+// Set the entire record's data - record will be created if it doesn't exist
+client.record.setData('user/homer', { status: 'married' })
+
+// Update only marriage status
+record.set('user/homer', 'status', 'single')
+
+// Set the entire record's data with write acknowledgement
+client.record.setData('user/homer', { status: 'married' }, (error) => {
+  // ...
+})
+
+// Update only a property with write acknowledgement
+client.record.setData('user/homer', 'son', 'Bart', (err) => {
+  // ...
+})
+```
+
 ### client.record.listen(pattern, callback)
 ```
 {{#table mode="api"}}
