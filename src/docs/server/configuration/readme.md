@@ -30,29 +30,6 @@ When starting, a server can show the deepstream logo. This setting is best left 
 _Default_: `true`
 
 
-## Connectivity and Networking
-
-In this section you can change networking details.
-
-```yaml
-# connectivity and network settings with default values
-port: 6020
-host: 0.0.0.0
-urlPath: /deepstream
-```
-
-### port
-Sets the port for the HTTP and Websocket server.<br>
-_Default_: `6020`
-
-### host
-Sets the host for the HTTP and Websocket server.<br>
-_Default_: `0.0.0.0`
-
-### urlPath
-Sets which URL path Websocket connections should connect to.<br>
-_Default_: `/deepstream`
-
 ## SSL Configuration
 
 deepstream can be configured to encrypt connections and you can provide the
@@ -83,6 +60,74 @@ _Default_: `null`
 The path to your SSL certificate authority file.<br>
 _Default_: `null`
 
+
+## Connection Endpoint Configuration
+
+Deepstream (v2.3.0 and later) can be configured with custom connection endpoints. A (locally
+unique) identifier, typically the transport type, is listed below the `connectionEndpoints` key
+e.g. 'tcp'. Below that, either a path to the endpoint or a name is listed. Endpoint options can
+also be specified. 
+```yaml
+connectionEndpoints:
+  websocket:
+    name: uws
+    options:
+      port: 6020
+      host: 0.0.0.0
+```
+
+The special 'uws'(µWebSockets) endpoint configures the built-in endpoint. To avoid starting it,
+null the 'websocket' key as follows:
+```uws
+  websocket: null
+```
+
+### µWebSockets
+The uws endpoint has the following options:
+
+#### port
+Sets the port for the HTTP healthcheck and Websocket server.<br>
+_Default_: `6020`
+
+#### host
+Sets the host for the HTTP healthcheck and Websocket server.<br>
+_Default_: `0.0.0.0`
+
+#### urlPath
+Sets which URL path Websocket connections should connect to.<br>
+_Default_: `/deepstream`
+
+#### healthCheckPath
+URL path for HTTP health-checks, GET requests to this path will return 200 if deepstream is alive.
+<br>
+_Default_: `/health-check`
+
+#### heartbeatInterval
+The number of milliseconds between each ping/heartbeat message. <br>
+_Default_: `30000`
+
+#### unauthenticatedClientTimeout
+The amount of time a connection can remain open while not being logged in. <br>
+_Default_: `180000`
+
+#### maxAuthAttempts
+Invalid login attempts before the connection is cut. <br>
+_Default_: `3`
+
+#### logInvalidAuthData
+Controls whether logs should contain the cleartext usernames and passwords of invalid login
+attempts.<br>
+_Default_: false
+
+#### maxMessageSize
+Sets the maximum message size allowed to be sent to the server (in bytes).<br>
+_Default_: `1048576`
+
+### outgoingBufferTimeout
+The amount of milliseconds that secondary writes to sockets are buffered. This means
+writes that are not realtime critical, which currently are either ACKs or 
+non critical ERROR messages.<br>
+_Default_: `0`
 
 ## Plugin Configuration
 
@@ -126,43 +171,29 @@ logger:
 ```
 
 ### colors
-Sets whether the server's logs should output in color. This will look great in a console, but will leave color markers in log files if you redirect the output into a file.<br>
+Sets whether the server's logs should output in color. This will look great in a console, but will
+leave color markers in log files if you redirect the output into a file.<br>
 _Default_: `true`
 
 ### logLevel
-Sets at what level and above the server should log messages. Valid levels are `DEBUG`, `INFO`, `WARN`, `ERROR`, and `OFF`.<br>
+Sets at what level and above the server should log messages. Valid levels are `DEBUG`, `INFO`,
+`WARN`, `ERROR`, and `OFF`.<br>
 _Default_: `INFO`
 
 
 ## Storage Options
 
 ### storageExclusion
-A regular expression that - if it matches a recordname - will prevent the record from being stored in the database.<br>
+A regular expression that - if it matches a recordname - will prevent the record from being stored
+in the database.<br>
 _Default_: `null`
 
-
-## Security
-
-In this section you can configure security settings for access and communication.
-
-```yaml
-# Security options with default values
-maxAuthAttempts: 3
-logInvalidAuthData: true
-maxMessageSize: 1048576
-```
-
-#### maxAuthAttempts
-The number of invalid login attempts before the connection to the server is closed.<br>
-_Default_: `3`
-
-### logInvalidAuthData
-Sets if logs should contain the cleartext usernames and passwords of invalid login attempts.<br>
-_Default_: `true`
-
-### maxMessageSize
-Sets the maximum message size allowed to be sent to the server (in bytes).<br>
-_Default_: `1048576`
+###storageHotPathPatterns:
+A list of prefixes that designate a record for direct writes to storage. 
+When a correctly permissioned matching record is updated via `setData()`, it will be written
+directly to the cache and storage without a record transition. This can be up to twice as fast as
+updating a normal record using `setData()`<br>
+_Default_: `[]`
 
 
 ## Authentication
