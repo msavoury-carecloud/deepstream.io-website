@@ -460,6 +460,57 @@ h1.post-title {
 	border-bottom: 10px solid #0EA9D5;
 }
 
+.logo-container {
+	margin: 8px 0 4px 0;
+}
+
+.deepstreamhub-logo {
+	width: 220px;
+}
+
+.sign-up-btn {
+	display: inline-block;
+	border: 1px solid rgba( 255, 255, 255, 0.8 );
+	background: #0EA9D5;
+	color: white;
+	padding: 6px 56px;
+	border-radius: 3px;
+	margin: 13px 0 13px 0;
+	cursor: pointer;
+	transition: all 400ms ease;
+}
+
+.auth-signup-btn {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 6px 0px 6px 19px;
+    width: 49%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    margin: 13px 0 13px 0;
+}
+
+.auth-signup-btn:hover {
+	background-image:none;
+	background-color: #0EA9D5;
+	color: white;
+	cursor: pointer;
+	transition: all 400ms ease;
+}
+
+.auth-signup-btn:hover i{
+	color: white;
+	transition: all 400ms ease;
+}
+
+.fa.fa-google, .fa.fa-github { 
+	position: absolute;
+    font-size: 17px;
+    left: 15px;
+    top: 12px;
+}
+
 @media ( min-width: 1200px ) {
 	.blog-sidebar {
 		position: absolute;
