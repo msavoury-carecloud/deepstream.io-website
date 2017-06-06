@@ -1,0 +1,141 @@
+.blog-sidebar {
+	width: 250px;
+}
+
+.sidebar-item-header, .blog-sidebar .latest-blogs-header {
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 600;
+}
+
+.sidebar-item {
+	margin: 60px 20px 0px -10px;
+	padding: 10px;
+	position: fixed;
+	background-color: #f0f9fc;
+}
+
+.sidebar-item, .sidebar-item *{
+	color: #145068;
+	font-family: 'Roboto';
+	font-size: 16px;
+	line-height: 28px;
+	font-weight: 300;
+}
+
+
+.sidebar-item .deepstream-star{
+	background-color: #0EA9D5;
+	position: absolute;
+	top: 100%;
+	margin-top: 10px;
+	left: 0;
+	padding: 12px;
+	transition: all 400ms ease-out;
+}
+
+.sidebar-item .deepstream-star, .sidebar-item .deepstream-star *{
+	color: #fff;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 400;
+}
+
+.deepstream-star a{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.sidebar-item .deepstream-star a:hover{
+	color: #ddd;
+}
+
+.sidebar-item .deepstream-star.start{
+	margin-top: 40px;
+	opacity: 0;
+}
+
+.deepstream-star .icon{
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    margin-right: 12px;
+}
+
+.deepstream-star .tip{
+	position: absolute;
+	top: -10px;
+	left: 20px;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #0EA9D5;
+}
+
+.logo-container {
+	margin: 8px 0 4px 0;
+}
+
+.deepstreamhub-logo {
+	width: 220px;
+}
+
+.sign-up-btn {
+	display: inline-block;
+	border: 1px solid rgba( 255, 255, 255, 0.8 );
+	background: #0EA9D5;
+	color: white;
+	padding: 6px 86px;
+	border-radius: 3px;
+	margin: 13px 0 13px 0;
+	cursor: pointer;
+	transition: all 400ms ease;
+}
+
+.auth-signup-btn {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 6px 0px 6px 19px;
+    width: 49%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    margin: 13px 0 13px 0;
+}
+
+.auth-signup-btn:hover {
+	background-image:none;
+	background-color: #0EA9D5;
+	color: white;
+	cursor: pointer;
+	transition: all 400ms ease;
+}
+
+.auth-signup-btn:hover i{
+	color: white;
+	transition: all 400ms ease;
+}
+
+.fa.fa-google, .fa.fa-github { 
+	position: absolute;
+    font-size: 17px;
+    left: 15px;
+    top: 12px;
+}
+
+@media ( min-width: 1600px ) {
+	.blog-sidebar {
+		position: absolute;
+		right: 10px;
+		top: 0;
+	}
+}
+
+@media ( max-width: 1199px ) {
+	.sidebar-item {
+		width: 250px;
+		display: inline-block;
+		vertical-align: top;
+	}
+}
