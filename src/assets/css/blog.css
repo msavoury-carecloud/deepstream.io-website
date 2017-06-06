@@ -464,9 +464,6 @@ h1.post-title {
 	margin: 8px 0 4px 0;
 }
 
-.deepstreamhub-logo {
-	width: 220px;
-}
 
 .sign-up-btn {
 	display: inline-block;
@@ -521,9 +518,7 @@ h1.post-title {
 
 @media ( max-width: 1199px ) {
 	.sidebar-item {
-		width: 250px;
-		display: inline-block;
-		vertical-align: top;
+		display: none;
 	}
 }
 
