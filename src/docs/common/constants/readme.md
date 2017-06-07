@@ -167,6 +167,8 @@ meta:
     header: *COLS
 columns: *COLS
 list:
+- ACTIONS.PING | PI | ✔ |   |
+- ACTIONS.PONG | PO |   | ✔ |
 - ACTIONS.ACK | A | ✔ | ✔ |
 - ACTIONS.READ | R | ✔ | ✔ |
 - ACTIONS.REDIRECT | RED |  | ✔ |
