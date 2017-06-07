@@ -113,7 +113,7 @@
 	transition: all 400ms ease;
 }
 
-.fa.fa-google, .fa.fa-github { 
+.fa.fa-google, .fa.fa-github {
 	position: absolute;
     font-size: 17px;
     left: 15px;
@@ -128,7 +128,7 @@
 	}
 }
 
-@media ( max-width: 1199px ) {
+@media ( max-width: 1600px ) {
 	.sidebar-item {
 		display: none;
 	}
