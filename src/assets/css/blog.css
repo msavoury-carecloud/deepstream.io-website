@@ -518,7 +518,9 @@ h1.post-title {
 
 @media ( max-width: 1199px ) {
 	.sidebar-item {
-		display: none;
+		width: 250px;
+		display: inline-block;
+		vertical-align: top;
 	}
 }
 
