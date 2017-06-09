@@ -121,15 +121,21 @@
 }
 
 @media ( min-width: 1600px ) {
-	.blog-sidebar {
-		position: absolute;
-		right: 10px;
-		top: 0;
-	}
+    .blog-sidebar {
+        position: absolute;
+        right: 10px;
+        top: 0;
+    }
 }
 
 @media ( max-width: 1600px ) {
+<<<<<<< HEAD
 	.sidebar-item {
 		display: none;
 	}
+=======
+    .sidebar-item {
+        display: none;
+    }
+>>>>>>> a64d7bb6ffa14f2d8f999552eae32cc20cde66e6
 }
