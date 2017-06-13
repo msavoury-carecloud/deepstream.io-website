@@ -66,7 +66,7 @@ _onRecordCheckComplete( record ) {
 ```
 ## Getting coordinates, and subscribing to a list
 
-Now that a user is logged in, we need to get their latitudinal and longitudinal coordinates. HTML5 makes this easy with its [navigator object](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) that we can query for coordinates. We can listen to the user's position updates with the *watchPosition* method:
+Now that a user is logged in, we need to get their latitudinal and longitudinal coordinates. HTML5 makes this easy with its [navigator object](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) that we can query for coordinates. Once we have their coordinates, we can listen to the user's position updates with the *watchPosition* method:
 
 ```js
 navigator.geolocation.watchPosition();
@@ -105,9 +105,11 @@ onPositionUpdate( position ) {
 
 }
 ```
-## Performing a RethinkDB geospatial query
+## Listening for subscribed users
 
-Now we are ready to find all the users who are within a kilometer radius of us, and who are logged in to the app. We will be using the listen method to pull our data out of this list we created, that contains our latitude and longitude:
+Now we are ready to find all the users who are within a kilometer radius of us, and who are logged in to the app. We will be using the listen method to pull our data out of this list we created, that contains our latitude and longitude.
+
+The listen method is called every time there is a change in record subscriptions, with our *isSubscribed* callback either returning true if there is a subscription, or false if there is not. Once there are events to subscribe to and we accept the response, we can start publishing data that will be populated from our database. There is more information about this in the  [events turorial](https://deepstream.io/tutorials/core/pubsub-events/#how-to-listen-for-event-subscriptions).
 
 ```js
 //server side
@@ -126,12 +128,13 @@ var geoSubscriptions = {};
 
 ds.record.listen('users_within_radius/.*', (match, isSubscribed, response) => {
     if( isSubscribed ) {
+        //start publishing data
         response.accept();
         if( !geoSubscriptions[ match ] ) {
             geoSubscriptions[ match ] = new GeoSubscription( match, ds );
         }
     } else {
-        //handles if the particular geoSubscription already exists
+        //stop publishing data
         if( geoSubscriptions[ match ]) {
             geoSubscriptions[ match ].destroy();
             delete geoSubscriptions[ match ];
@@ -139,7 +142,10 @@ ds.record.listen('users_within_radius/.*', (match, isSubscribed, response) => {
     }
 })
 ```
-In our *GeoSubscription* class, we now can run a geospatial query with the longitude and latitude we passed from our list, against the position of all other users that are also logged in. Here is where we filter out the users who are out of our range (1 kilometer radius) before ever having to subscribe to their records.
+
+## Performing a RethinkDB geospatial query
+
+In our *GeoSubscription* class, we now can run a geospatial query with the longitude and latitude, that we passed from our list, against the position of all other users that are also logged in. Here is where we filter out the users who are out of our range (1 kilometer radius) before ever having to subscribe to their records.
 
 First, in your constructor, access the list that was passed into the match:
 
@@ -151,19 +157,23 @@ this.list.whenReady(this._queryDb.bind( this ));
 Now that we are connected to the correct list, we can perform a database query with this match.
 here is a link to the [RethinkDB api](https://www.rethinkdb.com/api/javascript/) which will be very helpful.
 
+In order to perform geospatial queries in RethinkDB, we need to convert the longitude and latitude into an object point (*r.point()*). It would be wonderful to convert latitude and longitude into these points upon directly receiving them, but deepstream can't store database specific structures.
+
 ```js
 _queryDb() {
-    //match is returned as a string, and needs to be broken into an array, and extracted as follows
+    // *match* is returned as a string, and needs to be broken into an array, and extracted as follows
     var lat = + this.match.split( '/' )[ 1 ];
     var lng = + this.match.split( '/' )[ 2 ];
     var radius = + this.match.split( '/' )[ 3 ];
 
-    db.r.db('realtime').table('user').filter(function( user ) {
-        return db.r.distance(
-            db.r.point( user('position')('lng'), user('position')('lat') ), //users who are logged in
-            db.r.point( lng, lat ), //this user's coordinates from the list
+    r.db('realtime').table('user').filter(function( user ) {
+            //performs a geospatial query based on two object points in RethinkDB
+        return r.distance(
+            r.point( user('position')('lng'), user('position')('lat') ), //users who are logged in
+            r.point( lng, lat ), //this user's coordinates from the match
             {unit: 'km'}
         ).lt( radius ) // only populates users who are within the radius provided
+        //here, .changes() allows us to subscribe to position locations of users returned in the query
     })('ds_id').changes({includeInitial: true}).run( db.conn, this._onDbResult.bind( this ) ); //this callback passes the names of all the users that are logged in, and within the radius of the query.
 }
 
@@ -264,3 +274,7 @@ _addMarker() {
     });
 }
 ```
+
+## Where to go next
+
+Now that we've outlined how to make a simple app that shares user's locations with others, there are many ways to expand upon this and develop it into a useful application. For starters, it would be good to implement some sort of [user authentication](https://deepstream.io/tutorials/core/auth-file/). You could also perform more complex geolocation queries based on user input. For example, maybe users can choose the radius that the database queries, or you could map out walking directions to a selected user. With the real-time geo-location structure in place, there are myriads of directions to now take this application.
