@@ -188,7 +188,7 @@ A regular expression that - if it matches a recordname - will prevent the record
 in the database.<br>
 _Default_: `null`
 
-###storageHotPathPatterns:
+### storageHotPathPatterns
 A list of prefixes that designate a record for direct writes to storage. 
 When a correctly permissioned matching record is updated via `setData()`, it will be written
 directly to the cache and storage without a record transition. This can be up to twice as fast as
