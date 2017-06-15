@@ -80,8 +80,6 @@ Here the `value` is treated as a string for these options:
 
 Actually these options can be passed by an configuration object, but if you use a file-based configuration it only works with a `.js` file. YAML and JSON config files are not supporting these options.
 
-- `dataTransforms`
-
 These options might have a different name and location in the structure of the configuration object. If you use `set()` you also need to provide the instantiated instance as the `value`.
 
 - `authenticationHandler`
@@ -121,20 +119,6 @@ server.set('authenticationHandler', new OAuthHandler())
 * @default ConfigPermissionHandler (with arguments from the default config)
 */
 server.set('permissionHandler', new LdapPermissionHandler())
-
-
-/**
-* Transforms data before it leaves the server.
-* See //deepstream.io/tutorials/transforming-data.html for details
-*
-* @type Array
-* @default null
-*/
-server.set('dataTransforms', [{
-	topic: C.TOPIC.RPC,
-	action: C.ACTIONS.REQUEST,
-	transform: function(data, metaData) {}
-}])
 
 /**
 * A logger
