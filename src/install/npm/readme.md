@@ -32,16 +32,6 @@ const server = new DeepstreamServer({
   port: 6020
 })
 
-/*
-Optionally you can specify settings to set in complex objects, such as dataTransforms, a HTTPServer
-or a plugin which you want to reuse within your application
-*/
-server.set('dataTransforms', [{
-  topic: C.TOPIC.RPC,
-  action: C.ACTIONS.REQUEST,
-  transform: function(data, metaData) {}
-}])
-
 // start the server
 server.start()
 ```
