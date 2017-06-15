@@ -155,7 +155,7 @@ $(function(){
         if( windowWidth > 999 ) {
             $( '.docs' ).addClass( 'two-col' );
             $( '.docs .col.left.small' ).toggle( true );
-            $( '.docs .col.big.right' ).width( windowWidth -  ( $('.docs .col.left').width() + 2 ) );
+            $( '.docs .col.big.right' ).width( Math.floor( windowWidth -  ( $('.docs .col.left').width() + 2 ) ) );
         } else {
             $( '.docs' ).removeClass( 'two-col' );
             $( '.docs .col.left.small' ).toggle( false );
