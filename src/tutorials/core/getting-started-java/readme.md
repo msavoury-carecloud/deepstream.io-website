@@ -46,7 +46,7 @@ And now you can use deepstream! ( Remember to resync your gradle project for it 
 The first thing we want to do is connect to a deepstream server. This can be done by:
 
 ```java
-DeepstreamClient client = new DeepstreamClient( 'localhost:6021' );
+DeepstreamClient client = new DeepstreamClient( "localhost:6021" );
 ```
 
 Before you can start communicating with the server, you first need to login.
