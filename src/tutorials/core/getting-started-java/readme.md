@@ -127,7 +127,7 @@ And to provide it:
 client.rpc.provide("multiplyByTwo", new RpcRequestedListener() {
     @Override
     public void onRPCRequested(String rpcName, Object data, RpcResponse rpcResponse) {
-        rpcResponse.send( (Integer) data * 2 );
+        rpcResponse.send( (Float) data * 2 );
     }
 });
 ```
