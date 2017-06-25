@@ -86,7 +86,7 @@ function processDocFile( files, fileDir, stats, next ) {
 	} );
 
 	var fileName = stats.name.replace('.html','');
-	var metalsmithFileName = `docs/client-java/${fileName}/${fileName}.html`;
+	var metalsmithFileName = `docs/client-java/${fileName}/index.html`;
 	files[ metalsmithFileName  ] = {
 		title: `${stats.name.replace('.html','')}`,
 		description: `deepstream.io javadoc for ${fileName}`,
