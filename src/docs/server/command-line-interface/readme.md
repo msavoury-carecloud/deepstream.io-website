@@ -127,11 +127,11 @@ to avoid clashing.
 
 #### --std-out
 
-Specify where you would like your logs to be stored. Default to `/dev/null`
+Specify where you would like your logs to be stored. Default to `/var/log/deepstream`
 
 #### --std-err
 
-Specify where you would like your error logs to be stored. Default to `/dev/null`
+Specify where you would like your error logs to be stored. Default to `/var/log/deepstream`
 
 #### --dry-run
 
@@ -173,15 +173,15 @@ Output example
 
 ```json
 {
-  "deepstreamVersion": "1.0.0-rc.3",
-  "gitRef": "d638e19f6e081601add6b98270f64acde80243ca",
-  "buildTime": "Mon Jul 04 2016 11:12:31 GMT+0200 (CEST)",
+  "deepstreamVersion": "2.4.0",
+  "gitRef": "5bca621165ac2e45b9153cd0019e1df4b39825a3",
+  "buildTime": "Sat Jul 01 2017 18:44:18 GMT+0000 (UTC)",
   "platform": "darwin",
   "arch": "x64",
-  "nodeVersion": "v4.4.5",
+  "nodeVersion": "v6.11.0",
   "libs": [
     "deepstream.io-logger-winston:1.1.0",
-    "uws:0.6.5"
+    "deepstream.io-msg-redis:1.0.4"
   ]
 }
 ```
