@@ -100,9 +100,9 @@ It allows all the same commands as `deepstream start`
 ```bash
 deepstream service --help
 
-  Usage: service [options] [add|remove|start|stop]
+  Usage: service [options] [add|remove|start|stop|status]
 
-  Add, remove, start or stop deepstream as a service to your operating system
+  Add, remove, start, stop or see the status of deepstream as a service to your operating system
 
   Options:
 
