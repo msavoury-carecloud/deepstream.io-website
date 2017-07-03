@@ -13,12 +13,16 @@ johndoe:
   # Password as hash if auth.options.has is configured or in cleartext
   password: uY2zMQZXcFuWKeX/6eY43w==9wSp046KHAQfbvKcKgvwNA==
   # Optional auth data that will be passed to permissioning as user.data
-  data:
+  clientData:
+    favoriteDessert: brownies
+  serverData:
     role: admin
 
 samjones:
   password: 7KZrUQcnFUDNOQtqtKqhCA==ElDieSHdI2vtiws41JF/HQ==
-  data:
+  clientData:
+    favoriteDessert: shortbread
+  serverData:
     role: user
 ```
 
@@ -28,11 +32,13 @@ or in JSON
 {
     "johndoe": {
         "password": "uY2zMQZXcFuWKeX/6eY43w==9wSp046KHAQfbvKcKgvwNA==",
-        "data": { "role": "admin" }
+        "clientData": { "favoriteColor": "yellow" },
+        "serverData": { "role": "admin" }
     },
     "samjones": {
         "password": "7KZrUQcnFUDNOQtqtKqhCA==ElDieSHdI2vtiws41JF/HQ==",
-        "data": { "role": "user" }
+        "clientData": { "favoriteColor": "violet" },
+        "serverData": { "role": "user" }
     }
 }
 ```
@@ -81,9 +87,8 @@ Optional authentication data, e.g. `role: admin` or `canCreatePosts: true`. This
 {
     "samjones": {
         "password": "7KZrUQcnFUDNOQtqtKqhCA==ElDieSHdI2vtiws41JF/HQ==",
-        "data": {
-          "clientData": { "user-alias": "sammy" },
-          "role": "user"
+        "clientData": { "user-alias": "sammy" },
+        "serverData": { "role": "user" }
         }
     }
 }
