@@ -90,7 +90,7 @@ Otherwise the paths are relative to your current working directory.
 deepstream damemon --help
 ```
 
-This command start the deepstream server and monitors it for crashes, allowing it to be automatically
+This command starts the deepstream server and monitors it for crashes, allowing it to be automatically
 restarted on unexpected exits.
 
 It allows all the same commands as `deepstream start`
