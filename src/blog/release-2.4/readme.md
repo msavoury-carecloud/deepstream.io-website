@@ -2,11 +2,15 @@
 title: Announcing deepstream.io 2.4
 dateISO: 20170702
 author: yasserf
-thumbnail: 2.4-deepstream.png
+thumbnail: 2.4-deepstream-elton.jpg
 description: Announcing the 2.4 release of deepstream.io
 ---
 
 Announcing the release of [deepstream.io 2.4](https://github.com/deepstreamIO/deepstream.io/releases/tag/v2.4.0), which now supports running deepstream as a daemon and registering itself as a service via init.d or systemd.
+
+<div>
+  <img src="2.4-deepstream-elton.jpg" alt="deepstream.io 2.4" />
+</div>
 
 ## Registering as a linux service
 
