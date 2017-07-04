@@ -6,7 +6,9 @@ thumbnail: 2.4-deepstream-elton.jpg
 description: Announcing the 2.4 release of deepstream.io
 ---
 
-We are happy to announce the release of [deepstream.io 2.4](https://github.com/deepstreamIO/deepstream.io/releases/tag/v2.4.0), which now supports running deepstream as a daemon and registering itself as a service via init.d or systemd. Using this feature you can now run install and run deepstream in production environments in just four lines, optionally use your preferred linux logging mechanism to gather and rotate logs, and minimize downtime by allowing it to monitor your process and auto restart if the need occurs. It's also the first release supporting homebrew on mac, allowing users to install or upgrade deepstream using just one line. Goodbye monitoring tools, hello deepstream 2.4!
+Today we are happy to announce the release of [deepstream.io 2.4](https://github.com/deepstreamIO/deepstream.io/releases/tag/v2.4.0) which fully focuses on increasing availability and reducing downtime for production deepstream clusters. But that's not all: Mac fans can now install deepstream in a single line using brew. 
+
+Our release supports running deepstream as a daemon and registering itself as a service via init.d or systemd. With just four lines of code, you can now run install and run deepstream in production environments, using your preferred linux logging mechanism to gather and rotate logs. Our Mac users can with our new feature install or upgrade deepstream using just one line of code. Install our deepstream 2.4 - monitoring tools are so yesterday.
 
 <div>
   <img src="2.4-deepstream-elton.jpg" alt="deepstream.io 2.4" />
