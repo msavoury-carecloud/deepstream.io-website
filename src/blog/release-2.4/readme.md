@@ -1,6 +1,6 @@
 ---
-title: Announcing deepstream.io 2.4
-dateISO: 20170702
+title: Running deepstream in production just got so much easier with 2.4.0
+dateISO: 20170704
 author: yasserf
 thumbnail: 2.4-deepstream-elton.jpg
 description: Announcing the 2.4 release of deepstream.io
@@ -8,7 +8,7 @@ description: Announcing the 2.4 release of deepstream.io
 
 Today we are happy to announce the release of [deepstream.io 2.4](https://github.com/deepstreamIO/deepstream.io/releases/tag/v2.4.0) which fully focuses on increasing availability and reducing downtime for production deepstream clusters. But that's not all: Mac fans can now install deepstream in a single line using brew. 
 
-Our release supports running deepstream as a daemon and registering itself as a service via init.d or systemd. With just four lines of code, you can now run install and run deepstream in production environments, using your preferred linux logging mechanism to gather and rotate logs. Our Mac users can with our new feature install or upgrade deepstream using just one line of code. Install our deepstream 2.4 - monitoring tools are so yesterday.
+Our release supports running deepstream as a daemon and registering itself as a service via init.d or systemd. With just four lines of code, you can now run install and run deepstream in production environments, using your preferred linux logging mechanism to gather and rotate logs. Our Mac users can with our new feature install or upgrade deepstream using just one line of code.
 
 <div>
   <img src="2.4-deepstream-elton.jpg" alt="deepstream.io 2.4" />
@@ -16,7 +16,7 @@ Our release supports running deepstream as a daemon and registering itself as a 
 
 ## Registering as a linux service
 
-If you are running any linux distro, chances are you support either init.d ([AWS](https://deepstream.io/install/aws-linux/)/[CentOS](https://deepstream.io/install/aws-linux/)) or systemd ([Ubuntu](https://deepstream.io/install/ubuntu/)/[debian](https://deepstream.io/install/debian/)). Using the new service installer  makes downloading, installing and registering deepstream to run as a service as simple as
+If you are running any linux distro, chances are you support either init.d ([AWS](https://deepstream.io/install/aws-linux/)/[CentOS](https://deepstream.io/install/aws-linux/)) or systemd ([Ubuntu](https://deepstream.io/install/ubuntu/)/[debian](https://deepstream.io/install/debian/)). Using the new service installer  makes downloading, installing and registering deepstream to run as a service as simple as:
 
 ```bash
 # When using YUM
@@ -32,7 +32,7 @@ And that's it! You now have a service running locally that can provide realtime 
 
 ## Running a daemon
 
-For those running servers on windows or mac, you can still run the daemon to monitor and auto-restart deepstream if necessary, while still supporting all the normal start options
+For those running servers on windows or mac, you can still run the daemon to monitor and auto-restart deepstream if necessary, while still supporting all the normal start options:
 
 ```bash
 deepstream daemon --help
@@ -56,13 +56,13 @@ Options:
 
 ## Installing via brew cask
 
-Last, but certainly not least, we now publish deepstream via the awesome [homebrew](https://brew.sh/). This means [installing deepstream on osx](../../install/osx/) is as simple as
+Last, but certainly not least, we now publish deepstream via the awesome [homebrew](https://brew.sh/). This means [installing deepstream on osx](../../install/osx/) is now very simple:
 
 ```bash
 brew cask install deepstream
 ```
 
-And install plugins from anywhere
+And install plugins from anywhere:
 
 ```bash
 deepstream install msg redis
