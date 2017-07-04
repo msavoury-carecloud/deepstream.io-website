@@ -14,7 +14,7 @@ We are happy to announce the release of [deepstream.io 2.4](https://github.com/d
 
 ## Registering as a linux service
 
-If you are running any linux distro, chances are you support either init.d ([AWS](https://deepstream.io/install/aws-linux/)/[CentOS](https://deepstream.io/install/aws-linux/)) or systemd ([Ubuntu](https://deepstream.io/install/ubuntu/)/[debian](https://deepstream.io/install/debian/)). Using the new service installer means downloading deepstream and getting it to run as a service. Auto-restart to avoid downtime is as easy as
+If you are running any linux distro, chances are you support either init.d ([AWS](https://deepstream.io/install/aws-linux/)/[CentOS](https://deepstream.io/install/aws-linux/)) or systemd ([Ubuntu](https://deepstream.io/install/ubuntu/)/[debian](https://deepstream.io/install/debian/)). Using the new service installer  makes downloading, installing and registering deepstream to run as a service as simple as
 
 ```bash
 # When using YUM
@@ -30,7 +30,7 @@ And that's it! You now have a service running locally that can provide realtime 
 
 ## Running a daemon
 
-For those running servers on windows or mac (although we currently don't support as a native service on those platforms) you can still run the daemon to monitor and auto-restart deepstream if necessary, while still supporting all the normal start options
+For those running servers on windows or mac, you can still run the daemon to monitor and auto-restart deepstream if necessary, while still supporting all the normal start options
 
 ```bash
 deepstream daemon --help
