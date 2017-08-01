@@ -53,4 +53,4 @@ Records are more than just their data. They have their own subscribe/discard lif
 
 Recordnames are lightweight strings that can easily be passed around, e.g. as `props` to React components or as `data-model` to an Android listview.
 
-This also addresses one of the major challenges of developing realtime apps:  Using  bandwidth efficiently and minimizing the amount of data that's send over the wire. One of the best ways to achieve this is by limiting subscriptions to the records that are currently in view. Lists help with that by providing the necessary structure to create infinite grids or panels that automatically load and discard data while the user scrolls.
+This also addresses one of the major challenges of developing realtime apps:  Using bandwidth efficiently and minimizing the amount of data that's sent over the wire. One of the best ways to achieve this is by limiting subscriptions to the records that are currently in view. Lists help with that by providing the necessary structure to create infinite grids or panels that automatically load and discard data while the user scrolls.
